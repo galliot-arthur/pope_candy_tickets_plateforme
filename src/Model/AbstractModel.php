@@ -7,7 +7,7 @@ use App\Model\Connection;
 /**
  * Abstract class handling default manager.
  */
-abstract class AbstractManager
+abstract class AbstractModel
 {
     /**
      * @var \PDO

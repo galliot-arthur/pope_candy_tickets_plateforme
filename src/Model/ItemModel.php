@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class ItemManager extends AbstractManager
+class ItemModel extends AbstractModel
 {
     /**
      *

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\ItemManager;
+use App\Model\ItemModel;
 
 /**
  * Class ItemController
@@ -22,8 +22,8 @@ class ItemController extends AbstractController
      */
     public function index()
     {
-        $itemManager = new ItemManager();
-        $items = $itemManager->selectAll();
+        $itemModel = new ItemModel();
+        $items = $itemModel->selectAll();
 
         return $this->twig->render('Item/index.html.twig', ['items' => $items]);
     }
@@ -40,8 +40,8 @@ class ItemController extends AbstractController
      */
     public function show(int $id)
     {
-        $itemManager = new ItemManager();
-        $item = $itemManager->selectOneById($id);
+        $itemModel = new ItemModel();
+        $item = $itemModel->selectOneById($id);
 
         return $this->twig->render('Item/show.html.twig', ['item' => $item]);
     }
@@ -58,12 +58,12 @@ class ItemController extends AbstractController
      */
     public function edit(int $id): string
     {
-        $itemManager = new ItemManager();
-        $item = $itemManager->selectOneById($id);
+        $itemModel = new ItemModel();
+        $item = $itemModel->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $item['title'] = $_POST['title'];
-            $itemManager->update($item);
+            $itemModel->update($item);
         }
 
         return $this->twig->render('Item/edit.html.twig', ['item' => $item]);
@@ -82,11 +82,11 @@ class ItemController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $itemManager = new ItemManager();
+            $itemModel = new ItemModel();
             $item = [
                 'title' => $_POST['title'],
             ];
-            $id = $itemManager->insert($item);
+            $id = $itemModel->insert($item);
             header('Location:/item/show/' . $id);
         }
 
@@ -101,8 +101,8 @@ class ItemController extends AbstractController
      */
     public function delete(int $id)
     {
-        $itemManager = new ItemManager();
-        $itemManager->delete($id);
+        $itemModel = new ItemModel();
+        $itemModel->delete($id);
         header('Location:/item/index');
     }
 }
