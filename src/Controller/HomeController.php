@@ -15,10 +15,15 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+        
         return $this
             ->twig
             ->render(
-                'Home/index.html.twig'
+                'Home/index.html.twig',
+                [
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
 
@@ -28,7 +33,11 @@ class HomeController extends AbstractController
         return $this
             ->twig
             ->render(
-                "Admin/index.html.twig"
+                "Admin/index.html.twig",
+                [
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
 }

@@ -16,21 +16,9 @@
 
 <body>
 
-    <nav>
-        <h2>Pop Candy Tour</h2>
-        <div class="onglets">
-            <a href="#">Home</a>
-            <a href="#Achat">Acheter</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+{% include "_partials/_nav.html.twig" %}
 
-    <header>
-        <h1>Pop Candy Tour</h1>
-        <h4>Le mastodonte est de retour</h4>
-        <button>Parcourir</button>
-    </header>
-
+{% include "_partials/_flash.html.twig" %}
 
 {% block content %}{% endblock %}
 

@@ -16,7 +16,11 @@ class PricesController extends AbstractController
             ->twig
             ->render(
                 'Prices/index.html.twig',
-                ['prices' => $prices]
+                [
+                    'prices' => $prices,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
 
@@ -29,7 +33,11 @@ class PricesController extends AbstractController
             ->twig
             ->render(
                 'Prices/show.html.twig',
-                ['price' => $price]
+                [
+                    'price' => $price,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
 
@@ -49,7 +57,13 @@ class PricesController extends AbstractController
 
         return $this
             ->twig
-            ->render("Prices/add.html.twig");
+            ->render(
+                "Prices/add.html.twig",
+                [
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
+            );
     }
 
     public function edit(int $id): string
@@ -71,7 +85,11 @@ class PricesController extends AbstractController
             ->twig
             ->render(
                 'Prices/edit.html.twig',
-                ['prices' => $prices]
+                [
+                    'prices' => $prices,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
     public function delete(int $id)
