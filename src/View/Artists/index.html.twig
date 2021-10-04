@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Afficher la liste des Artistes</h1>
+    <ul>
+        {% for artist in artists %}
+            <li><a href="/artists/show/{{ artist.id }}">{{ artist.id }}
+            Nom de l'Artiste . {{ artist.name }}
+        Biography. {{ artist.biography }}
+         site web. {{ artist.website }}</a></li>
+        {% else %}
+            <li>Nothing to display</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="/artists/add">Add</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Editer un artist {{ artists.id }}</h1>
+    <form method="post">
+    <input type="hidden" value="{{ artists.id}}" name="id">
+    <input type="text" value="{{ artists.name }}" name="name">
+    <input type="text" value="{{ artists.biography }}" name="biography">
+    <input type="text" value="{{ artists.website }}" name="website">
+    <input type="submit" value="Update">
+</form>
+<br>
+    <a href="/artists/index">Back to list</a>
+{% endblock %}
