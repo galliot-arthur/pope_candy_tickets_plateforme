@@ -5,14 +5,19 @@ namespace App\Controller;
 use App\Model\PricesModel;
 
 class PricesController extends AbstractController
- {
+{
 
     public function index()
     {
         $pricesModel = new PricesModel();
         $prices = $pricesModel->selectAll();
 
-        return $this->twig->render('Prices/index.html.twig', ['prices' => $prices]);
+        return $this
+            ->twig
+            ->render(
+                'Prices/index.html.twig',
+                ['prices' => $prices]
+            );
     }
 
     public function show(int $id)
@@ -20,11 +25,17 @@ class PricesController extends AbstractController
         $pricesModel = new PricesModel();
         $price = $pricesModel->selectOneById($id);
 
-        return $this->twig->render('Prices/show.html.twig', ['price' => $price]);
+        return $this
+            ->twig
+            ->render(
+                'Prices/show.html.twig',
+                ['price' => $price]
+            );
     }
 
-     public function add()
-     {
+    public function add()
+    {
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pricesModel = new PricesModel();
             $prices = [
@@ -36,12 +47,12 @@ class PricesController extends AbstractController
             header('Location:/prices/show/' . $id);
         }
 
-        
+        return $this
+            ->twig
+            ->render("Prices/add.html.twig");
+    }
 
-         return $this->twig->render("Prices/add.html.twig");
-     }
-
-     public function edit(int $id): string
+    public function edit(int $id): string
     {
         $pricesModel = new PricesModel();
         $prices = $pricesModel->selectOneById($id);
@@ -56,16 +67,17 @@ class PricesController extends AbstractController
             $pricesModel->update($prices);
         }
 
-        return $this->twig->render('Prices/edit.html.twig', ['prices' => $prices]);
+        return $this
+            ->twig
+            ->render(
+                'Prices/edit.html.twig',
+                ['prices' => $prices]
+            );
     }
-     public function delete(int $id)
+    public function delete(int $id)
     {
         $PricesModel = new PricesModel();
         $PricesModel->delete($id);
         header('Location:/prices/index');
     }
-    
-
-
- }
-
+}

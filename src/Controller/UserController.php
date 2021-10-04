@@ -19,7 +19,12 @@ class UserController extends AbstractController
         $userModel = new UserModel();
         $users = $userModel->selectAll();
 
-        return $this->twig->render('User/index.html.twig', ['users' => $users]);
+        return $this
+            ->twig
+            ->render(
+                'User/index.html.twig',
+                ['users' => $users]
+            );
     }
 
 
@@ -37,7 +42,12 @@ class UserController extends AbstractController
         $userModel = new UserModel();
         $user = $userModel->selectOneById($id);
 
-        return $this->twig->render('User/show.html.twig', ['user' => $user]);
+        return $this
+            ->twig
+            ->render(
+                'User/show.html.twig',
+                ['user' => $user]
+            );
     }
 
     /**
@@ -55,7 +65,7 @@ class UserController extends AbstractController
         $user = $userModel->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user= [
+            $user = [
                 'id' => $id,
                 'name' => $_POST['name'],
                 'email' => $_POST['email'],
@@ -69,9 +79,14 @@ class UserController extends AbstractController
             exit;
         }
 
-        return $this->twig->render('User/edit.html.twig', ['user' => $user]);
+        return $this
+            ->twig
+            ->render(
+                'User/edit.html.twig',
+                ['user' => $user]
+            );
     }
-    
+
     /**
      * Display item creation page
      *
@@ -98,10 +113,14 @@ class UserController extends AbstractController
             header("Location:/user/index");
         }
 
-        return $this->twig->render('User/add.html.twig');
+        return $this
+            ->twig
+            ->render(
+                'User/add.html.twig'
+            );
     }
 
-        /**
+    /**
      * Handle item deletion
      *
      * @param int $id
