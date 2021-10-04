@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Register</h1>
+    <form method="post">
+
+        <input type="text" value="{{ user.name  }}" name="name">
+
+        <input type="text" value="{{ user.surname }}" name="surname">
+
+        <input type="text" value="{{ user.adress }}" name="adress">
+
+        <input type="number" value="{{ user.age }}" name="age">
+
+        <input type="submit" value="Register">
+    </form>
+<a href="/item/index">back to list</a>
+{% endblock %}

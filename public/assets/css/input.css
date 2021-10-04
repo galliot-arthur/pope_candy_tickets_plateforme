@@ -1,0 +1,23 @@
+input,
+textarea {
+    display: block;
+    padding: .375rem .75rem;
+    font: inherit;
+    line-height: 1.5;
+    color: black;
+    background: white;
+    border: 1px solid black;
+    margin: .25rem;
+    box-sizing: border-box;
+    border-radius: .25rem;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn {}
+
+.btn-dark {}
+
+.btn-success {}
