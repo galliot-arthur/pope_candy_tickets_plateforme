@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Afficher les différents prix</h1>
+    <ul>
+        {% for price in prices %}
+            <li><a href="/prices/show/{{ price.id }}">{{ price.id }}. {{ price.venue_id }}
+        Prix du ticket. {{ price.price }}
+         Type de ticket. {{ price.ticket_type }}</a></li>
+        {% else %}
+            <li>Nothing to display</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="/prices/add">Add</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Price </h1>
+    <p>{{ price.id }}. {{ price.venue_id }}</p>
+    <p>Prix du ticket. {{ price.price }}</p>
+    <p> Type de ticket. {{ price.ticket_type }}</p>
+    <a href="/prices/edit/{{ price.id }}">Edit</a>
+    <a href="/prices/delete/{{price.id}}">Delete</a>
+    <br>
+    <a href="/prices/index">Back to list</a>
+{% endblock %}
