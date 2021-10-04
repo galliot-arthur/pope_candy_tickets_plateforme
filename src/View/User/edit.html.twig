@@ -1,12 +1,45 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Edit item {{ item.title }}</h1>
+    <h1>Modifier un utilisateur {{ user.name }}</h1>
     <form method="post">
-    <input type="hidden" value="{{ item.id }}" name="id">
-    <input type="text" value="{{ item.title }}" name="title">
-    <input type="submit" value="Update">
+        <input 
+            type="text" 
+            value="{{ user.name  }}" 
+            name="name" 
+            placeholder="Nom" 
+            required>
+        <input 
+            type="text" 
+            value="{{ user.firstname }}" 
+            name="firstname" 
+            placeholder="Prénom" 
+            required>
+        <input 
+            type="email" 
+            value="{{ user.email }}" 
+            name="email" 
+            placeholder="E-mail" 
+            required>
+        <input 
+            type="password" 
+            value="{{ user.password }}" 
+            name="password" 
+            placeholder="Mot de passe" 
+            required>
+        <input 
+            type="text" 
+            value="{{ user.adress }}" 
+            name="adress" 
+            placeholder="Adresse" 
+            required>
+        <input 
+            type="number" 
+            value="{{ user.age }}" 
+            name="age" 
+            placeholder="Age" 
+            required>
 </form>
 <br>
-    <a href="/item/show/{{ item.id }}">Back to list</a>
+    <a href="/user/show/{{ user.id }}">Back to list</a>
 {% endblock %}

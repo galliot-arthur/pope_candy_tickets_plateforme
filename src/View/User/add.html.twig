@@ -4,15 +4,44 @@
     <h1>Register</h1>
     <form method="post">
 
-        <input type="text" value="{{ user.name  }}" name="name">
-
-        <input type="text" value="{{ user.surname }}" name="surname">
-
-        <input type="text" value="{{ user.adress }}" name="adress">
-
-        <input type="number" value="{{ user.age }}" name="age">
+        <input 
+            type="text" 
+            value="{{ user.name  }}" 
+            name="name" 
+            placeholder="Nom" 
+            required>
+        <input 
+            type="text" 
+            value="{{ user.firstname }}" 
+            name="firstname" 
+            placeholder="Prénom" 
+            required>
+        <input 
+            type="email" 
+            value="{{ user.email }}" 
+            name="email" 
+            placeholder="E-mail" 
+            required>
+        <input 
+            type="password" 
+            value="{{ user.password }}" 
+            name="password" 
+            placeholder="Mot de passe" 
+            required>
+        <input 
+            type="text" 
+            value="{{ user.adress }}" 
+            name="adress" 
+            placeholder="Adresse" 
+            required>
+        <input 
+            type="number" 
+            value="{{ user.age }}" 
+            name="age" 
+            placeholder="Age" 
+            required>
 
         <input class="btn btn-dark" type="submit" value="Register">
     </form>
-<a href="/item/index">back to list</a>
+<a href="/user/index">back to list</a>
 {% endblock %}
