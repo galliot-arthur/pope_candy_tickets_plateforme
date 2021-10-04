@@ -16,8 +16,45 @@ textarea {
     resize: vertical;
 }
 
-.btn {}
+form {
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    box-sizing: border-box;
+}
 
-.btn-dark {}
+.btn {
+    padding: .375rem .75rem;
+    border: 1px solid;
+    border-radius: .25rem;
+    outline: none;
+    cursor: pointer;
+}
 
-.btn-success {}
+.btn-white {
+    background-color: #fff;
+    color: #000;
+    border-color: #000;
+}
+
+.btn-dark {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.btn-outline-success {
+    background-color: #fff;
+    color: #55943c;
+    border-color: #55943c;
+}
+
+.btn-outline-danger {
+    background-color: #fff;
+    color: #d33737;
+    border-color: #d33737;
+}

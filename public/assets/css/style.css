@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
-@import url('GothBallCrap.ttf');
+@import url('/public/assets/media/GothBallCrap.ttf');
 html {
     scroll-behavior: smooth;
 }
@@ -45,6 +45,7 @@ header {
     align-items: center;
     background: url('https://uproxx.com/wp-content/uploads/2020/02/popsmoke-tfeat-uproxx.jpg?w=1600&h=495&crop=1');
     background-size: cover;
+    background-position: center;
     color: #fff;
     background-color: white !important;
     padding: 40px;
