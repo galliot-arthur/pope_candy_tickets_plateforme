@@ -7,7 +7,6 @@ class HomeController extends AbstractController
 
     /**
      * Display home page
-     *
      * @return string
      */
     public function index()

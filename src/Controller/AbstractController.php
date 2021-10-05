@@ -42,7 +42,7 @@ abstract class AbstractController
         return null;
     }
 
-        /**
+    /**
      * Set result messages to user
      *
      * @param boolean $type Set the type of message : false = "danger", "true" = success
