@@ -4,35 +4,40 @@
 
     <h1>Editer {{ artists.name }}</h1>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-3">
         <a class="btn btn-dark m-1" href="/artists/index">Retour à l'index artistes</a>
     </div>
 
-    <form method="post">
+    <form method="post" class="form-group">
         <input 
             type="hidden" 
             value="{{ artists.id }}" 
             name="id">
         <input 
+            class="form-control mb-3"
             type="text" 
             value="{{ artists.name }}" 
             name="name"
             required
             placeholder="Nom de l'artiste ou du groupe">
-        <input
+        <textarea
+            class="form-control mb-3"
             type="text" 
-            value="{{ artists.biography }}" 
             name="biography"
             required
             placeholder="Courte Biographie">
+            {{ artists.biography }}
+            </textarea>
         <input 
+            class="form-control mb-3"
             type="url" 
             value="{{ artists.website }}" 
             name="website"
             required
             placeholder="Site internet">
         <input 
+            class="btn btn-dark"
             type="submit" 
-            value="Edit">
+            value="Editer">
     </form>
 {% endblock %}

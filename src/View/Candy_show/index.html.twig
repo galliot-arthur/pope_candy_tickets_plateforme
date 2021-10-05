@@ -3,19 +3,20 @@
 {% block content %}
     <h1>Spectacles</h1>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-2">
         <a class="btn btn-dark m-1" href="/candy_show/add">Add</a>
         <a class="btn btn-dark m-1" href="/home/admin">Admin Index</a>
     </div>
 
     <ul class="list-group">
         {% for candy_show in candy_show %}
-            <li class="list-group-item d-flex justify-content-between">
-                <a href="/candy_show/show/{{ candy_show.id }}">
+            <li class="list-group-item">
+                <a 
+                    href="/candy_show/show/{{ candy_show.id }}">
                     {{ candy_show.title }}
                 </a>
-                {{ candy_show.show_start }}
-                {{ candy_show.sales }}
+                <div>{{ candy_show.show_start|date("d/m/y") }}</div>
+                <div>Ventes {{ candy_show.sales }}</div>
             </li>
 
         {% else %}

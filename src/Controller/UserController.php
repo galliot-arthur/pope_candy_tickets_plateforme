@@ -8,7 +8,6 @@ class UserController extends AbstractController
 {
     /**
      * Display item listing
-     *
      * @return string
      */
     public function index()
@@ -30,7 +29,6 @@ class UserController extends AbstractController
 
     /**
      * Display item edition page specified by $id
-     *
      * @param int $id
      * @return string
      */
@@ -87,7 +85,6 @@ class UserController extends AbstractController
 
     /**
      * Display item creation page
-     *
      * @return string
      */
     public function register()
@@ -149,7 +146,6 @@ class UserController extends AbstractController
 
     /**
      * Handle item deletion
-     *
      * @param int $id
      */
     public function delete(int $id)
@@ -203,7 +199,6 @@ class UserController extends AbstractController
 
     /**
      * Handle the user logout
-     *
      * @return void
      */
     public function logout()

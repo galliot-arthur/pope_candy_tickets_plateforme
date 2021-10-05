@@ -41,7 +41,11 @@
                 requiered>
                 <option selected>Choisir...</option>
                 {% for artist in artists %}
-                    <option value="{{ artist.id }}">{{ artist.name }}</option>
+                    <option
+                        {{ artist.id == candy_show.first_part ? "selected" : "" }}
+                        value="{{ artist.id }}">
+                        {{ artist.name }}
+                        </option>
                 {% endfor %}
             </select>
         </div>
@@ -60,9 +64,8 @@
                 <option selected>Choisir...</option>
                 {% for artist in artists %}
                     <option 
-                        value="{{ artist.id }}"
-                        {{ if artist.id == candy_show.first_part ? "selected" : "" }}
-                        >
+                        {{ artist.id == candy_show.first_part ? "selected" : "" }}
+                        value="{{ artist.id }}">
                         {{ artist.name }}
                         </option>
                 {% endfor %}
