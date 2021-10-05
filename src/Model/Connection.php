@@ -37,24 +37,25 @@ class Connection extends PDO
             $this->user = APP_DB_USER;
             $this->host = APP_DB_HOST;
             $this->password = APP_DB_PWD;
-            $this->dbName = APP_DB_NAME;
+            $this->dbName = APP_DB_NAME; 
         }
         try {
             parent::__construct(
                 "mysql:host=$this->host; dbname=$this->dbName; charset=utf8",
                 $this->user,
                 $this->password
-            );
+            ); 
             $this->setAttribute(
                 PDO::ATTR_DEFAULT_FETCH_MODE,
                 PDO::FETCH_ASSOC
-            );
+            ); 
             // show errors in DEV environment
             if (APP_DEV) {
                 $this->setAttribute(
                     PDO::ATTR_ERRMODE,
                     PDO::ERRMODE_EXCEPTION
-                );
+                ); 
+                
             }
         } catch (\PDOException $e) {
             echo ("<div class='error'>Error !: $e->getMessage()</div>");
