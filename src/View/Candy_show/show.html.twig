@@ -1,20 +1,27 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>candy show </h1>
-    <p>{{ candy_show.id }}.</p>
-    <p>Titre du show: .{{ candy_show.title }}</p>
-    <p> Bio: . {{ candy_show.venue }}</p>
-    <p> première partie. {{ candy_show.first_part }}</p>
-    <p> site web du groupe premiere partie. {{ candy_show.first_part_website }}</p>
-    <p> prix du show . {{ candy_show.price }}</p>
-    <p> Biogr: . {{ candy_show.show_start }}</p>
-    <p> Bi de l'artiste: . {{ candy_show.show_end }}</p>
-    <p> Biog de l'artiste: . {{ candy_show.sales_on }}</p>
-    <p> Bioe: . {{ candy_show.sold_out }}</p>
-    <p> Bi: . {{ candy_show.sales }}</p>
-    <a href="/candy_show/edit/{{ candy_show.id }}">Edit</a>
-    <a href="/candy_show/delete/{{candy_show.id}}">Delete</a>
-    <br>
-    <a href="/candy_show/index">Back to list</a>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-dark m-1" href="/candy_show/edit/{{ candy_show.id }}">Editer</a>
+        <a class="btn btn-dark m-1" href="/candy_show/delete/{{candy_show.id}}">Supprimer</a>
+        <a class="btn btn-dark m-1" href="/home/admin">Administration</a>
+    </div>
+
+    <h1>{{ candy_show.title }}</h1>
+    {% if candy_show.soldout %}
+        <div class="alert alert-sucess">
+            <b>SOLD OUT</b>
+        </div>
+    {% endif %}
+    <div class="card">
+        <div class="card-body">
+            <div>Salle de concert : <b>{{ candy_show.venue }}</b></div>
+            <div>Première partie : <a href="{{ candy_show.first_part_website }}">{{ candy_show.first_part ? candy_show.first_part : "<i>Pas de première partie</i>" }}</a></div>
+            <div>Tarif Unitaire : <b>{{ candy_show.price }}</b></div>
+            <div>Heure début : <b>{{ candy_show.show_start }}</b></div>
+            <div>Heure fin : <b>{{ candy_show.show_end }}</b></div>
+            <div>Ouverture des ventes : <b>{{ candy_show.sales_on }}</b></div>
+            <div>Nombres de places vendues : <b>{{ candy_show.sales }}</b></div>
+        </div>
+    </div>
 {% endblock %}

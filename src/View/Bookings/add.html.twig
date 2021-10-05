@@ -7,11 +7,11 @@
         <a class="btn btn-dark m-1" href="/artists/index">Retour à l'index artistes</a>
     </div>
     <form method="post">
-        <input 
+        <input
             type="hidden" 
             value="{{ booking.id }}" 
             name="id">
-        <input 
+        <input
             type="number" 
             value="{{ booking.ref_id }}" 
             name="ref_id"
@@ -23,19 +23,19 @@
             name="ref"
             required
             placeholder="Titre du concert">
-        <input 
+        <input
             type="int" 
             value="{{ booking.id_user }}" 
             name="id_user"
             required
             placeholder="id de l'utilisateur(int)">
-        <input 
+        <input
             type="int" 
             value="{{ booking.type }}" 
             name="type"
             required
             placeholder="type de ticket">
-        <input 
+        <input
             class="btn btn-success"
             type="submit" 
             value="Add">
