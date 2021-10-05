@@ -29,7 +29,11 @@ class ItemController extends AbstractController
             ->twig
             ->render(
                 'Item/index.html.twig',
-                ['items' => $items]
+                [
+                    'items' => $items,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
 
@@ -52,7 +56,11 @@ class ItemController extends AbstractController
             ->twig
             ->render(
                 'Item/show.html.twig',
-                ['item' => $item]
+                [
+                    'item' => $item,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
 
@@ -80,7 +88,11 @@ class ItemController extends AbstractController
             ->twig
             ->render(
                 'Item/edit.html.twig',
-                ['item' => $item]
+                [
+                    'item' => $item,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
 
@@ -108,7 +120,11 @@ class ItemController extends AbstractController
         return $this
             ->twig
             ->render(
-                'Item/add.html.twig'
+                'Item/add.html.twig',
+                [
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
             );
     }
 

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
-@import url('/public/assets/media/GothBallCrap.ttf');
+@import url('/assets/media/GothBallCrap.ttf');
+@import url('assets\media\Quick Love.ttf');
 html {
     scroll-behavior: smooth;
 }
@@ -21,7 +22,7 @@ nav {
 
 nav h2 {
     color: #717171;
-    font-family: 'GothBallCrap', serif;
+    font-family: 'Quick Love', serif;
     text-transform: uppercase;
     font-size: 30px;
 }
@@ -52,7 +53,7 @@ header {
 }
 
 header h1 {
-    font-family: 'GothBallCrap', serif;
+    font-family: 'Quick Love', serif;
     font-size: 50px;
     text-transform: uppercase;
 }
