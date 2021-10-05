@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <h1>Editer {{ booking.ref }}</h1>
+
+    <div class="d-flex justify-content-center">
+    <a class="btn btn-dark m-1" href="/bookings/index">Retour à l'index artistes</a>
+    </div>
+
+    <form method="post">
+        <input 
+            type="hidden" 
+            value="{{ booking.id }}" 
+            name="id">
+        <input 
+            type="number" 
+            value="{{ booking.ref_id }}" 
+            name="ref_id"
+            required
+            placeholder="référence du concert initial(int)">
+        <input
+            type="text" 
+            value="{{ booking.ref }}" 
+            name="ref"
+            required
+            placeholder="Titre du concert">
+        <input 
+            type="int" 
+            value="{{ booking.id_user }}" 
+            name="id_user"
+            required
+            placeholder="id de l'utilisateur(int)">
+        <input 
+            type="int" 
+            value="{{ booking.type }}" 
+            name="type"
+            required
+            placeholder="type de ticket">
+        <input 
+            class="btn btn-success"
+            type="submit" 
+            value="Add">
+    </form>
+{% endblock %}

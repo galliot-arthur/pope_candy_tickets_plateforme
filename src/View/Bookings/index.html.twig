@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Afficher la liste des Bookings</h1>
+
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-dark m-1" href="/bookings/add">Add</a>
+        <a class="btn btn-dark m-1" href="/home/admin">Admin Index</a>
+    </div>
+
+    <ul class="list-group">
+        {% for booking in bookings %}
+            <li class="list-group-item d-flex justify-content-between">
+                <a href="/bookings/show/{{ booking.id }}">
+                    {{ booking.ref }}
+                </a>            
+                </li>
+
+        {% else %}
+            <li>Nothing to display</li>
+        {% endfor %}
+    </ul>
+    
+    
+    
+{% endblock %}
