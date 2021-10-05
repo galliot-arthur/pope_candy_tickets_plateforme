@@ -3,11 +3,29 @@
 {% block content %}
     <h1>Editer en prix {{ prices.id }}</h1>
     <form method="post">
-    <input type="hidden" value="{{ prices.id }}" name="id">
-    <input type="text" value="{{ prices.venue_id }}" name="venue_id">
-    <input type="text" value="{{ prices.price }}" name="price">
-    <input type="text" value="{{ prices.ticket_type }}" name="ticket_type">
-    <input type="submit" value="Update">
+    <input
+     type="hidden" 
+    value="{{ prices.id }}" 
+    name="id">
+    <input 
+    type="text" 
+    value="{{ prices.venue_id }}" 
+    name="venue_id"
+    placeholder="numéro de la salle">
+    <input
+     type="text"
+     value="{{ prices.price }}" 
+    name="price"
+    placeholder="le prix">
+    <input 
+    type="text"
+     value="{{ prices.ticket_type }}"
+     name="ticket_type"
+     placeholder="type de ticket">
+    <input 
+    type="submit"
+     value="Update"
+    >
 </form>
 <br>
     <a href="/prices/index">Back to list</a>

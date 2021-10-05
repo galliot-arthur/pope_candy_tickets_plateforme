@@ -4,10 +4,28 @@
     <h1>Add a new Price</h1>
     <form method="post">
     <input type="hidden" value="{{ prices.id }}" name="id" >
-    <input type="text" value="{{ prices.venue_id }}" name="venue_id">
-    <input type="text" value="{{ prices.price }}" name="price" placeholder="entrer le prix">
-    <input type="text" value="{{ prices.ticket_type }}" name="ticket_type">
-    <input type="submit" value="Add">
+    <input
+     type="text" 
+     value="{{ prices.venue_id }}" 
+     name="venue_id" 
+     placeholder="salle de concert">
+
+    <input 
+    type="text" 
+    value="{{ prices.price }}"
+     name="price" 
+    placeholder="entrer le prix">
+
+    <input 
+    type="text" 
+    value="{{ prices.ticket_type }}"
+     name="ticket_type"
+     placeholder="type de ticket">
+
+    <input 
+    type="submit" 
+    value="Add">
+
 </form>
 <a href="/prices/index">back to list</a>
 {% endblock %}

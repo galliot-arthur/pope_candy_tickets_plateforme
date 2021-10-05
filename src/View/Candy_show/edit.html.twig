@@ -3,18 +3,64 @@
 {% block content %}
     <h1>Editer un candy show {{ candy_show.id }}</h1>
     <form method="post">
-    <input type="hidden" value="{{ candy_show.id}}" name="id">
-    <input type="text" value="{{ candy_show.title }}" name="title">
-    <input type="text" value="{{ candy_show.venue }}" name="venue">
-    <input type="text" value="{{ candy_show.first_part }}" name="first_part">
-    <input type="text" value="{{ candy_show.first_part_website }}" name="first_part_website">
-    <input type="text" value="{{ candy_show.price }}" name="price">
-    <input type="text" value="{{ candy_show.show_start }}" name="show_start">
-    <input type="text" value="{{ candy_show.show_end }}" name="show_end">
-    <input type="text" value="{{ candy_show.sales_on }}" name="sales_on">
-    <input type="text" value="{{ candy_show.sold_out }}" name="sold_out">
-    <input type="text" value="{{ candy_show.sales }}" name="sales">
-    <input type="submit" value="Update">
+    <input 
+    type="hidden" 
+    value="{{ candy_show.id}}"
+     name="id"
+    >
+    <input 
+    type="text" 
+    value="{{ candy_show.title }}"
+     name="title"
+    placeholder="titre du concert">
+    <input 
+    type="text"
+     value="{{ candy_show.venue }}"
+     name="venue"
+    placeholder="salle de concert">
+    <input 
+    type="text"
+     value="{{ candy_show.first_part }}"
+     name="first_part"
+    placeholder="premiere partie">
+    <input 
+    type="text" 
+    value="{{ candy_show.first_part_website }}"
+     name="first_part_website"
+    placeholder="premiere partie du show">
+    <input 
+    type="text"
+     value="{{ candy_show.price }}"
+      name="price"
+     placeholder="prix du concert">
+    <input
+     type="date"
+     value="{{ candy_show.show_start }}"
+     name="show_start"
+    placeholder="debut du concert">
+    <input 
+    type="date" 
+    value="{{ candy_show.show_end }}" 
+    name="show_end"
+    >
+    <input
+     type="date"
+     value="{{ candy_show.sales_on }}" 
+    name="sales_on"
+    placeholder="Date d'ouverture des ventes">
+    <input 
+    type="text"
+     value="{{ candy_show.sold_out }}"
+     name="sold_out"
+    placeholder="complet ou non">
+    <input 
+    type="text"
+     value="{{ candy_show.sales }}"
+     name="sales"
+     placeholder="état des ventes">
+    <input 
+    type="submit" value="Update"
+    >
 </form>
 <br>
     <a href="/candy_show/index">Back to list</a>
