@@ -25,7 +25,12 @@ class ItemController extends AbstractController
         $itemModel = new ItemModel();
         $items = $itemModel->selectAll();
 
-        return $this->twig->render('Item/index.html.twig', ['items' => $items]);
+        return $this
+            ->twig
+            ->render(
+                'Item/index.html.twig',
+                ['items' => $items]
+            );
     }
 
 
@@ -43,7 +48,12 @@ class ItemController extends AbstractController
         $itemModel = new ItemModel();
         $item = $itemModel->selectOneById($id);
 
-        return $this->twig->render('Item/show.html.twig', ['item' => $item]);
+        return $this
+            ->twig
+            ->render(
+                'Item/show.html.twig',
+                ['item' => $item]
+            );
     }
 
 
@@ -66,7 +76,12 @@ class ItemController extends AbstractController
             $itemModel->update($item);
         }
 
-        return $this->twig->render('Item/edit.html.twig', ['item' => $item]);
+        return $this
+            ->twig
+            ->render(
+                'Item/edit.html.twig',
+                ['item' => $item]
+            );
     }
 
 
@@ -90,7 +105,11 @@ class ItemController extends AbstractController
             header('Location:/item/show/' . $id);
         }
 
-        return $this->twig->render('Item/add.html.twig');
+        return $this
+            ->twig
+            ->render(
+                'Item/add.html.twig'
+            );
     }
 
 

@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Log In</h1>
+    <form method="post">
+
+        <input 
+            type="text" 
+            value="{{ user.name  }}" 
+            name="user" 
+            placeholder="prénom ou email" 
+            required>
+        <input 
+            type="password" 
+            value="{{ user.password }}" 
+            name="password" 
+            placeholder="Mot de passe" 
+            required>
+    
+        <input 
+            class="btn btn-dark"
+            type="submit" 
+            value="Register">
+    </form>
+<a href="/user/index">back to list</a>
+{% endblock %}

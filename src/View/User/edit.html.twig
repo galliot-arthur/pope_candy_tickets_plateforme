@@ -22,12 +22,6 @@
             placeholder="E-mail" 
             required>
         <input 
-            type="password" 
-            value="{{ user.password }}" 
-            name="password" 
-            placeholder="Mot de passe" 
-            required>
-        <input 
             type="text" 
             value="{{ user.adress }}" 
             name="adress" 
@@ -39,6 +33,10 @@
             name="age" 
             placeholder="Age" 
             required>
+        <input 
+            class="btn btn-dark" 
+            type="submit" 
+            value="Edit">
 </form>
 <br>
     <a href="/user/show/{{ user.id }}">Back to list</a>

@@ -1,0 +1,19 @@
+{% block nav %}
+	<nav>
+		<a href="/home/index"><h2>Pop Candy Tour</h2></a>
+		
+		<div class="onglets">
+			<a href="/home/index">Home</a>
+			<a href="#Achat">Acheter</a>
+
+			{% if userSession is empty %}
+				<a href="/user/login">Login</a>
+				<a href="/user/register">S'inscrire</a>
+			{% else %}
+				<a href="/home/admin">Admin</a>
+				<a href="/user/profile">Profil</a>
+				<a href="/user/logout">Log Out</a>
+			{% endif %}
+		</div>
+	</nav>
+{% endblock %}

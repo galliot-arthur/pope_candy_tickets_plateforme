@@ -15,6 +15,29 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        
+        return $this
+            ->twig
+            ->render(
+                'Home/index.html.twig',
+                [
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
+            );
+    }
+
+    public function admin()
+    {
+
+        return $this
+            ->twig
+            ->render(
+                "Admin/index.html.twig",
+                [
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
+            );
     }
 }

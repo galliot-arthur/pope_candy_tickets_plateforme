@@ -1,0 +1,6 @@
+{% if flash.success is not empty %}
+    <div class="alert alert-success">{{ flash.success }}</div>
+{% endif %}
+{% if flash.danger is not empty %}
+    <div class="alert alert-danger">{{ flash.danger }}</div>
+{% endif %}

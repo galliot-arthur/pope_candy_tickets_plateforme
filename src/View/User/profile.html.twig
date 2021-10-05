@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>{{ userProfile.firstname }} {{ userProfile.name }}</h1>
+    <p>Salut j'ai {{ userProfile.age }} ans et je vis au {{ userProfile.adress }}.</p>
+    <a href="/user/edit/{{ userProfile.id }}">Edit</a>
+    <a href="/user/delete/{{userProfile.id}}">Delete</a>
+    <br>
+    <a href="/user/index">Back to list</a>
+{% endblock %}
