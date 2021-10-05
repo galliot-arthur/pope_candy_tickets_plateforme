@@ -14,43 +14,21 @@
     {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
 </head>
-
 <body>
 
-{% include "_partials/_nav.html.twig" %}
+    {% include "_partials/_nav.html.twig" %}
 
-{% include "_partials/_flash.html.twig" %}
+    {% include "_partials/_flash.html.twig" %}
 
-{% block content %}{% endblock %}
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
 
 
-    <footer>
+    {% include "_partials/_footer.html.twig" %}
 
-        <h5>Nos services</h5>
-        <div class="services">
-            
-            <div class="service">
-                <h3>Livraison gratuite</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quidem recusandae explicabo veniam voluptatem voluptatum reprehenderit dignissimos ipsum magnam accusantium, dolores odio, dolorem provident sapiente consequuntur harum eaque veritatis? Eveniet.</p>
-            </div>
-
-            <div class="service">
-                <h3>Paiement en ligne</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quidem recusandae explicabo veniam voluptatem voluptatum reprehenderit dignissimos ipsum magnam accusantium, dolores odio, dolorem provident sapiente consequuntur harum eaque veritatis? Eveniet.</p>
-            </div>
-
-            <div class="service">
-                <h3>Aimé ou remboursé</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quidem recusandae explicabo veniam voluptatem voluptatum reprehenderit dignissimos ipsum magnam accusantium, dolores odio, dolorem provident sapiente consequuntur harum eaque veritatis? Eveniet.</p>
-            </div>
-
-        </div>
-
-        <p id="contact">Contact : 08 19 17 278 1 | &copy; 2021, Pop Candy.</p>
-    </footer>
-
-{% block javascript %}{% endblock %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    {% block javascript %}{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 </body>
 </html>

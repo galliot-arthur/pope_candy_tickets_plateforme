@@ -262,6 +262,13 @@ class UserController extends AbstractController
                         'flash' => $this->flashAlert()
                     ]
                 );
+        } else {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+            exit;
         }
     }
 }

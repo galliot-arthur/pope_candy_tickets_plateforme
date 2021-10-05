@@ -2,18 +2,26 @@
 
 {% block content %}
     <h1>Afficher la liste des Artistes</h1>
-    <ul>
+
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-dark m-1" href="/artists/add">Add</a>
+        <a class="btn btn-dark m-1" href="/home/admin">Admin Index</a>
+    </div>
+
+    <ul class="list-group">
         {% for artist in artists %}
-            <li><a href="/artists/show/{{ artist.id }}">{{ artist.id }}
-            Nom de l'Artiste . {{ artist.name }}
-        Biography. {{ artist.biography }}
-         site web. {{ artist.website }}</a></li>
+            <li class="list-group-item d-flex justify-content-between">
+                <a href="/artists/show/{{ artist.id }}">
+                    {{ artist.name }}
+                </a>
+                <a href="{{ artist.website }}">Site internet</a>
+            </li>
+
         {% else %}
             <li>Nothing to display</li>
         {% endfor %}
     </ul>
     
-    <a href="/artists/add">Add</a>
-    <a href="/home/admin">Admin Index</a>
+    
     
 {% endblock %}
