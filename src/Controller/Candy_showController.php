@@ -23,8 +23,8 @@ class Candy_showController extends AbstractController
         return $this->twig->render('Candy_show/show.html.twig', ['candy_show' => $candy_show]);
     }
 
-     public function add()
-     {
+    public function add()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $candy_showModel = new Candy_showModel();
             $candy_show = [
@@ -42,15 +42,28 @@ class Candy_showController extends AbstractController
             ];
 
             $id = $candy_showModel->insert($candy_show);
-            header('Location:/candy_show/show/' . $id);
+            $this->setFlash(
+                true,
+                'Vous avez bien ajouté un spectacle'
+            );
+            header("Location:/candy_show/show/$id");
+            exit;
         }
 
-        
 
-         return $this->twig->render("Candy_show/add.html.twig");
-     }
 
-     public function edit(int $id): string
+        return $this
+            ->twig
+            ->render(
+                "Candy_show/add.html.twig",
+                [
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
+            );
+    }
+
+    public function edit(int $id): string
     {
         $candy_showModel = new Candy_showModel();
         $candy_show = $candy_showModel->selectOneById($id);
@@ -74,12 +87,10 @@ class Candy_showController extends AbstractController
 
         return $this->twig->render('candy_show/edit.html.twig', ['candy_show' => $candy_show]);
     }
-     public function delete(int $id)
+    public function delete(int $id)
     {
         $Candy_showModel = new Candy_showModel();
         $Candy_showModel->delete($id);
         header('Location:/candy_show/index');
     }
-    
 }
-

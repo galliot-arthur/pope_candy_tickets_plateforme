@@ -133,8 +133,12 @@ class UserController extends AbstractController
                 'age' => $_POST['age'],
             ];
             $userModel->insert($item);
-
-            header("Location:/user/index");
+            $this->setFlash(
+                true,
+                'Vous êtes maintenant enregistré, merci de vous connecter.'
+            );
+            header("Location:/user/login");
+            exit;
         }
 
         return $this
