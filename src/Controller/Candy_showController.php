@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\ArtistsModel;
 use App\Model\Candy_showModel;
 
 class Candy_showController extends AbstractController
@@ -35,6 +36,9 @@ class Candy_showController extends AbstractController
 
     public function add()
     {
+        $artistsModel = new ArtistsModel;
+        $artists = $artistsModel->selectAll();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $candy_showModel = new Candy_showModel();
             $candy_show = [
@@ -60,13 +64,12 @@ class Candy_showController extends AbstractController
             exit;
         }
 
-
-
         return $this
             ->twig
             ->render(
                 "Candy_show/add.html.twig",
                 [
+                    'artists' => $artists,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert()
                 ]
