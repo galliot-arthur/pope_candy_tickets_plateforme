@@ -29,6 +29,15 @@ class PricesController extends AbstractController
         $pricesModel = new PricesModel();
         $price = $pricesModel->selectOneById($id);
 
+        if (!$price) {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+            exit;
+        }
+
         return $this
             ->twig
             ->render(
@@ -51,8 +60,26 @@ class PricesController extends AbstractController
                 'price' => $_POST['price'],
                 'ticket_type' => $_POST['ticket_type']
             ];
-            $id = $pricesModel->insert($prices);
-            header('Location:/prices/show/' . $id);
+            $id = $pricesModel
+                ->insert($prices);
+
+            if ($id) {
+
+                $this->setFlash(
+                    true,
+                    "Ce prix bien à bien été ajouté."
+                );
+                header("Location:/prices/show/$id");
+                exit;
+            } else {
+
+                $this->setFlash(
+                    false,
+                    "Erreur, merci d'essayer à nouveau."
+                );
+                header("Location:/prices/add");
+                exit;
+            }
         }
 
         return $this
@@ -78,7 +105,22 @@ class PricesController extends AbstractController
                 'price' => $_POST['price'],
                 'ticket_type' => $_POST['ticket_type']
             ];
-            $pricesModel->update($prices);
+            $result = $pricesModel
+                ->update($prices);
+
+            if ($result) {
+
+                $this->setFlash(
+                    true,
+                    "Ce prix bien à bien été édité."
+                );
+            } else {
+
+                $this->setFlash(
+                    false,
+                    "Erreur, merci d'essayer à nouveau."
+                );
+            }
         }
 
         return $this
@@ -96,6 +138,10 @@ class PricesController extends AbstractController
     {
         $PricesModel = new PricesModel();
         $PricesModel->delete($id);
+        $this->setFlash(
+            true,
+            "Ce prix bien à bien été supprimé."
+        );
         header('Location:/prices/index');
     }
 }

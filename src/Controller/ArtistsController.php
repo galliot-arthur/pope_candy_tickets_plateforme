@@ -29,6 +29,15 @@ class ArtistsController extends AbstractController
         $artistsModel = new ArtistsModel();
         $artist = $artistsModel->selectOneById($id);
 
+        if (!$artist) {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+            exit;
+        }
+
         return $this
             ->twig
             ->render(
@@ -53,7 +62,27 @@ class ArtistsController extends AbstractController
 
             ];
             $id = $artistsModel->insert($artists);
+
+            if ($id) {
+
+                $this->setFlash(
+                    true,
+                    "Cet Artiste a bien été ajouté."
+                );
+                header("Location:/artists/show/$id");
+                exit;
+            } else {
+
+                $this->setFlash(
+                    false,
+                    "Erreur, merci d'essayer à nouveau."
+                );
+                header("Location:/artists/add");
+                exit;
+            }
+
             header("Location:/artists/show/$id");
+            exit;
         }
 
 
@@ -82,7 +111,21 @@ class ArtistsController extends AbstractController
                 'website' => $_POST['website'],
 
             ];
-            $artistsModel->update($artists);
+            $result = $artistsModel->update($artists);
+
+            if ($result) {
+
+                $this->setFlash(
+                    true,
+                    "Ce prix bien à bien été édité."
+                );
+            } else {
+
+                $this->setFlash(
+                    false,
+                    "Erreur, merci d'essayer à nouveau."
+                );
+            }
         }
 
         return $this
@@ -99,7 +142,23 @@ class ArtistsController extends AbstractController
     public function delete(int $id)
     {
         $ArtistsModel = new ArtistsModel();
-        $ArtistsModel->delete($id);
+        $result = $ArtistsModel->delete($id);
+
+        if ($result) {
+
+            $this->setFlash(
+                true,
+                "Ce prix bien à bien été supprimé."
+            );
+        } else {
+
+            $this->setFlash(
+                false,
+                "Erreur, merci d'essayer à nouveau."
+            );
+            header("Location:/artists/show/$id");
+            exit;
+        }
         header('Location:/artists/index');
     }
 }

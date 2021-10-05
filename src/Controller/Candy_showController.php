@@ -18,7 +18,17 @@ class Candy_showController extends AbstractController
     public function show(int $id)
     {
         $candy_showModel = new Candy_showModel();
-        $candy_show = $candy_showModel->selectOneById($id);
+        $candy_show = $candy_showModel
+            ->selectOneById($id);
+
+        if (!$candy_show) {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+            exit;
+        }
 
         return $this->twig->render('Candy_show/show.html.twig', ['candy_show' => $candy_show]);
     }

@@ -1,13 +1,23 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Artist </h1>
-    <p>{{ artists.id }}.</p>
-    <p>Nom de l'Artiste: .{{ artists.name }}</p>
-    <p> Biography de l'artiste: . {{ artists.biography }}</p>
-    <p> website de l'artiste: . {{ artists.website }}</p>
-    <a href="/artists/edit/{{ artists.id }}">Edit</a>
-    <a href="/artists/delete/{{artists.id}}">Delete</a>
-    <br>
-    <a href="/artists/index">Back to list</a>
+    <h1>{{ artists.name }}</h1>
+
+
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-dark m-1" href="/artists/edit/{{ artists.id }}">Edit</a>
+        <a class="btn btn-dark m-1" href="/artists/delete/{{artists.id}}">Delete</a>
+        <a class="btn btn-dark m-1" href="/artists/index">Back to list</a>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+        <h5><a href="{{ artists.website }}">Site internet</a></h5>
+        </div>
+        <div class="card-body">
+            {{ artists.biography }}
+        </div>
+    </div>
+
+
 {% endblock %}

@@ -52,6 +52,15 @@ class ItemController extends AbstractController
         $itemModel = new ItemModel();
         $item = $itemModel->selectOneById($id);
 
+        if (!$item) {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+            exit;
+        }
+
         return $this
             ->twig
             ->render(
