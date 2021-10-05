@@ -36,6 +36,7 @@
                 </label>
             <select 
                 class="form-select" 
+                name="venue"
                 id="venue"
                 requiered>
                 <option selected>Choisir...</option>
@@ -48,16 +49,22 @@
         <div class="input-group mb-3">
             <label 
                 class="input-group-text" 
-                for="firstPart">
+                for="first_part">
                 Première partie
                 </label>
             <select 
                 class="form-select" 
-                id="firstPart"
+                id="first_part"
+                name="first_part"
                 requiered>
                 <option selected>Choisir...</option>
                 {% for artist in artists %}
-                    <option value="{{ artist.id }}">{{ artist.name }}</option>
+                    <option 
+                        value="{{ artist.id }}"
+                        {{ if artist.id == candy_show.first_part ? "selected" : "" }}
+                        >
+                        {{ artist.name }}
+                        </option>
                 {% endfor %}
             </select>
         </div>
@@ -66,42 +73,42 @@
         <div class="input-group mb-3">
             <label
                 class="input-group-text"
-                for="show_start">
+                for="show_date">
                 Date du concert
                 </label>
             <input
                 class="form-control"
                 type="date"
-                value="{{ candy_show.show_start }}"
-                name="show_start"
-                id="show_start"
+                value="{{ candy_show.show_start|date("Y-m-d") }}"
+                name="show_date"
+                id="show_date"
                 placeholder="debut du concert">
         </div>
 
         <div class="input-group mb-3">
             <label
                 class="input-group-text"
-                for="hour_start">
+                for="start_hour">
                 Commence à
                 </label>
             <input
                 class="form-control"
                 type="time"
-                value="{{ candy_show.show_start }}"
-                name="hour_start"
-                id="hour_start"
+                value="{{ candy_show.show_start|date("H:i") }}"
+                name="start_hour"
+                id="start_hour"
                 requiered>
             <label
                 class="input-group-text"
-                for="show_end">
+                for="end_hour">
                 Fini à
                 </label>
             <input 
                 class="form-control"
                 type="time" 
-                value="{{ candy_show.show_end }}" 
-                name="show_end"
-                id="show_end"
+                value="{{ candy_show.show_end|date("H:i") }}" 
+                name="end_hour"
+                id="end_hour"
                 requiered>
         </div>
 
@@ -114,18 +121,24 @@
             <input
                 class="form-control"
                 type="date"
-                value="{{ candy_show.sales_on }}" 
+                value="{{ candy_show.sales_on|date("Y-m-d") }}" 
                 name="sales_on"
                 id="sales_on"
                 requiered>
         </div>
 
         <div class="input-group mb-3">
+            <label 
+                class="input-group-text"
+                for="price">
+                Prix en euros HT
+                </label>
             <input 
                 class="form-control"
                 type="text"
                 value="{{ candy_show.price }}"
                 name="price"
+                id="price"
                 placeholder="Prix place"
                 requiered>
             <input 
@@ -134,4 +147,4 @@
                 value="Update">
         </div>
     </form>
-{% endblock %}
+    {% endblock %}

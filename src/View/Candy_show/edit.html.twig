@@ -3,105 +3,147 @@
 {% block content %}
     <h1>Editer : {{ candy_show.title }}</h1>
 
-    <div class="d-flex justify-content-center">
-        <a href="/candy_show/index">Back to list</a>
+    <div class="d-flex justify-content-center mb-3">
+        <a class="btn btn-dark" href="/candy_show/index">Back to list</a>
     </div>
 
     <form method="post">
-        <input
+        <input 
             type="hidden" 
             value="{{ candy_show.id}}"
             name="id">
-        <input
-            class="form-control mb-3"
-            type="text" 
-            value="{{ candy_show.title }}"
-            name="title"
-            placeholder="Titre">
-        <input
-            class="form-control mb-3"
-            type="text"
-            value="{{ candy_show.venue }}"
-            name="venue"
-            placeholder="Salle / Festival">
-
         <div class="input-group mb-3">
-            <input 
-                class="form-control"
-                type="text"
-                value="{{ candy_show.first_part }}"
-                name="first_part"
-                placeholder="Premiere partie">
+            <label 
+                class="input-group-text" 
+                for="title">
+                Titre de l'évènement
+                </label>
             <input 
                 class="form-control"
                 type="text" 
-                value="{{ candy_show.first_part_website }}"
-                name="first_part_website"
-                placeholder="Premiere partie website">
+                value="{{ candy_show.title }}"
+                name="title"
+                id="title"
+                placeholder="Titre"
+                requiered>
+        </div>
+
+        <div class="input-group mb-3">
+            <label 
+                class="input-group-text" 
+                for="venue">
+                Salle / Festival
+                </label>
+            <select 
+                class="form-select" 
+                name="venue"
+                id="venue"
+                requiered>
+                <option selected>Choisir...</option>
+                {% for artist in artists %}
+                    <option
+                        {{ artist.id == candy_show.first_part ? "selected" : "" }}
+                        value="{{ artist.id }}">
+                        {{ artist.name }}
+                        </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <label 
+                class="input-group-text" 
+                for="first_part">
+                Première partie
+                </label>
+            <select 
+                class="form-select" 
+                id="first_part"
+                name="first_part"
+                requiered>
+                <option selected>Choisir...</option>
+                {% for artist in artists %}
+                    <option 
+                        {{ artist.id == candy_show.first_part ? "selected" : "" }}
+                        value="{{ artist.id }}">
+                        {{ artist.name }}
+                        </option>
+                {% endfor %}
+            </select>
         </div>
 
         {# date part #}
         <div class="input-group mb-3">
             <label
                 class="input-group-text"
-                for="show_start"></label>
+                for="show_date">
+                Date du concert
+                </label>
             <input
                 class="form-control"
                 type="date"
-                value="{{ candy_show.show_start }}"
-                name="show_start"
-                id="show_start"
+                value="{{ candy_show.show_start|date("Y-m-d") }}"
+                name="show_date"
+                id="show_date"
                 placeholder="debut du concert">
         </div>
+
         <div class="input-group mb-3">
             <label
                 class="input-group-text"
-                for="show_start">
+                for="start_hour">
                 Commence à
-            </label>
+                </label>
             <input
                 class="form-control"
                 type="time"
-                value="{{ candy_show.show_start }}"
-                name="show_start"
-                id="show_start"
-                placeholder="debut du concert">
-        </div>
-        <div class="input-group mb-3">
+                value="{{ candy_show.show_start|date("H:i") }}"
+                name="start_hour"
+                id="start_hour"
+                requiered>
             <label
                 class="input-group-text"
-                for="show_start">
+                for="end_hour">
                 Fini à
-            </label>
+                </label>
             <input 
                 class="form-control"
                 type="time" 
-                value="{{ candy_show.show_end }}" 
-                name="show_end"
-                id="show_end">
+                value="{{ candy_show.show_end|date("H:i") }}" 
+                name="end_hour"
+                id="end_hour"
+                requiered>
         </div>
 
         <div class="input-group mb-3">
             <label 
                 class="input-group-text"
-                for="show_start">
+                for="sales_on">
                 Date d'ouverture des ventes
-            </label>
+                </label>
             <input
                 class="form-control"
                 type="date"
-                value="{{ candy_show.sales_on }}" 
+                value="{{ candy_show.sales_on|date("Y-m-d") }}" 
                 name="sales_on"
-                id="sales_on">
+                id="sales_on"
+                requiered>
         </div>
 
         <div class="input-group mb-3">
+            <label 
+                class="input-group-text"
+                for="price">
+                Prix en euros HT
+                </label>
             <input 
                 class="form-control"
                 type="text"
                 value="{{ candy_show.price }}"
                 name="price"
-                placeholder="Prix place">
+                id="price"
+                placeholder="Prix place"
+                requiered>
             <input 
                 class="btn btn-success"
                 type="submit"

@@ -17,10 +17,10 @@
         <div class="card-body">
             <div>Salle de concert : <b>{{ candy_show.venue }}</b></div>
             <div>Première partie : <a href="{{ candy_show.first_part_website }}">{{ candy_show.first_part ? candy_show.first_part : "<i>Pas de première partie</i>" }}</a></div>
-            <div>Tarif Unitaire : <b>{{ candy_show.price }}</b></div>
-            <div>Heure début : <b>{{ candy_show.show_start }}</b></div>
-            <div>Heure fin : <b>{{ candy_show.show_end }}</b></div>
-            <div>Ouverture des ventes : <b>{{ candy_show.sales_on }}</b></div>
+            <div>Tarif Unitaire : <b>{{ candy_show.price }}€ HT</b></div>
+            <div>Heure début : {{ candy_show.show_start|date("H:i") }}</div>
+            <div>Heure fin : {{ candy_show.show_end|date("H:i") }}</div>
+            <div>Ouverture des ventes : {{ candy_show.sales_on|date("d / m / y") }}</div>
             <div>Nombres de places vendues : <b>{{ candy_show.sales }}</b></div>
         </div>
     </div>
