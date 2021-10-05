@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>candy show </h1>
+    <p>{{ candy_show.id }}.</p>
+    <p>Titre du show: .{{ candy_show.title }}</p>
+    <p> Bio: . {{ candy_show.venue }}</p>
+    <p> première partie. {{ candy_show.first_part }}</p>
+    <p> site web du groupe premiere partie. {{ candy_show.first_part_website }}</p>
+    <p> prix du show . {{ candy_show.price }}</p>
+    <p> Biogr: . {{ candy_show.show_start }}</p>
+    <p> Bi de l'artiste: . {{ candy_show.show_end }}</p>
+    <p> Biog de l'artiste: . {{ candy_show.sales_on }}</p>
+    <p> Bioe: . {{ candy_show.sold_out }}</p>
+    <p> Bi: . {{ candy_show.sales }}</p>
+    <a href="/candy_show/edit/{{ candy_show.id }}">Edit</a>
+    <a href="/candy_show/delete/{{candy_show.id}}">Delete</a>
+    <br>
+    <a href="/candy_show/index">Back to list</a>
+{% endblock %}
