@@ -40,11 +40,11 @@
                 id="venue"
                 requiered>
                 <option selected>Choisir...</option>
-                {% for artist in artists %}
+                {% for venue in venues %}
                     <option
-                        {{ artist.id == candy_show.first_part ? "selected" : "" }}
-                        value="{{ artist.id }}">
-                        {{ artist.name }}
+                        {{ venue.id == candy_show.venue ? "selected" : "" }}
+                        value="{{ venue.id }}">
+                        {{ venue.title }}
                         </option>
                 {% endfor %}
             </select>

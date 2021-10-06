@@ -33,7 +33,9 @@ class VenueController extends AbstractController
                 [
                     'venues' => $venues,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'venue',
                 ]
             );
     }
@@ -69,7 +71,9 @@ class VenueController extends AbstractController
                 [
                     'venue' => $venue,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'show',
+                    'currentController' => 'venue',
                 ]
             );
     }
@@ -125,7 +129,9 @@ class VenueController extends AbstractController
                 [
                     'venue' => $venue,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'edit',
+                    'currentController' => 'venue',
                 ]
             );
     }
@@ -171,7 +177,9 @@ class VenueController extends AbstractController
                 'Venue/add.html.twig',
                 [
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'add',
+                    'currentController' => 'venue',
                 ]
             );
     }

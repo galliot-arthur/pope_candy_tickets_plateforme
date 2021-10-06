@@ -22,7 +22,9 @@ class UserController extends AbstractController
                 [
                     'users' => $users,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'user',
                 ]
             );
     }
