@@ -45,6 +45,7 @@ class PricesController extends AbstractController
             ->render(
                 'Prices/show.html.twig',
                 [
+                    'id' => $id,
                     'price' => $price,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
@@ -134,6 +135,7 @@ class PricesController extends AbstractController
             ->render(
                 'Prices/edit.html.twig',
                 [
+                    'id' => $id,
                     'prices' => $prices,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),

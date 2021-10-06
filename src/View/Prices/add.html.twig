@@ -1,31 +1,29 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="d-flex justify-content-center mb-3">
-        <a class="btn btn-dark" href="/prices/index">Retour à l'index des prix</a>
-    </div>
     
     <h1>Ajouter un nouveau prix</h1>
 
     <form method="post">
-    <input 
-        type="hidden" 
-        value="{{ prices.id }}" 
-        name="id" >
+        <input 
+            type="hidden" 
+            value="{{ prices.id }}" 
+            name="id" >
+
         <div class="input-group mb-3">
             <label 
                 class="input-group-text" 
                 for="venuid">
                 Numéro de la salle
                 </label>
-    <input
-    class="form-control"
-        type="text" 
-        value="{{ prices.venue_id }}" 
-        name="venue_id" 
-        required
-        id="venuid"
-        placeholder="salle de concert">
+            <input
+                class="form-control"
+                type="text" 
+                value="{{ prices.venue_id }}" 
+                name="venue_id" 
+                required
+                id="venuid"
+                placeholder="salle de concert">
         </div>
 
         <div class="input-group mb-3">
@@ -34,36 +32,35 @@
                 for="price">
                 prix du ticket d'entrée
                 </label>
-    <input 
-    class="form-control"
-    type="text" 
-    value="{{prices.price}}"
-    name="price" 
-    required
-    id="price"
-    placeholder="entrer le prix">
+            <input 
+                class="form-control"
+                type="text" 
+                value="{{prices.price}}"
+                name="price" 
+                required
+                id="price"
+                placeholder="entrer le prix">
 
-    <div class="input-group mb-3 mt-3">
+        <div class="input-group mb-3 mt-3">
             <label 
                 class="input-group-text" 
-                for="tickettype">
-                Type de ticket
+                for="ticket_type">
+                Nom du tiquet
                 </label>
-    <input 
-    class="form-control"
-    type="text" 
-    value="{{ prices.ticket_type }}"
-     name="ticket_type"
-     required
-     id="tickettype"
-     placeholder="type de ticket">
+            <input 
+                class="form-control"
+                type="text" 
+                value="{{ prices.ticket_type }}"
+                name="ticket_type"
+                required
+                id="ticket_type"
+                placeholder="Nom du tiquet">
 
-    <input 
-    class="btn btn-success"
-    type="submit" 
-    value="Add">
-    </div>
+            <input 
+                class="btn btn-success"
+                type="submit" 
+                value="Add">
+        </div>
+    </form>
 
-</form>
-<a class="btn btn-secondary" href="/prices/index">back to list</a>
 {% endblock %}

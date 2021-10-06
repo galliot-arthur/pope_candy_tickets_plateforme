@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Model\BookingsModel;
-
+use App\Model\Candy_showModel;
+use App\Model\PricesModel;
 
 /**
  * Class ItemController
@@ -120,8 +121,15 @@ class BookingsController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function add()
+    public function buy(int $id)
     {
+        $candy_showModel = new Candy_showModel;
+        $candy_show = $candy_showModel
+            ->selectOneById($id);
+        $pricesModel = new PricesModel;
+        $prices = $pricesModel
+            ->selectOneById($id);
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $bookingModel = new BookingsModel;
             $booking = [
@@ -147,7 +155,14 @@ class BookingsController extends AbstractController
         return $this
             ->twig
             ->render(
-                'Bookings/add.html.twig'
+                'Bookings/buy.html.twig',
+                [
+                    'candy_show' => $candy_show,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'candy_show',
+                ]
             );
     }
 

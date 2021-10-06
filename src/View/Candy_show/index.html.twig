@@ -3,13 +3,8 @@
 {% block content %}
     <h1>Spectacles</h1>
 
-    <div class="d-flex justify-content-center mb-2">
-        <a class="btn btn-dark m-1" href="/candy_show/add">Ajouter</a>
-        <a class="btn btn-dark m-1" href="/home/admin">Index Admin</a>
-    </div>
-
     <ul class="list-group">
-        {% for candy_show in candy_show %}
+        {% for candy_show in candy_shows %}
             <li class="list-group-item">
                 <a 
                     href="/candy_show/show/{{ candy_show.id }}">

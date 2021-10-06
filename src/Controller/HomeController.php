@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\Candy_showModel;
+
 class HomeController extends AbstractController
 {
 
@@ -12,13 +14,21 @@ class HomeController extends AbstractController
     public function index()
     {
 
+        $candy_showModel = new Candy_showModel;
+        $candy_shows = $candy_showModel->allOrderedBy('show_start', false);
+        $top_shows = $candy_showModel->allOrderedBy('sales', true);
+
         return $this
             ->twig
             ->render(
                 'Home/index.html.twig',
                 [
+                    'candy_shows' => $candy_shows,
+                    'top_shows' => $top_shows,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'home',
                 ]
             );
     }
@@ -32,7 +42,9 @@ class HomeController extends AbstractController
                 "Admin/index.html.twig",
                 [
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'home',
                 ]
             );
     }
