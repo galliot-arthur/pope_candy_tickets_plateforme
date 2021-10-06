@@ -3,13 +3,6 @@
 {% block content %}
     <h1>{{ artists.name }}</h1>
 
-
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-dark m-1" href="/artists/edit/{{ artists.id }}">Edit</a>
-        <a class="btn btn-dark m-1" href="/artists/delete/{{artists.id}}">Delete</a>
-        <a class="btn btn-dark m-1" href="/artists/index">Back to list</a>
-    </div>
-
     <div class="card">
         <div class="card-body">
             {{ artists.biography }}

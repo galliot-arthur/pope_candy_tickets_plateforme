@@ -3,21 +3,25 @@
 {% block content %}
     <h1>Acheter une place pour {{ candy_show.title }}</h1>
 
-    <form method="post">
-
+    <form method="post" action="/bookings/confirm_buy">
+        <input 
+            type="text" 
+            value="{{ candy_show.id }}"
+            name="id"
+            hidden>
         <div class="input-group mb-3">
             <label 
                 class="input-group-text" 
-                for="place_number">
+                for="quantity">
                 Nombre de places
                 </label>
             <input 
                 class="form-control"
                 type="number" 
-                value="{{ candy_show.place_number }}"
-                name="place_number"
-                id="place_number"
-                placeholder="Nombre de places"
+                value=""
+                name="quantity"
+                id="quantity"
+                placeholder="Quantité"
                 requiered>
         </div>
 
@@ -33,11 +37,10 @@
                 id="type"
                 requiered>
                 <option selected>Choisir...</option>
-                {% for venue in venues %}
+                {% for price in prices %}
                     <option
-                        {{ venue.id == candy_show.venue ? "selected" : "" }}
-                        value="{{ venue.id }}">
-                        {{ venue.title }}
+                        value="{{ price.id }}">
+                        {{ price.ticket_name }}
                         </option>
                 {% endfor %}
             </select>
@@ -47,6 +50,7 @@
             class="btn btn-dark"
             type="submit" 
             value="Acheter">
-        <a href="/home/" class="btn btn-outline-secondary">Annuler</a>
+
+        <a href="/home" class="btn btn-outline-secondary">Annuler</a>
     </form>
 {% endblock %}

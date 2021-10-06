@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Merci de confirmer votre achat</h1>
+    <h2>Pope Candy - {{ candy_show.title }}</h2>
+    {{ quantity }} places tarif {{ price.name }}.
+
+    <form method="post" action="/bookings/payment">
+        <input 
+            type="text" 
+            value="{{ id }}"
+            name="id"
+            hidden>
+        <input 
+            type="text" 
+            value="{{ quantity }}"
+            name="quantity"
+            hidden>
+        <input 
+            type="text" 
+            value="{{ price.price }}"
+            name="type"
+            hidden>
+        <div class="input-group mb-3">
+        <input
+            class="btn btn-dark"
+            type="submit" 
+            value="Confirmer mon achat">
+
+        <a href="/home" class="ms-1 btn btn-outline-danger">Annuler</a>
+    </form>
+{% endblock %}

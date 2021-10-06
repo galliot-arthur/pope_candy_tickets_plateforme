@@ -46,9 +46,11 @@ abstract class AbstractModel
             ->pdo
             ->query(
                 "SELECT * 
-                FROM $this->table")
+                FROM $this->table"
+            )
             ->fetchAll();
     }
+
 
     /**
      * Affiche toutes les valeurs d'une table, classé selon un parametre, et son sens.
@@ -66,7 +68,8 @@ abstract class AbstractModel
             ->query(
                 "SELECT * 
                 FROM $this->table
-                ORDER BY $param $direction")
+                ORDER BY $param $direction"
+            )
             ->fetchAll();
     }
 
@@ -85,7 +88,8 @@ abstract class AbstractModel
             ->prepare(
                 "SELECT * 
                 FROM $this->table 
-                WHERE id = ?");
+                WHERE id = ?"
+            );
         $statement->execute([$id]);
 
         return $statement->fetch();
@@ -190,5 +194,26 @@ abstract class AbstractModel
                 WHERE id= ?"
             );
         return $statement->execute([$id]);
+    }
+
+
+    /**
+     * Une fonction query avec une modulation sur le WHERE
+     *
+     * @param string $key 
+     * @param string $value
+     * @return void
+     */
+    public function selectAllWhere(string $key, string $value): array
+    {
+        $statement = $this
+            ->pdo
+            ->prepare(
+                "SELECT * 
+            FROM $this->table 
+            WHERE $key = ?"
+            );
+        $statement->execute([$value]);
+        return $statement->fetchAll();
     }
 }

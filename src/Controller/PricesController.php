@@ -14,7 +14,7 @@ class PricesController extends AbstractController
         $prices = $pricesModel->selectAll();
         $venueModel = new VenueModel;
 
-        foreach($prices as $key => $value) {
+        foreach ($prices as $key => $value) {
             $prices[$key]['ticket_name'] = $this->getTicketType($prices[$key]['ticket_type']);
             $venue = $venueModel->selectOneById($prices[$key]['venue_id']);
             $prices[$key]['venue_name'] = $venue['title'];
@@ -169,18 +169,5 @@ class PricesController extends AbstractController
             "Ce prix bien à bien été supprimé."
         );
         header('Location:/prices/index');
-    }
-        public function getTicketType(int $value):string
-    {
-        switch ($value){
-            case 0:
-                return "normal";
-            case 1:
-                return "réduit";
-            case 2:
-                return "vip";
-            case 3:
-                return "guest ";
-        }
     }
 }
