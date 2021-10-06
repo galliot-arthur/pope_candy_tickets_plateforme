@@ -154,4 +154,21 @@ class PricesController extends AbstractController
         );
         header('Location:/prices/index');
     }
+ 
+    public function getTicketType(int $value):string
+    {
+        switch ($value){
+            case 0:
+                return "normal";
+            case 1:
+                return "réduit";
+            case 2:
+                return "vip";
+            case 3:
+                return "guest ";
+        }
+    }
+
+
 }
+
