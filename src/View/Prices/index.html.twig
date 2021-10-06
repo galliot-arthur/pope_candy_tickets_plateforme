@@ -3,17 +3,21 @@
 {% block content %}
     <h1>Afficher les différents prix</h1>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-2">
         <a class="btn btn-dark m-1" href="/prices/add">Add</a>
         <a class="btn btn-dark m-1" href="/home/admin">Admin Index</a>
     </div>
 
     <ul class="list-group">
         {% for price in prices %}
-            <li class="list-group-item d-flex justify-content-between" >
-                <a href="/prices/show/{{ price.id }}">{{ price.id   }}. {{ price.venue_id }}
-        Prix du ticket. {{ price.price }}
-         Type de ticket. {{ price.ticket_type }}</a></li>
+            <li class="list-group-item" >
+                <a
+                    href="/prices/show/{{ price.id }}">
+                    {{ price.id   }}. {{ price.venue_id }}</a>
+        <div>Prix du ticket. {{ price.price }}</div>
+         <div>Type de ticket. {{ price.ticket_type }}</div>
+         
+         </li>
         {% else %}
             <li>Nothing to display</li>
         {% endfor %}
