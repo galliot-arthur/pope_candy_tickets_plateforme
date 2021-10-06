@@ -3,11 +3,6 @@
 {% block content %}
     <h1>Afficher les différents prix</h1>
 
-    <div class="d-flex justify-content-center mb-2">
-        <a class="btn btn-dark m-1" href="/prices/add">Add</a>
-        <a class="btn btn-dark m-1" href="/home/admin">Admin Index</a>
-    </div>
-
     <ul class="list-group">
         {% for price in prices %}
             <li class="list-group-item" >
