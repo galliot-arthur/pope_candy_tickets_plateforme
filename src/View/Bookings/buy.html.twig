@@ -13,7 +13,7 @@
                 </label>
             <input 
                 class="form-control"
-                type="text" 
+                type="number" 
                 value="{{ candy_show.place_number }}"
                 name="place_number"
                 id="place_number"
@@ -24,22 +24,29 @@
         <div class="input-group mb-3">
             <label 
                 class="input-group-text" 
-                for="place_number">
+                for="type">
                 Type
                 </label>
-            <input 
-                class="form-control"
-                type="text" 
-                value="{{ candy_show.place_number }}"
-                name="place_number"
-                id="place_number"
-                placeholder="Nombre de places"
+            <select 
+                class="form-select" 
+                name="type"
+                id="type"
                 requiered>
+                <option selected>Choisir...</option>
+                {% for venue in venues %}
+                    <option
+                        {{ venue.id == candy_show.venue ? "selected" : "" }}
+                        value="{{ venue.id }}">
+                        {{ venue.title }}
+                        </option>
+                {% endfor %}
+            </select>
         </div>
 
         <input
             class="btn btn-dark"
             type="submit" 
             value="Acheter">
+        <a href="/home/" class="btn btn-outline-secondary">Annuler</a>
     </form>
 {% endblock %}

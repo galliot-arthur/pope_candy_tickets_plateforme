@@ -3,11 +3,6 @@
 {% block content %}
     <h1>Afficher la liste des Artistes</h1>
 
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-dark m-1" href="/artists/add">Add</a>
-        <a class="btn btn-dark m-1" href="/home/admin">Admin Index</a>
-    </div>
-
     <ul class="list-group">
         {% for artist in artists %}
             <li class="list-group-item d-flex justify-content-between">

@@ -1,22 +1,21 @@
 {% if currentController != "home" %}
 <div class="container-fluid d-flex justify-content-center bg-dark p-1 border-bottom border-white">
 	<div class="btn-group">
-				{# index #}
-					{% if (currentFunction == "index") %}
-						<a class="btn btn-outline-light" href="/{{ currentController }}/add">Add</a>
-					{% endif %}
-					{# show #}
-					{%  if (currentFunction == "show") %}
-						<a class="btn btn-outline-light" href="/{{ currentController }}/edit/{{ id|number_format }}">Edit</a>
-						<a class="btn btn-outline-light" href="/{{ currentController }}/delete/{{ id|number_format }}">Delete</a>
-					{% endif %}
-					{# add/edit #}
-					{%  if (currentFunction == "edit") %}
-						<a class="btn btn-outline-light" href="/{{ currentController }}/show/{{ id|number_format }}">Back to post</a>
-					{% endif %}
-					<a class="btn btn-outline-light" href="/{{ currentController }}/index">Index {{ currentController }}</a>
-					<a class="btn btn-outline-light" href="/home/admin">Admin</a>
-				
-		</div>
+		{# index #}
+		{% if (currentFunction == "index") %}
+			<a class="btn btn-outline-light" href="/{{ currentController }}/add">Add</a>
+		{% endif %}
+		{# show #}
+		{%  if (currentFunction == "show") %}
+			<a class="btn btn-outline-light" href="/{{ currentController }}/edit/{{ id|number_format }}">Edit</a>
+			<a class="btn btn-outline-light" href="/{{ currentController }}/delete/{{ id|number_format }}">Delete</a>
+		{% endif %}
+		{# add/edit #}
+		{%  if (currentFunction == "edit") %}
+			<a class="btn btn-outline-light" href="/{{ currentController }}/show/{{ id|number_format }}">Back to post</a>
+		{% endif %}
+		<a class="btn btn-outline-light" href="/{{ currentController }}/index">Index {{ currentController }}</a>
+		<a class="btn btn-outline-light" href="/home/admin">Admin</a>
+	</div>
 </div>
 {% endif %}
