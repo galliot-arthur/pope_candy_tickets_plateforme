@@ -1,42 +1,68 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Add a new Price</h1>
-
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-dark m-1" href="/prices/index">Retour à l'index des prices</a>
+    <div class="d-flex justify-content-center mb-3">
+        <a class="btn btn-dark" href="/prices/index">Retour à l'index des prix</a>
     </div>
     
+    <h1>Ajouter un nouveau prix</h1>
+
     <form method="post">
     <input 
-    type="hidden" 
-    value="{{ prices.id }}" 
-    name="id" >
+        type="hidden" 
+        value="{{ prices.id }}" 
+        name="id" >
+        <div class="input-group mb-3">
+            <label 
+                class="input-group-text" 
+                for="venuid">
+                Numéro de la salle
+                </label>
     <input
-    type="text" 
-    value="{{ prices.venue_id }}" 
-    name="venue_id" 
-    required
-    placeholder="salle de concert">
+    class="form-control"
+        type="text" 
+        value="{{ prices.venue_id }}" 
+        name="venue_id" 
+        required
+        id="venuid"
+        placeholder="salle de concert">
+        </div>
 
+        <div class="input-group mb-3">
+            <label 
+                class="input-group-text" 
+                for="price">
+                prix du ticket d'entrée
+                </label>
     <input 
+    class="form-control"
     type="text" 
     value="{{prices.price}}"
     name="price" 
     required
+    id="price"
     placeholder="entrer le prix">
 
+    <div class="input-group mb-3 mt-3">
+            <label 
+                class="input-group-text" 
+                for="tickettype">
+                Type de ticket
+                </label>
     <input 
+    class="form-control"
     type="text" 
     value="{{ prices.ticket_type }}"
      name="ticket_type"
      required
+     id="tickettype"
      placeholder="type de ticket">
 
     <input 
     class="btn btn-success"
     type="submit" 
     value="Add">
+    </div>
 
 </form>
 <a class="btn btn-secondary" href="/prices/index">back to list</a>
