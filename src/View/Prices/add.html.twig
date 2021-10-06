@@ -2,30 +2,42 @@
 
 {% block content %}
     <h1>Add a new Price</h1>
+
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-dark m-1" href="/prices/index">Retour à l'index des prices</a>
+    </div>
+    
     <form method="post">
-    <input type="hidden" value="{{ prices.id }}" name="id" >
+    <input 
+    type="hidden" 
+    value="{{ prices.id }}" 
+    name="id" >
     <input
-     type="text" 
-     value="{{ prices.venue_id }}" 
-     name="venue_id" 
-     placeholder="salle de concert">
+    type="text" 
+    value="{{ prices.venue_id }}" 
+    name="venue_id" 
+    required
+    placeholder="salle de concert">
 
     <input 
     type="text" 
-    value="{{ prices.price }}"
-     name="price" 
+    value="{{prices.price}}"
+    name="price" 
+    required
     placeholder="entrer le prix">
 
     <input 
     type="text" 
     value="{{ prices.ticket_type }}"
      name="ticket_type"
+     required
      placeholder="type de ticket">
 
     <input 
+    class="btn btn-success"
     type="submit" 
     value="Add">
 
 </form>
-<a href="/prices/index">back to list</a>
+<a class="btn btn-secondary" href="/prices/index">back to list</a>
 {% endblock %}

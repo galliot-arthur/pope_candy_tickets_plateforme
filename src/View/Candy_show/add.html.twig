@@ -5,62 +5,64 @@
     <form method="post">
     <input 
     type="hidden" 
-    value="{{ candy_show.id }}"
+    value="{{ candy_show.id}}"
      name="id">
     <input
      type="text" 
-    value="{{ candy_show.title }}"
+    value="{{ candy_show.title}}"
      name="title"
     placeholder="titre du concert">
     <input
      type="text" 
-    value="{{ candy_show.venue }}" 
+    value="{{ candy_show.venue}}" 
     name="venue"
     placeholder="salle de concert">
     <input 
     type="text" 
-    value="{{ candy_show.first_part }}" 
+    value="{{ candy_show.first_part}}" 
     name="first_part"
     placeholder="premiere partie">
     <input 
     type="text" 
-    value="{{ candy_show.first_part_website }}"
+    value="{{ candy_show.first_part_website}}"
      name="first_part_website"
     placeholder="premiere partie du show">
     <input 
     type="text" 
-    value="{{ candy_show.price }}" 
+    value="{{ candy_show.price}}" 
     name="price"
     placeholder="prix du concert">
     <input class="gran m-0.25-rem p-0.75-rem"
     type="date"
-     value="{{ candy_show.show_start }}"
+     value="{{ candy_show.show_start}}"
      name="show_start"
+     required
     placeholder="debut du concert">
     <input 
     type="date"
-     value="{{ candy_show.show_end }}"
+     value="{{ candy_show.show_end}}"
      name="show_end"
     >
     <input 
     type="date" 
-    value="{{ candy_show.sales_on }}" 
+    value="{{ candy_show.sales_on}}" 
     name="sales_on"
     placeholder="Date d'ouverture des ventes">
     <input 
     type="text" 
-    value="{{ candy_show.sold_out }}" 
+    value="{{ candy_show.sold_out}}" 
     name="sold_out"
     placeholder="complet ou non">
     <input 
     type="text" 
-    value="{{ candy_show.sales }}"
+    value="{{ candy_show.sales}}"
      name="sales"
      placeholder="état des ventes">
     <input 
+    class="btn btn-success"
     type="submit" 
     value="Add"
     >
 </form>
-<a href="/candy_show/index">back to list</a>
+<a class="btn btn-secondary" href="/candy_show/index">back to list</a>
 {% endblock %}

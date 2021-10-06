@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Editer un candy show {{ candy_show.id }}</h1>
+    
     <form method="post">
     <input 
     type="hidden" 
@@ -59,9 +60,10 @@
      name="sales"
      placeholder="état des ventes">
     <input 
+    class="btn btn-primary"
     type="submit" value="Update"
     >
 </form>
 <br>
-    <a href="/candy_show/index">Back to list</a>
+    <a class="btn btn-secondary" href="/candy_show/index">Back to list</a>
 {% endblock %}

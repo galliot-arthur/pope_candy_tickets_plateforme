@@ -2,6 +2,11 @@
 
 {% block content %}
     <h1>Editer en prix {{ prices.id }}</h1>
+
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-dark m-1" href="/prices/index">Retour à l'index des prix</a>
+    </div>
+
     <form method="post">
     <input
      type="hidden" 
@@ -11,22 +16,27 @@
     type="text" 
     value="{{ prices.venue_id }}" 
     name="venue_id"
+    required
     placeholder="numéro de la salle">
     <input
      type="text"
-     value="{{ prices.price }}" 
+     value="{{ prices.price}}" 
     name="price"
+    required
     placeholder="le prix">
     <input 
     type="text"
      value="{{ prices.ticket_type }}"
      name="ticket_type"
+     required
      placeholder="type de ticket">
     <input 
+    class="btn btn-primary"
     type="submit"
      value="Update"
     >
 </form>
 <br>
-    <a href="/prices/index">Back to list</a>
+    <a class="btn btn-primary"
+href="/prices/index">Back to list</a>
 {% endblock %}
