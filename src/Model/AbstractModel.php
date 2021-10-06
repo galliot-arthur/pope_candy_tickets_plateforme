@@ -50,7 +50,6 @@ abstract class AbstractModel
             ->fetchAll();
     }
 
-
     /**
      * Affiche toutes les valeurs d'une table, classé selon un parametre, et son sens.
      *

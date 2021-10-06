@@ -19,7 +19,9 @@ class PricesController extends AbstractController
                 [
                     'prices' => $prices,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'prices',
                 ]
             );
     }
@@ -45,7 +47,9 @@ class PricesController extends AbstractController
                 [
                     'price' => $price,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'show',
+                    'currentController' => 'prices',
                 ]
             );
     }
@@ -88,7 +92,9 @@ class PricesController extends AbstractController
                 "Prices/add.html.twig",
                 [
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'add',
+                    'currentController' => 'prices',
                 ]
             );
     }
@@ -130,7 +136,9 @@ class PricesController extends AbstractController
                 [
                     'prices' => $prices,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'edit',
+                    'currentController' => 'prices',
                 ]
             );
     }

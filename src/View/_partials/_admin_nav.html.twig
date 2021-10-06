@@ -1,0 +1,18 @@
+<div class="container-fluid d-flex justify-content-end bg-dark">
+	<div class="btn-group">
+		coucouc
+				{# index #}
+				{% if (currentFunction == "index") %}
+					<a class="btn btn-outline-light" href="/{{ currentController }}/add">Add</a>
+				{% endif %}
+				{# show #}
+				{%  if (currentFunction == "show") %}
+					<a class="btn btn-outline-light" href="/{{ currentController }}/edit/{{ id|number_format }}">Edit</a>
+					<a class="btn btn-outline-light" href="/{{ currentController }}/delete/{{ id|number_format }}">Delete</a>
+				{% endif %}
+				{# add/edit #}
+				{%  if (currentFunction == "edit") %}
+					<a class="btn btn-outline-light" href="/{{ currentController }}/show/{{ id|number_format }}">Back to post</a>
+				{% endif %}
+		</div>
+</div>

@@ -1,0 +1,81 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Editer {{ venue.title }}</h1>
+
+    <div class="d-flex justify-content-center mb-3">
+        <a class="btn btn-dark m-1" href="/venue/index">Index Salles</a>
+        <a class="btn btn-dark m-1" href="/venue/show/{{ venue.id }}">Retour</a>
+    </div>
+
+    <form method="post">
+        <input type="hidden" value="{{ venue.id }}" name="id">
+        <label 
+            for="title">
+            Nom</label>
+        <input 
+            class="form-control mb-3"
+            type="text" 
+            value="{{ venue.title }}" 
+            id="title"
+            name="title">
+        <label 
+            for="town">
+            Ville </label>
+        <input 
+            class="form-control mb-3"
+            type="text" 
+            value="{{ venue.town }}" 
+            id="town"
+            name="town">
+        <label 
+            for="disabled_access">
+            Accès Handicapé</label>
+        <input 
+            class="form-control mb-3"
+            type="text" 
+            value="{{ venue.disabled_access }}" 
+            id="disabled_access"
+            name="disabled_access">
+        <label 
+            for="address">
+            Adresse</label>
+        <input 
+            class="form-control mb-3"
+            type="text" 
+            value="{{ venue.address }}" 
+            id="address"
+            name="address">
+        <label 
+            for="capacity">
+            Capacité</label>
+        <input 
+            class="form-control mb-3"
+            type="number"
+            value="{{ venue.capacity }}"
+            id="capacity"
+            name="capacity">
+        <label 
+            for="vip_available">
+            vip_available</label>
+        <input 
+            class="form-control mb-3"
+            type="text" 
+            value="{{ venue.vip_available }}" 
+            id="vip_available"
+            name="vip_available">
+        <label 
+            for="prices">
+            Prix En tableaux</label>
+        <input 
+            class="form-control mb-3"
+            type="text" 
+            value="{{ venue.prices }}" 
+            id="prices"
+            name="prices">
+        <input 
+            class="btn btn-success"
+            type="submit" 
+            value="Editer">
+    </form>
+{% endblock %}

@@ -15,6 +15,10 @@
 </head>
 <body>
 
+    {% if userSession.admin == 1 %}
+        {% include "_partials/_admin_nav.html.twig" %}
+    {% endif %}
+    
     {% include "_partials/_nav.html.twig" %}
 
 

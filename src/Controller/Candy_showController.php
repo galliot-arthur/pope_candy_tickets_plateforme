@@ -4,21 +4,33 @@ namespace App\Controller;
 
 use App\Model\ArtistsModel;
 use App\Model\Candy_showModel;
+use App\Model\VenueModel;
 
 class Candy_showController extends AbstractController
 {
 
     public function index()
     {
-        $candy_showModel = new Candy_showModel();
+        $candy_showModel = new Candy_showModel;
         $candy_show = $candy_showModel->allOrderedBy('show_start', false);
 
-        return $this->twig->render('Candy_show/index.html.twig', ['candy_show' => $candy_show]);
+        return $this
+            ->twig
+            ->render(
+                'Candy_show/index.html.twig',
+                [
+                    'candy_show' => $candy_show,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'candy_show',
+                ]
+            );
     }
 
     public function show(int $id)
     {
-        $candy_showModel = new Candy_showModel();
+        $candy_showModel = new Candy_showModel;
         $candy_show = $candy_showModel
             ->selectOneById($id);
 
@@ -38,7 +50,9 @@ class Candy_showController extends AbstractController
                 [
                     'candy_show' => $candy_show,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'show',
+                    'currentController' => 'candy_show',
                 ]
             );
     }
@@ -47,6 +61,8 @@ class Candy_showController extends AbstractController
     {
         $artistsModel = new ArtistsModel;
         $artists = $artistsModel->selectAll();
+        $venueModel = new VenueModel;
+        $venues = $venueModel->selectAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -57,7 +73,7 @@ class Candy_showController extends AbstractController
             $show_start = "$show_date $start_hour:00";
             $show_end = "$show_date $end_hour:00";
 
-            $candy_showModel = new Candy_showModel();
+            $candy_showModel = new Candy_showModel;
             $candy_show = [
                 'id' => $_POST['id'],
                 'title' => $_POST['title'],
@@ -84,19 +100,33 @@ class Candy_showController extends AbstractController
                 "Candy_show/add.html.twig",
                 [
                     'artists' => $artists,
+                    'venues' => $venues,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'add',
+                    'currentController' => 'candy_show',
                 ]
             );
     }
 
     public function edit(int $id): string
     {
-        $candy_showModel = new Candy_showModel();
+        $candy_showModel = new Candy_showModel;
         $candy_show = $candy_showModel->selectOneById($id);
 
         $artistsModel = new ArtistsModel;
         $artists = $artistsModel->selectAll();
+        $venueModel = new VenueModel;
+        $venues = $venueModel->selectAll();
+
+        if (!$candy_show) {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+            exit;
+        }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -107,7 +137,7 @@ class Candy_showController extends AbstractController
             $show_start = "$show_date $start_hour:00";
             $show_end = "$show_date $end_hour:00";
 
-            $candy_showModel = new Candy_showModel();
+            $candy_showModel = new Candy_showModel;
             $candy_show = [
                 'id' => $_POST['id'],
                 'title' => $_POST['title'],
@@ -119,7 +149,13 @@ class Candy_showController extends AbstractController
                 'sales_on' => $_POST['sales_on'],
             ];
 
-            $candy_showModel->update($candy_show);
+            $result = $candy_showModel->update($candy_show);
+            if ($result) {
+                $this->setFlash(
+                    true,
+                    "Ce concert à bien été édité."
+                );
+            };
         }
 
         return $this
@@ -129,14 +165,17 @@ class Candy_showController extends AbstractController
                 [
                     'candy_show' => $candy_show,
                     'artists' => $artists,
+                    'venues' => $venues,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'edit',
+                    'currentController' => 'candy_show',
                 ]
             );
     }
     public function delete(int $id)
     {
-        $Candy_showModel = new Candy_showModel();
+        $Candy_showModel = new Candy_showModel;
         $Candy_showModel->delete($id);
         header('Location:/candy_show/index');
     }

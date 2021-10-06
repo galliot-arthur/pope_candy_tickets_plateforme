@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<h1>Salles ou Festivals</h1>
+
+    <div class="d-flex justify-content-center mb-2">
+        <a class="btn btn-dark m-1" href="/venue/add">Ajouter</a>
+        <a class="btn btn-dark m-1" href="/home/admin">Index Admin</a>
+    </div>
+
+	<ul class="list-group">
+		{% for venue in venues %}
+			<li class="list-group-item">
+				<a href="/venue/show/{{ venue.id }}">
+					{{ venue.title }}
+				</a>
+				-<b> {{ venue.town }} </b> -
+				<i>{{ venue.capacity }} places</i>
+			</li>
+		{% else %}
+			<li>Nothing to display</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}
