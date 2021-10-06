@@ -14,13 +14,12 @@ class PricesController extends AbstractController
         $prices = $pricesModel->selectAll();
         $venueModel = new VenueModel;
 
-        foreach($prices as $price) {
-            //$price['ticket_name'] = $this->getTicketType($price['ticket_id']);
-            $venue = $venueModel->selectOneById($price['venue_id']);
-            $price['venue_name'] = $venue['title'];
-            //var_dump($venue['title']);
+        foreach($prices as $key => $value) {
+            $prices[$key]['ticket_name'] = $this->getTicketType($prices[$key]['ticket_type']);
+            $venue = $venueModel->selectOneById($prices[$key]['venue_id']);
+            $prices[$key]['venue_name'] = $venue['title'];
         }
-        var_dump($prices); die;
+
         return $this
             ->twig
             ->render(
@@ -85,7 +84,7 @@ class PricesController extends AbstractController
                     true,
                     "Ce prix bien à bien été ajouté."
                 );
-                header("Location:/prices/show/$id");
+                header("Location:/prices/index");
                 exit;
             } else {
 
@@ -135,6 +134,8 @@ class PricesController extends AbstractController
                     true,
                     "Ce prix bien à bien été édité."
                 );
+                header("Location:/prices/index");
+                exit;
             } else {
 
                 $this->setFlash(
@@ -169,8 +170,7 @@ class PricesController extends AbstractController
         );
         header('Location:/prices/index');
     }
- 
-    public function getTicketType(int $value):string
+        public function getTicketType(int $value):string
     {
         switch ($value){
             case 0:
@@ -183,7 +183,4 @@ class PricesController extends AbstractController
                 return "guest ";
         }
     }
-
-
 }
-
