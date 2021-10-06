@@ -17,33 +17,39 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
+    background: url('../images/popecandy1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-nav {
+
+/* nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     border-bottom: 5px solid #6f6f6f;
+} */
+
+h1 {
+    text-shadow: 0 1px 0 #ffffff1f, 0 -1px 0 #79baf01f;
+    color: white;
 }
 
 nav h2 {
     font-family: 'Ginto', sans-serif;
     text-transform: uppercase;
+    font-size: 3rem;
+    margin-bottom: 0;
+    text-shadow: 2px 1px 50px #ce5959, 0 -1px 0 #79baf01f;
+}
+
+nav h3 {
+    font-family: 'Ginto', sans-serif;
+    margin: 0;
     font-size: 2rem;
-}
-
-nav .onglets {
-    margin-top: 3px;
-    margin-left: 300px;
-}
-
-nav .onglets>a {
-    text-decoration: none;
-    color: #000;
-    margin-right: 10px;
-    border-bottom: 1px solid #000;
-    padding-bottom: 5px;
+    text-shadow: 2px 1px 50px #ce5959, 0 -1px 0 #79baf01f;
 }
 
 header {
@@ -64,7 +70,8 @@ header h1 {
     text-transform: uppercase;
 }
 
-header h4 {
+
+/* header h4 {
     margin-top: -20px;
     font-size: 20px;
     text-align: center;
@@ -81,7 +88,7 @@ header button {
     font-size: 20px;
     font-family: 'Playfair Display', serif;
     cursor: pointer;
-}
+} */
 
 .main {
     margin-top: 40px;
