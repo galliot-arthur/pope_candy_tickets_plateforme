@@ -3,15 +3,24 @@
 namespace App\Controller;
 
 use App\Model\PricesModel;
+use App\Model\VenueModel;
 
 class PricesController extends AbstractController
 {
 
     public function index()
     {
-        $pricesModel = new PricesModel();
+        $pricesModel = new PricesModel;
         $prices = $pricesModel->selectAll();
+        $venueModel = new VenueModel;
 
+        foreach($prices as $price) {
+            //$price['ticket_name'] = $this->getTicketType($price['ticket_id']);
+            $venue = $venueModel->selectOneById($price['venue_id']);
+            $price['venue_name'] = $venue['title'];
+            //var_dump($venue['title']);
+        }
+        var_dump($prices); die;
         return $this
             ->twig
             ->render(
@@ -57,6 +66,8 @@ class PricesController extends AbstractController
 
     public function add()
     {
+        $venueModel = new VenueModel;
+        $venues = $venueModel->selectAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pricesModel = new PricesModel();
@@ -92,6 +103,7 @@ class PricesController extends AbstractController
             ->render(
                 "Prices/add.html.twig",
                 [
+                    'venues' => $venues,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'add',
@@ -104,6 +116,8 @@ class PricesController extends AbstractController
     {
         $pricesModel = new PricesModel();
         $prices = $pricesModel->selectOneById($id);
+        $venueModel = new VenueModel;
+        $venues = $venueModel->selectAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $prices = [
@@ -137,6 +151,7 @@ class PricesController extends AbstractController
                 [
                     'id' => $id,
                     'prices' => $prices,
+                    'venues' => $venues,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'edit',

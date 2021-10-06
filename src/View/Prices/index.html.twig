@@ -3,21 +3,15 @@
 {% block content %}
     <h1>Afficher les différents prix</h1>
 
-    <div class="d-flex justify-content-center mb-2">
-        <a class="btn btn-dark m-1" href="/prices/add">Add</a>
-        <a class="btn btn-dark m-1" href="/home/admin">Admin Index</a>
-    </div>
-
     <ul class="list-group">
         {% for price in prices %}
             <li class="list-group-item" >
-                <a
-                    href="/prices/show/{{ price.id }}">
-                    {{ price.id   }}. {{ price.venue_id }}</a>
-        <div>Prix du ticket. {{ price.price }}</div>
-         <div>Type de ticket. {{ price.ticket_type }}</div>
+                <a href="/prices/show/{{ price.id }}">Salle :{{ price.venue_name }}</a>
+
+                <div>Prix de la réduction en euros HT : <b>{{ price.price }}</b></div>
+                <div>Type de réduction : {{ price.ticket_name }}</div>
          
-         </li>
+            </li>
         {% else %}
             <li>Nothing to display</li>
         {% endfor %}

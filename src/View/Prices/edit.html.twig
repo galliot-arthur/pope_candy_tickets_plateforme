@@ -1,70 +1,74 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    
-    <div class="d-flex justify-content-center mb-4">
-        <a class="btn btn-dark m-1" href="/prices/index">Retour à l'index des prix</a>
-    </div>
 
-    <h1>Editer en prix {{ prices.id }}</h1>
+    <h1>Editer une réduction</h1>
 
     <form method="post">
-    <input
-     type="hidden" 
-    value="{{ prices.id }}" 
-    name="id">
+        <input 
+            type="hidden" 
+            value="{{ prices.id }}" 
+            name="id" >
 
-    <div class="input-group mb-3">
+        <div class="input-group mb-3">
             <label 
                 class="input-group-text" 
-                for="venuid">
-                Numéro de la salle
+                for="venue_id">
+                Salle ou Festival
                 </label>
-    <input 
-    class="form-control"
-    type="text" 
-    value="{{ prices.venue_id }}" 
-    name="venue_id"
-    required
-    id="venuid"
-    placeholder="numéro de la salle">
-    </div>
-    <div class="input-group mb-3">
+            <select 
+                class="form-select" 
+                name="venue_id"
+                id="venue_id"
+                requiered>
+                <option selected>Choisir...</option>
+                {% for venue in venues %}
+                    <option
+                        {{ venue.id == candy_show.venue ? "selected" : "" }}
+                        value="{{ venue.id }}">
+                        {{ venue.title }}
+                        </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
             <label 
                 class="input-group-text" 
                 for="price">
-                Prix du ticket d'entrée
+                Valeur de la réduction
                 </label>
-    <input
-    class="form-control"
-     type="text"
-     value="{{ prices.price}}" 
-    name="price"
-    required
-    id="price"
-    placeholder="le prix">
-    </div>
-    <div class="input-group mb-3">
+            <input 
+                class="form-control"
+                type="number" 
+                value="{{prices.price}}"
+                name="price" 
+                id="price"
+                required
+                placeholder="entrer le prix">
+
+        <div class="input-group mb-3 mt-3">
             <label 
                 class="input-group-text" 
-                for="tickettype">
-                Type de ticket
+                for="ticket_type">
+                Tarif
                 </label>
-    <input 
-    class="form-control"
-    type="text"
-     value="{{ prices.ticket_type }}"
-     name="ticket_type"
-     required
-     id="tickettype"
-     placeholder="type de ticket">
-    <input 
-    class="btn btn-primary"
-    type="submit"
-     value="Update">
-     </div>
-</form>
-<br>
-    <a class="btn btn-primary"
-href="/prices/index">Back to list</a>
+            <select 
+                class="form-select" 
+                name="ticket_type"
+                id="ticket_type"
+                requiered>
+                <option selected>Choisir...</option>
+                    <option value="0">Normal</option>
+                    <option value="1">Réduit</option>
+                    <option value="2">VIP</option>
+                    <option value="3">Invitation</option>
+            </select>
+
+            <input 
+                class="btn btn-success"
+                type="submit" 
+                value="Add">
+        </div>
+    </form>
 {% endblock %}
