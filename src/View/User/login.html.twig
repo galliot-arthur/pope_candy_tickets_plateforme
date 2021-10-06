@@ -1,26 +1,25 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Log In</h1>
-    <form method="post">
-
+    <h1>Se connecter</h1>
+    <form method="post" class="form-group">
         <input 
-            type="text" 
-            value="{{ user.name  }}" 
-            name="user" 
-            placeholder="prénom ou email" 
+            class="form-control mb-3"
+            type="text"
+            value="{{ user.name  }}"
+            name="user"
+            placeholder="Prénom ou Email" 
             required>
-        <input 
-            type="password" 
-            value="{{ user.password }}" 
-            name="password" 
-            placeholder="Mot de passe" 
+        <input
+            class="form-control mb-3"
+            type="password"
+            value="{{ user.password }}"
+            name="password"
+            placeholder="Mot de passe"
             required>
-    
-        <input 
-            class="btn btn-dark"
-            type="submit" 
-            value="Register">
+        <input
+            class="btn btn-dark mb-3"
+            type="submit"
+            value="Connexion">
     </form>
-<a href="/user/index">back to list</a>
 {% endblock %}

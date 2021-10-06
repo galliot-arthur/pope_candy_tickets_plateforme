@@ -1,40 +1,45 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Register</h1>
-    <form method="post">
-
+    <h1>Créer un compte</h1>
+    <form method="post" class="form-group">
         <input 
+            class="form-control mb-3"
             type="text" 
             value="{{ user.name  }}" 
             name="name" 
             placeholder="Nom" 
             required>
         <input 
+            class="form-control mb-3"
             type="text" 
             value="{{ user.firstname }}" 
             name="firstname" 
             placeholder="Prénom" 
             required>
         <input 
+            class="form-control mb-3"
             type="email" 
             value="{{ user.email }}" 
             name="email" 
             placeholder="E-mail" 
             required>
         <input 
+            class="form-control mb-3"
             type="password" 
             value="{{ user.password }}" 
             name="password" 
             placeholder="Mot de passe" 
             required>
         <input 
+            class="form-control mb-3"
             type="text" 
             value="{{ user.adress }}" 
             name="adress" 
             placeholder="Adresse" 
             required>
         <input 
+            class="form-control mb-3"
             type="number" 
             value="{{ user.age }}" 
             name="age" 
@@ -44,7 +49,6 @@
         <input 
             class="btn btn-dark" 
             type="submit" 
-            value="Register">
+            value="S'enregistrer">
     </form>
-<a href="/user/index">back to list</a>
 {% endblock %}
