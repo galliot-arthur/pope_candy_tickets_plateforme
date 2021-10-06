@@ -36,7 +36,7 @@ abstract class AbstractModel
     }
 
     /**
-     * Get all row from database.
+     * Affiche toutes les valeurs d'une table.
      *
      * @return array
      */
@@ -47,6 +47,27 @@ abstract class AbstractModel
             ->query(
                 "SELECT * 
                 FROM $this->table")
+            ->fetchAll();
+    }
+
+
+    /**
+     * Affiche toutes les valeurs d'une table, classé selon un parametre, et son sens.
+     *
+     * @param string $param Critère de classement
+     * @param boolean $way true="DESC" false=""
+     * @return array
+     */
+    public function allOrderedBy(string $param, bool $way): array
+    {
+        $direction = $way ? "DESC" : "";
+
+        return $this
+            ->pdo
+            ->query(
+                "SELECT * 
+                FROM $this->table
+                ORDER BY $param $direction")
             ->fetchAll();
     }
 

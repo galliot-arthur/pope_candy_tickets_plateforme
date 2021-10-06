@@ -1,24 +1,27 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Afficher la liste des candy_show</h1>
-    <ul>
+    <h1>Spectacles</h1>
+
+    <div class="d-flex justify-content-center mb-2">
+        <a class="btn btn-dark m-1" href="/candy_show/add">Add</a>
+        <a class="btn btn-dark m-1" href="/home/admin">Admin Index</a>
+    </div>
+
+    <ul class="list-group">
         {% for candy_show in candy_show %}
-            <li><a href="/candy_show/show/{{ candy_show.id }}">{{ candy_show.id }}
-            Titre du candy show . {{ candy_show.title }}
-        venue. {{ candy_show.venue }}
-         first part. {{ candy_show.first_part }}</a></li>
-         first part website. {{ candy_show.first_part_website }}
-         price. {{ candy_show.price }}
-         début du show. {{ candy_show.show_start }}
-         fin du show. {{ candy_show.show_end }}
-         sales on. {{ candy_show.sales_on }}
-         sold out. {{ candy_show.sold_out }}
-         show sales. {{ candy_show.sales }}
+            <li class="list-group-item">
+                <a 
+                    href="/candy_show/show/{{ candy_show.id }}">
+                    {{ candy_show.title }}
+                </a>
+                <div>{{ candy_show.show_start|date("d/m/y") }}</div>
+                <div>Ventes {{ candy_show.sales }}</div>
+            </li>
+
         {% else %}
             <li>Nothing to display</li>
         {% endfor %}
     </ul>
-    
-    <a href="/candy_show/add">Add</a>
+
 {% endblock %}

@@ -8,11 +8,7 @@ class UserController extends AbstractController
 {
     /**
      * Display item listing
-     *
      * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
     public function index()
     {
@@ -33,12 +29,8 @@ class UserController extends AbstractController
 
     /**
      * Display item edition page specified by $id
-     *
      * @param int $id
      * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
     public function edit(int $id): string
     {
@@ -58,7 +50,11 @@ class UserController extends AbstractController
                     false,
                     'Parametres invalides, merci de rééssayer.'
                 );
-                header("Location:/user/edit");
+                $this->setFlash(
+                    true,
+                    "Profile edité avec succès"
+                );
+                header("Location:/user/edit/$id");
                 exit;
             }
 
@@ -71,7 +67,7 @@ class UserController extends AbstractController
                 'age' => $_POST['age'],
             ];
             $userModel->update($user);
-            header("Location: /user/profile/");
+            header("Location: /user/profile/$id");
             exit;
         }
 
@@ -89,11 +85,7 @@ class UserController extends AbstractController
 
     /**
      * Display item creation page
-     *
      * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
     public function register()
     {
@@ -154,7 +146,6 @@ class UserController extends AbstractController
 
     /**
      * Handle item deletion
-     *
      * @param int $id
      */
     public function delete(int $id)
@@ -208,7 +199,6 @@ class UserController extends AbstractController
 
     /**
      * Handle the user logout
-     *
      * @return void
      */
     public function logout()
@@ -239,7 +229,6 @@ class UserController extends AbstractController
 
     /**
      * Handle the personal display of the user profile.
-     *
      * @return void
      */
     public function profile()
