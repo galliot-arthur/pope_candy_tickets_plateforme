@@ -3,13 +3,13 @@
 namespace App\Controller;
 
 
-use App\Model\VenuesModel;
+use App\Model\VenueModel;
 
 /**
  * Class ItemController
  *
  */
-class VenuesController extends AbstractController
+class VenueController extends AbstractController
 {
 
 
@@ -23,13 +23,13 @@ class VenuesController extends AbstractController
      */
     public function index()
     {
-        $venuesModel = new VenuesModel();
-        $venues = $venuesModel->selectAll();
+        $venueModel = new VenueModel;
+        $venues = $venueModel->selectAll();
 
         return $this
             ->twig
             ->render(
-                'Item/index.html.twig',
+                'Venue/index.html.twig',
                 [
                     'venues' => $venues,
                     'userSession' => $this->userSession(),
@@ -50,8 +50,8 @@ class VenuesController extends AbstractController
      */
     public function show(int $id)
     {
-        $venuesModel = new VenuesModel();
-        $venue = $venuesModel->selectOneById($id);
+        $venueModel = new VenueModel();
+        $venue = $venueModel->selectOneById($id);
 
         if (!$venue) {
             $this->setFlash(
@@ -65,7 +65,7 @@ class VenuesController extends AbstractController
         return $this
             ->twig
             ->render(
-                'Venues/show.html.twig',
+                'Venue/show.html.twig',
                 [
                     'venue' => $venue,
                     'userSession' => $this->userSession(),
@@ -86,23 +86,42 @@ class VenuesController extends AbstractController
      */
     public function edit(int $id): string
     {
-        $venuesModel = new VenuesModel();
-        $venue = $venuesModel->selectOneById($id);
+        $venueModel = new VenueModel();
+        $venue = $venueModel->selectOneById($id);
+
+        if (!$venue) {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+            exit;
+        }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $venue = [
                 'id' => $id,
-                'ref_id' => $_POST['ref_id'],
-                'ref' => $_POST['ref'],
-                'type' => $_POST['type']
+                'title' => $_POST['title'],
+                'town' => $_POST['town'],
+                'disabled_access' => $_POST['disabled_access'],
+                'address' => $_POST['address'],
+                'capacity' => $_POST['capacity'],
+                'vip_available' => $_POST['vip_available'],
+                'prices' => $_POST['prices']
             ];
-            $venuesModel->update($venue);
+            $result = $venueModel->update($venue);
+            if ($result) {
+                $this->setFlash(
+                    true,
+                    "Ce lieu à bien été ajouté."
+                );
+            };
         }
 
         return $this
             ->twig
             ->render(
-                'Venues/edit.html.twig',
+                'Venue/edit.html.twig',
                 [
                     'venue' => $venue,
                     'userSession' => $this->userSession(),
@@ -124,29 +143,32 @@ class VenuesController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $venuesModel = new VenuesModel();
+            $venueModel = new VenueModel();
             $venue = [
-                'ref_id' => $_POST['ref_id'],
-                'ref' => $_POST['ref'],
-                'type' => $_POST['type']
+                'title' => $_POST['title'],
+                'town' => $_POST['town'],
+                'disabled_access' => $_POST['disabled_access'],
+                'address' => $_POST['address'],
+                'capacity' => $_POST['capacity'],
+                'vip_available' => $_POST['vip_available'],
+                'prices' => $_POST['prices'],
             ];
-            $id = $venuesModel->insert($venue);
+            $id = $venueModel->insert($venue);
+
             if ($id) {
                 $this->setFlash(
-
                     true,
-                    "votre Venues à bien été ajouté"
-
+                    "Ce lieu à bien été ajouté."
                 );
             };
-            header('Location:/home');
+            header('Location:/venue/index');
             exit;
         }
 
         return $this
             ->twig
             ->render(
-                'Venues/add.html.twig',
+                'Venue/add.html.twig',
                 [
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert()
@@ -162,8 +184,12 @@ class VenuesController extends AbstractController
      */
     public function delete(int $id)
     {
-        $venuesModel = new VenuesModel();
-        $venuesModel->delete($id);
-        header('Location:/item/index');
+        $venueModel = new VenueModel();
+        $venueModel->delete($id);
+        $this->setFlash(
+            true,
+            "Ce lieu à bien été supprimée"
+        );
+        header('Location:/venue/index');
     }
 }

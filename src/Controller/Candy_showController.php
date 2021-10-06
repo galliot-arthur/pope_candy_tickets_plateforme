@@ -98,6 +98,15 @@ class Candy_showController extends AbstractController
         $artistsModel = new ArtistsModel;
         $artists = $artistsModel->selectAll();
 
+        if (!$candy_show) {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+            exit;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $show_date = $_POST['show_date'];
@@ -119,7 +128,14 @@ class Candy_showController extends AbstractController
                 'sales_on' => $_POST['sales_on'],
             ];
 
-            $candy_showModel->update($candy_show);
+            $result = $candy_showModel->update($candy_show);
+            if ($result) {
+                $this->setFlash(
+                    true,
+                    "Ce concert à bien été édité."
+                );
+            };
+            
         }
 
         return $this

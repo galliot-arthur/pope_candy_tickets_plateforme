@@ -2,12 +2,12 @@
 
 namespace App\Model;
 
-class VenuesModel extends AbstractModel
+class VenueModel extends AbstractModel
 {
     /**
      *
      */
-    const TABLE = 'venue';
+    const TABLE = 'venues';
 
     /**
      *  Initializes this class.
