@@ -69,6 +69,7 @@ class VenueController extends AbstractController
             ->render(
                 'Venue/show.html.twig',
                 [
+                    'id' => $id,
                     'venue' => $venue,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
@@ -127,6 +128,7 @@ class VenueController extends AbstractController
             ->render(
                 'Venue/edit.html.twig',
                 [
+                    'id' => $id,
                     'venue' => $venue,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),

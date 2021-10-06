@@ -1,11 +1,37 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
     <header>
         <h1>Pop Candy Tour</h1>
         <h4>Le mastodonte est de retour</h4>
         <button class="btn btn-light">Parcourir</button>
     </header>
 
+    <h2>Prochaines dates</h2>
+    <ul class="list-group mb-3">
+        {% for candy_show in candy_shows %}
+            <li class="list-group-item">
+                <a
+                    href="/candy_show/show/{{ candy_show.id }}">
+                    {{ candy_show.title }}
+                </a>
+                <div>{{ candy_show.show_start|date("d/m/y") }}</div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Les dates les plus hots</h2>
+    <ul class="list-group mb-3">
+        {% for tot_show in top_shows %}
+            <li class="list-group-item">
+                <a
+                    href="/candy_show/show/{{ tot_show.id }}">
+                    {{ tot_show.title }}
+                </a>
+                <div>{{ tot_show.show_start|date("d/m/y") }}</div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Photo Gallery</h2>
 {% endblock %}

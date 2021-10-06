@@ -16,4 +16,5 @@ class Candy_showModel extends AbstractModel
     {
         parent::__construct(self::TABLE);
     }
+
 }

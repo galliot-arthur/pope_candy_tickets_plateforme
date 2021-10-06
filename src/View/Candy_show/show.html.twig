@@ -1,11 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-dark m-1" href="/candy_show/edit/{{ candy_show.id }}">Editer</a>
-        <a class="btn btn-dark m-1" href="/candy_show/delete/{{candy_show.id}}">Supprimer</a>
-        <a class="btn btn-dark m-1" href="/home/admin">Administration</a>
-    </div>
 
     <h1>{{ candy_show.title }}</h1>
     {% if candy_show.soldout %}
@@ -22,6 +17,7 @@
             <div>Heure fin : {{ candy_show.show_end|date("H:i") }}</div>
             <div>Ouverture des ventes : {{ candy_show.sales_on|date("d / m / y") }}</div>
             <div>Nombres de places vendues : <b>{{ candy_show.sales }}</b></div>
+            <a href="/bookings/buy/{{ candy_show.id }}" class="btn btn-dark mt-3">Acheter</a>
         </div>
     </div>
 {% endblock %}

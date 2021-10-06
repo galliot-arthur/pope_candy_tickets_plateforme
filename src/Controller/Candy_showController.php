@@ -12,14 +12,14 @@ class Candy_showController extends AbstractController
     public function index()
     {
         $candy_showModel = new Candy_showModel;
-        $candy_show = $candy_showModel->allOrderedBy('show_start', false);
+        $candy_shows = $candy_showModel->allOrderedBy('show_start', false);
 
         return $this
             ->twig
             ->render(
                 'Candy_show/index.html.twig',
                 [
-                    'candy_show' => $candy_show,
+                    'candy_shows' => $candy_shows,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
@@ -48,6 +48,7 @@ class Candy_showController extends AbstractController
             ->render(
                 'Candy_show/show.html.twig',
                 [
+                    'id' => $id,
                     'candy_show' => $candy_show,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
@@ -163,6 +164,7 @@ class Candy_showController extends AbstractController
             ->render(
                 'candy_show/edit.html.twig',
                 [
+                    'id' => $id,
                     'candy_show' => $candy_show,
                     'artists' => $artists,
                     'venues' => $venues,

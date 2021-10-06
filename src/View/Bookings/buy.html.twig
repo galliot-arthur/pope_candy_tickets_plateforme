@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Acheter une place pour {{ candy_show.title }}</h1>
+
+    <form method="post">
+
+        <div class="input-group mb-3">
+            <label 
+                class="input-group-text" 
+                for="place_number">
+                Nombre de places
+                </label>
+            <input 
+                class="form-control"
+                type="text" 
+                value="{{ candy_show.place_number }}"
+                name="place_number"
+                id="place_number"
+                placeholder="Nombre de places"
+                requiered>
+        </div>
+
+        <div class="input-group mb-3">
+            <label 
+                class="input-group-text" 
+                for="place_number">
+                Type
+                </label>
+            <input 
+                class="form-control"
+                type="text" 
+                value="{{ candy_show.place_number }}"
+                name="place_number"
+                id="place_number"
+                placeholder="Nombre de places"
+                requiered>
+        </div>
+
+        <input
+            class="btn btn-dark"
+            type="submit" 
+            value="Acheter">
+    </form>
+{% endblock %}

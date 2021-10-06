@@ -43,6 +43,7 @@ class ArtistsController extends AbstractController
             ->render(
                 'Artists/show.html.twig',
                 [
+                    'id' => $id,
                     'artists' => $artist,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert()
@@ -133,6 +134,7 @@ class ArtistsController extends AbstractController
             ->render(
                 'Artists/edit.html.twig',
                 [
+                    'id' => $id,
                     'artists' => $artists,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert()
