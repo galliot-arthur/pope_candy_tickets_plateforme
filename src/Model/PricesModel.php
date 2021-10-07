@@ -16,4 +16,22 @@ class PricesModel extends AbstractModel
     {
         parent::__construct(self::TABLE);
     }
+
+
+    /**
+     * Affiche toutes les valeurs d'une table.
+     *
+     * @return array
+     */
+    public function selectAll(): array
+    {
+        return $this
+            ->pdo
+            ->query(
+                "SELECT p.venue_id, p.price, p.ticket_type,v.town AS town ,v.address AS venue_address
+                FROM prices AS p
+                LEFT JOIN venues AS v ON v.id = p.venue_id"
+            )
+            ->fetchAll();
+    }
 }
