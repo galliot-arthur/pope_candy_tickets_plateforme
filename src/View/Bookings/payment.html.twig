@@ -9,7 +9,9 @@
             Vous êtes en train de payer pour :
             <h4>Pope Candy - {{ candy_show.title }}</h4>
             <div class="m-3">
-                {{ quantity }} places tarif {{ price.name }}.
+                {% for ticket in tickets %}
+                   <div class="m-3"> {{ dump(ticket) }} </div>
+                {% endfor %}
             </div>
             <div>
                 <b>Notre centrale de paiement se fait en sourire.</b> 😊
@@ -50,5 +52,5 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="/assets/js/pay.js"></script>
+    {# <script src="/assets/js/pay.js"></script> #}
 {% endblock %}

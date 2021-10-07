@@ -186,7 +186,6 @@ class BookingsController extends AbstractController
                 header("Location:/home");
             }
 
-
             $pricesModel = new PricesModel;
 
             $price1 = $pricesModel->selectOneById($type1);
@@ -204,8 +203,10 @@ class BookingsController extends AbstractController
                 $tickets[$holder_name3] = $price3;
             }
 
-            //echo "$quantity<br/>";
-            //var_dump($tickets); die;
+            $_SESSION['tickets'] = $tickets;
+            $_SESSION['quantity'] = $quantity;
+            $_SESSION['show'] = $candy_show;
+
             return $this
             ->twig
             ->render(
@@ -233,39 +234,25 @@ class BookingsController extends AbstractController
     public function payment() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // on vérifie que le spectacle existe
-            $id = intval($_POST['id']);
-            $candyModel = new Candy_showModel;
-            $candy_show = $candyModel->selectOneById($id);
-
-            if (!$candy_show) {
-                $this->setFlash(
-                    false,
-                    'Element inconnu.'
-                );
-                header("Location:/home");
+            $price = $_SESSION['show']['price'];
+            $total = 0;
+            foreach ($_SESSION['tickets'] as $ticket) {
+                $price = $price - $ticket['price'];
+                $total += $price;
             }
-
-            $quantity = $_POST['quantity'];
-            $holder_name1 = $_POST['holder_name1'];
-            $type1 = $_POST['type1'];
-            !empty($_POST['holder_name2']) ? $holder_name2 = $_POST['holder_name2'] : $holder_name2 = null;
-            !empty($_POST['type2']) ? $type2 = $_POST['type2'] : $type2 = null;
-            !empty($_POST['holder_name3']) ? $holder_name3 = $_POST['holder_name3'] : $holder_name3 = null;
-            !empty($_POST['type3']) ? $type3 = $_POST['type3'] : $type3 = null;
-
-
-
-
+            
+            //var_dump($_SESSION['tickets']); die;
             return $this
             ->twig
             ->render(
                 'Bookings/payment.html.twig',
                 [
-                    'id' => $id,
-                    'candy_show' => $candy_show,
-                    'quantity' => $quantity,
+                    'id' => $_POST['id'],
+                    'total' => $total,
                     'price' => $price,
+                    'candy_show' => $_SESSION['show'],
+                    'tickets' => $_SESSION['tickets'],
+                    'quantity' => $_SESSION['quantity'],
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
@@ -284,33 +271,23 @@ class BookingsController extends AbstractController
     public function payed() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $id = intval($_POST['id']);
-            $quantity = $_POST['quantity'];
-            $type = $_POST['type'];
+            $tickets = $_SESSION['tickets'];
 
-            $candyModel = new Candy_showModel;
-            $candy_show = $candyModel->selectOneById($id);
-
-            if (!$candy_show) {
-                $this->setFlash(
-                    false,
-                    'Element inconnu.'
-                );
-                header("Location:/home");
-            }
             $bookingModel = new BookingsModel;
 
-            $ticket = [
-                'ref_id' => $_POST['id'],
-                'ref' => $candy_show['title'],
-                'id_user' => $_SESSION['user']['id'],
-                'type' => $type,
-            ];
-            $bookingModel->insert($ticket);
+            foreach($tickets as $ticket) {
+                $ticket = [
+                    'ref_id' => $_POST['id'],
+                    'ref' => $_SESSION['show']['title'],
+                    'id_user' => $_SESSION['user']['id'],
+                    'type' => $ticket['ticket_type'],
+                ];
+                $bookingModel->insert($ticket);
+            }
 
             $this->setFlash(
                 true,
-                'Bravo pour votre achat et bon concert !'
+                'Bravo pour votre achat et bon concert !!'
             );
             header("Location:/home");
         } else {
