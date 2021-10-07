@@ -94,4 +94,9 @@ abstract class AbstractController
                 return "guest ";
         }
     }
+
+    public function getSalesStatus(int $id)
+    {
+        
+    }
 }

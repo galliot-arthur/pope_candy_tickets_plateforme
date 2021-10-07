@@ -6,30 +6,16 @@
         <div class="card-body">
             <h2>Pope Candy - {{ candy_show.title }}</h2>
             {% for key, ticket in tickets %}
-                <div class="m-3"><b>1 place tarif {{ ticket.name }} au nom de {{ key }}.</b></div>
+                <div class="ms-3">1 place <b>tarif {{ ticket.name }}</b> au nom de <b>{{ key }}</b>.
+                <br/><b>{{ ticket.ticketPrice}} € HT</b></div>
             {% endfor %}
-
+            <div class="ms-3 mb-3 lead">Total = {{ total }} € HT</div>
             <form method="post" action="/bookings/payment">
-                <input
-                    type="text"
-                    value="{{ id }}"
+                <input 
+                    type="text" 
+                    value="{{ id }}" 
                     name="id"
                     hidden>
-
-                {% for key, ticket in tickets %}
-                    <input
-                        type="text"
-                        value="{{ key }}"
-                        name="username"
-                        hidden>
-                    <input
-                        type="text"
-                        value="{{ ticket.ticket_type }}"
-                        name="type"
-                        hidden>
-                {% endfor %}
-
-                <div class="input-group mb-3">
                 <input
                     class="btn btn-dark"
                     type="submit"
