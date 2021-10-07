@@ -3,50 +3,70 @@
 {% block content %}
     <h1>Acheter une place pour {{ candy_show.title }}</h1>
 
-    <form method="post">
-
+    <form method="post" action="/bookings/confirm_buy">
+        <input 
+            type="text" 
+            value="{{ candy_show.id }}"
+            name="id"
+            hidden>
         <div class="input-group mb-3">
             <label 
                 class="input-group-text" 
-                for="place_number">
+                for="quantity">
                 Nombre de places
                 </label>
             <input 
                 class="form-control"
                 type="number" 
-                value="{{ candy_show.place_number }}"
-                name="place_number"
-                id="place_number"
-                placeholder="Nombre de places"
+                value="1"
+                name="quantity"
+                id="quantity"
+                placeholder="Quantité"
                 requiered>
         </div>
-
-        <div class="input-group mb-3">
-            <label 
-                class="input-group-text" 
-                for="type">
-                Type
-                </label>
-            <select 
-                class="form-select" 
-                name="type"
-                id="type"
-                requiered>
-                <option selected>Choisir...</option>
-                {% for venue in venues %}
-                    <option
-                        {{ venue.id == candy_show.venue ? "selected" : "" }}
-                        value="{{ venue.id }}">
-                        {{ venue.title }}
-                        </option>
-                {% endfor %}
-            </select>
+        <div id="inputContainer">
+            <div class="input-group mb-3">
+                <label 
+                    class="input-group-text" 
+                    for="holder_name">
+                    Porteur
+                    </label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    name="holder_name"
+                    id="holder_name"
+                    placeholder="Jeremy Dubois"
+                    required>
+                <label 
+                    class="input-group-text" 
+                    for="type">
+                    Tarif
+                    </label>
+                <select 
+                    class="form-select" 
+                    name="type0"
+                    id="type"
+                    requiered>
+                    <option selected>Choisir...</option>
+                    {% for price in prices %}
+                        <option
+                            value="{{ price.id }}">
+                            {{ price.ticket_name }}
+                            </option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
-
         <input
             class="btn btn-dark"
             type="submit" 
             value="Acheter">
-        <a href="/home/" class="btn btn-outline-secondary">Annuler</a>
+
+        <a href="/home" class="btn btn-outline-secondary">Annuler</a>
     </form>
+{% endblock %}
+
+{% block javascript %}
+    <script src="/assets/js/buy.js"></script>
 {% endblock %}

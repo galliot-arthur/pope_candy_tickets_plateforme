@@ -3,14 +3,22 @@
 namespace App\Controller;
 
 use App\Model\PricesModel;
+use App\Model\VenueModel;
 
 class PricesController extends AbstractController
 {
 
     public function index()
     {
-        $pricesModel = new PricesModel();
+        $pricesModel = new PricesModel;
         $prices = $pricesModel->selectAll();
+        $venueModel = new VenueModel;
+
+        foreach ($prices as $key => $value) {
+            $prices[$key]['ticket_name'] = $this->getTicketType($prices[$key]['ticket_type']);
+            $venue = $venueModel->selectOneById($prices[$key]['venue_id']);
+            $prices[$key]['venue_name'] = $venue['title'];
+        }
 
         return $this
             ->twig
@@ -57,6 +65,8 @@ class PricesController extends AbstractController
 
     public function add()
     {
+        $venueModel = new VenueModel;
+        $venues = $venueModel->selectAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pricesModel = new PricesModel();
@@ -74,7 +84,7 @@ class PricesController extends AbstractController
                     true,
                     "Ce prix bien à bien été ajouté."
                 );
-                header("Location:/prices/show/$id");
+                header("Location:/prices/index");
                 exit;
             } else {
 
@@ -92,6 +102,7 @@ class PricesController extends AbstractController
             ->render(
                 "Prices/add.html.twig",
                 [
+                    'venues' => $venues,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'add',
@@ -104,6 +115,8 @@ class PricesController extends AbstractController
     {
         $pricesModel = new PricesModel();
         $prices = $pricesModel->selectOneById($id);
+        $venueModel = new VenueModel;
+        $venues = $venueModel->selectAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $prices = [
@@ -121,6 +134,8 @@ class PricesController extends AbstractController
                     true,
                     "Ce prix bien à bien été édité."
                 );
+                header("Location:/prices/index");
+                exit;
             } else {
 
                 $this->setFlash(
@@ -137,6 +152,7 @@ class PricesController extends AbstractController
                 [
                     'id' => $id,
                     'prices' => $prices,
+                    'venues' => $venues,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'edit',
@@ -154,21 +170,4 @@ class PricesController extends AbstractController
         );
         header('Location:/prices/index');
     }
- 
-    public function getTicketType(int $value):string
-    {
-        switch ($value){
-            case 0:
-                return "normal";
-            case 1:
-                return "réduit";
-            case 2:
-                return "vip";
-            case 3:
-                return "guest ";
-        }
-    }
-
-
 }
-

@@ -6,13 +6,11 @@
     <ul class="list-group">
         {% for price in prices %}
             <li class="list-group-item" >
-                <a
-                    href="/prices/show/{{ price.id }}">
-                    {{ price.id   }}. {{ price.venue_id }}</a>
-        <div>Prix du ticket. {{ price.price }}</div>
-         <div>Type de ticket. {{ price.ticket_type }}</div>
-         
-         </li>
+                <div>Salle ou Festival : {{ price.venue_name }} </div>
+                <div>Prix de la réduction : minus<b> {{ price.price }}€ HT</b></div>
+                <div>Type de réduction : <b>{{ price.ticket_name }}</b></div>
+                <a href="/prices/edit/{{ price.id }}">Editer</a>
+            </li>
         {% else %}
             <li>Nothing to display</li>
         {% endfor %}

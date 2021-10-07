@@ -123,40 +123,34 @@ class BookingsController extends AbstractController
      */
     public function buy(int $id)
     {
+        //on vérifie le show que l'on est en train d'acheter
         $candy_showModel = new Candy_showModel;
         $candy_show = $candy_showModel
             ->selectOneById($id);
-        $pricesModel = new PricesModel;
-        $prices = $pricesModel
-            ->selectOneById($id);
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $bookingModel = new BookingsModel;
-            $booking = [
-                'ref_id' => $_POST['ref_id'],
-                'ref' => $_POST['ref'],
-                'type' => $_POST['type']
-            ];
-            $id = $bookingModel->insert($booking);
-            if ($id) {
-                $this->setFlash(
-
-                    true,
-                    "votre booking à bien été ajouté"
-
-                );
-            };
-            header('Location:/home');
+        if (!$candy_show) {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
             exit;
         }
 
+        // On vient chercher tous les prix qui lui sont associés
+        $pricesModel = new PricesModel;
+        $prices = $pricesModel
+            ->selectAllWhere('venue_id', $candy_show['venue']);
+        foreach ($prices as $key => $value) {
+            $prices[$key]['ticket_name'] = $this->getTicketType($prices[$key]['ticket_type']);
+        }
 
-
+        // On affiche
         return $this
             ->twig
             ->render(
                 'Bookings/buy.html.twig',
                 [
+                    'prices' => $prices,
                     'candy_show' => $candy_show,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
@@ -166,6 +160,57 @@ class BookingsController extends AbstractController
             );
     }
 
+    public function confirm_buy() {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = intval($_POST['id']);
+            $quantity = $_POST['quantity'];
+            $type = $_POST['type0'];
+
+            $candyModel = new Candy_showModel;
+            $candy_show = $candyModel->selectOneById($id);
+
+            if (!$candy_show) {
+                $this->setFlash(
+                    false,
+                    'Element inconnu.'
+                );
+                header("Location:/home");
+            }
+
+            $pricesModel = new PricesModel;
+
+            $price = $pricesModel->selectOneById($type);
+            $price['name'] = $this->getTicketType($price['ticket_type']);
+
+            return $this
+            ->twig
+            ->render(
+                'Bookings/confirmBuy.html.twig',
+                [
+                    'id' => $id,
+                    'candy_show' => $candy_show,
+                    'quantity' => $quantity,
+                    'price' => $price,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'candy_show',
+                ]
+            );
+        } else {
+            $this->setFlash(
+                false,
+                'Element inconnu.'
+            );
+            header("Location:/home");
+        }
+    }
+
+    public function payment() {
+        echo "congrats bro";
+    }
 
     /**
      * Handle item deletion

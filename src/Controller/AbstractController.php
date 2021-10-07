@@ -80,4 +80,18 @@ abstract class AbstractController
         unset($_SESSION['flash']);
         return $flash;
     }
+
+    public function getTicketType(int $value): string
+    {
+        switch ($value) {
+            case 0:
+                return "normal";
+            case 1:
+                return "réduit";
+            case 2:
+                return "vip";
+            case 3:
+                return "guest ";
+        }
+    }
 }
