@@ -5,30 +5,36 @@
     <div class="card">
         <div class="card-body">
             <h2>Pope Candy - {{ candy_show.title }}</h2>
-            <div class="m-3"><b>{{ quantity }} places tarif {{ price.name }}.</b></div>
+            {% for key, ticket in tickets %}
+                <div class="m-3"><b>1 place tarif {{ ticket.name }} au nom de {{ key }}.</b></div>
+            {% endfor %}
 
             <form method="post" action="/bookings/payment">
-                <input 
+                <input
                     type="text"
                     value="{{ id }}"
                     name="id"
                     hidden>
-                <input 
-                    type="text"
-                    value="{{ quantity }}"
-                    name="quantity"
-                    hidden>
-                <input 
-                    type="text"
-                    value="{{ price.price }}"
-                    name="type"
-                    hidden>
+
+                {% for key, ticket in tickets %}
+                    <input
+                        type="text"
+                        value="{{ key }}"
+                        name="username"
+                        hidden>
+                    <input
+                        type="text"
+                        value="{{ ticket.ticket_type }}"
+                        name="type"
+                        hidden>
+                {% endfor %}
+
                 <div class="input-group mb-3">
                 <input
                     class="btn btn-dark"
-                    type="submit" 
+                    type="submit"
                     value="Confirmer mon achat">
-                <a href="/home" class="btn btn-outline-secondary">Annuler</a>
+                <a href="/bookings/buy/{{ id }}" class="btn btn-outline-secondary">Annuler</a>
             </form>
         </div>
     </div>

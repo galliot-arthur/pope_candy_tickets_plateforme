@@ -1,0 +1,54 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Paiement de votre commande</h1>
+
+    <div class="card">
+
+        <div class="card-body">
+            Vous êtes en train de payer pour :
+            <h4>Pope Candy - {{ candy_show.title }}</h4>
+            <div class="m-3">
+                {{ quantity }} places tarif {{ price.name }}.
+            </div>
+            <div>
+                <b>Notre centrale de paiement se fait en sourire.</b> 😊
+            </div>
+            <div class="text-danger mt-1">
+                <b>
+                    Merci de sourire devant votre écran pendant 6 secondes pour payer. 😊
+                </b>
+            </div>
+        </div>
+
+        <form method="post" action="/bookings/payed">
+            <input 
+                type="text"
+                value="{{ id }}"
+                name="id"
+                hidden>
+            <input 
+                type="text"
+                value="{{ quantity }}"
+                name="quantity"
+                hidden>
+            <input 
+                type="text"
+                value="{{ price.price }}"
+                name="type"
+                hidden>
+            <div class="input-group mb-3">
+            <input
+                class="btn btn-dark"
+                type="submit" 
+                value="Confirmer mon achat"
+                hidden>
+            <a href="/home" class="btn btn-outline-secondary">Annuler</a>
+        </form>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="/assets/js/pay.js"></script>
+{% endblock %}
