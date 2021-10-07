@@ -233,10 +233,8 @@ class BookingsController extends AbstractController
     public function payment() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            // on vérifie que le spectacle existe
             $id = intval($_POST['id']);
-            $quantity = $_POST['quantity'];
-            $type = $_POST['type'];
-
             $candyModel = new Candy_showModel;
             $candy_show = $candyModel->selectOneById($id);
 
@@ -248,13 +246,16 @@ class BookingsController extends AbstractController
                 header("Location:/home");
             }
 
-            $pricesModel = new PricesModel;
+            $quantity = $_POST['quantity'];
+            $holder_name1 = $_POST['holder_name1'];
+            $type1 = $_POST['type1'];
+            !empty($_POST['holder_name2']) ? $holder_name2 = $_POST['holder_name2'] : $holder_name2 = null;
+            !empty($_POST['type2']) ? $type2 = $_POST['type2'] : $type2 = null;
+            !empty($_POST['holder_name3']) ? $holder_name3 = $_POST['holder_name3'] : $holder_name3 = null;
+            !empty($_POST['type3']) ? $type3 = $_POST['type3'] : $type3 = null;
 
-            $price = $pricesModel->selectOneById($type);
-            if (!$price) {
-                var_dump($type); die;
-            }
-            $price['name'] = $this->getTicketType($price['ticket_type']);
+
+
 
             return $this
             ->twig

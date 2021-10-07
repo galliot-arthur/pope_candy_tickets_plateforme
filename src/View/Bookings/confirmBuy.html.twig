@@ -15,17 +15,32 @@
                     value="{{ id }}"
                     name="id"
                     hidden>
+                <input
+                    type="text"
+                    value="{{ quantity }}"
+                    name="quantity"
+                    hidden>
 
-                {% for key, ticket in tickets %}
+                {% for key, ticket, i in tickets %}
                     <input
                         type="text"
                         value="{{ key }}"
-                        name="username"
+                        name="username{{ loop.index }}"
                         hidden>
                     <input
                         type="text"
                         value="{{ ticket.ticket_type }}"
-                        name="type"
+                        name="type{{ loop.index }}"
+                        hidden>
+                    <input
+                        type="text"
+                        value="{{ ticket.name }}"
+                        name="type{{ loop.index }}"
+                        hidden>
+                    <input
+                        type="text"
+                        value="{{ ticket.price }}"
+                        name="type{{ loop.index }}"
                         hidden>
                 {% endfor %}
 
