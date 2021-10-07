@@ -16,11 +16,14 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
-    background: url('../images/popecandy1.jpg');
+    background: url('../images/popecandy1.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
+
+
+
 
 
 /* nav {
@@ -55,11 +58,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url('https://uproxx.com/wp-content/uploads/2020/02/popsmoke-tfeat-uproxx.jpg?w=1600&h=495&crop=1');
-    background-size: cover;
-    background-position: center;
     color: #fff;
-    background-color: white !important;
     padding: 40px;
 }
 
@@ -168,4 +167,13 @@ footer #contact {
     footer {
         padding: 30px;
     }
+}
+
+.boxShadow{
+    transition: 0.75s;
+}
+
+
+.boxShadow:hover{
+    box-shadow: 5px 5px 15px -3px grey;
 }
