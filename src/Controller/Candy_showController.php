@@ -33,7 +33,6 @@ class Candy_showController extends AbstractController
         $candy_showModel = new Candy_showModel;
         $candy_show = $candy_showModel
             ->selectOneById($id);
-
         if (!$candy_show) {
             $this->setFlash(
                 false,
@@ -42,6 +41,7 @@ class Candy_showController extends AbstractController
             header("Location:/home");
             exit;
         }
+    
 
         return $this
             ->twig

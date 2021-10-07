@@ -177,3 +177,8 @@ footer #contact {
 .boxShadow:hover{
     box-shadow: 5px 5px 15px -3px grey;
 }
+
+.imgCover{
+    object-fit: cover;
+    height: calc(80vh - 56px);
+}

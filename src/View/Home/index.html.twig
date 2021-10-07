@@ -1,6 +1,8 @@
 {% extends 'layout.html.twig' %}
 
+
 {% block content %}
+    {% include '_partials/_carousel.html.twig'%}
     <h2>Prochaines dates</h2>
     <ul class="list-group mb-3">
         {% for candy_show in candy_shows %}
@@ -22,6 +24,7 @@
                     href="/candy_show/show/{{ tot_show.id }}">
                     {{ tot_show.title }}
                 </a>
+                <div>Première partie: {{tot_show.artist_name}}</div>
                 <div>{{ tot_show.show_start|date("d/m/y") }}</div>
             </li>
         {% endfor %}
