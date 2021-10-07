@@ -18,34 +18,46 @@
             <input 
                 class="form-control"
                 type="number" 
-                value=""
+                value="1"
                 name="quantity"
                 id="quantity"
                 placeholder="Quantité"
                 requiered>
         </div>
-
-        <div class="input-group mb-3">
-            <label 
-                class="input-group-text" 
-                for="type">
-                Type
-                </label>
-            <select 
-                class="form-select" 
-                name="type"
-                id="type"
-                requiered>
-                <option selected>Choisir...</option>
-                {% for price in prices %}
-                    <option
-                        value="{{ price.id }}">
-                        {{ price.ticket_name }}
-                        </option>
-                {% endfor %}
-            </select>
+        <div id="inputContainer">
+            <div class="input-group mb-3">
+                <label 
+                    class="input-group-text" 
+                    for="holder_name">
+                    Porteur
+                    </label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    name="holder_name"
+                    id="holder_name"
+                    placeholder="Jeremy Dubois"
+                    required>
+                <label 
+                    class="input-group-text" 
+                    for="type">
+                    Tarif
+                    </label>
+                <select 
+                    class="form-select" 
+                    name="type0"
+                    id="type"
+                    requiered>
+                    <option selected>Choisir...</option>
+                    {% for price in prices %}
+                        <option
+                            value="{{ price.id }}">
+                            {{ price.ticket_name }}
+                            </option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
-
         <input
             class="btn btn-dark"
             type="submit" 
@@ -53,4 +65,8 @@
 
         <a href="/home" class="btn btn-outline-secondary">Annuler</a>
     </form>
+{% endblock %}
+
+{% block javascript %}
+    <script src="/assets/js/buy.js"></script>
 {% endblock %}

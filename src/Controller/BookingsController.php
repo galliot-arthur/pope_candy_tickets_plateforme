@@ -164,12 +164,13 @@ class BookingsController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $id = $_POST['id'];
+            $id = intval($_POST['id']);
             $quantity = $_POST['quantity'];
-            $type = $_POST['type'];
+            $type = $_POST['type0'];
 
             $candyModel = new Candy_showModel;
             $candy_show = $candyModel->selectOneById($id);
+
             if (!$candy_show) {
                 $this->setFlash(
                     false,
@@ -179,6 +180,7 @@ class BookingsController extends AbstractController
             }
 
             $pricesModel = new PricesModel;
+
             $price = $pricesModel->selectOneById($type);
             $price['name'] = $this->getTicketType($price['ticket_type']);
 
