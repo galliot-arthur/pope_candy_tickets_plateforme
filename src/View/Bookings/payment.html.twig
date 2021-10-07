@@ -8,11 +8,11 @@
         <div class="card-body">
             Vous êtes en train de payer pour :
             <h4>Pope Candy - {{ candy_show.title }}</h4>
-            <div class="m-3">
-                {% for ticket in tickets %}
-                   <div class="m-3"> {{ dump(ticket) }} </div>
-                {% endfor %}
-            </div>
+            {% for key, ticket in tickets %}
+                <div class="ms-3">1 place <b>tarif {{ ticket.name }}</b> au nom de <b>{{ key }}</b>.
+                <br/><b>{{ ticket.ticketPrice}} € HT</b></div>
+            {% endfor %}
+            <div class="ms-3 mb-3 lead">Total = {{ total }} € HT</div>
             <div>
                 <b>Notre centrale de paiement se fait en sourire.</b> 😊
             </div>
@@ -52,5 +52,5 @@
 {% endblock %}
 
 {% block javascript %}
-    {# <script src="/assets/js/pay.js"></script> #}
+    <script src="/assets/js/pay.js"></script>
 {% endblock %}

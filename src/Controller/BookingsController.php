@@ -203,9 +203,20 @@ class BookingsController extends AbstractController
                 $tickets[$holder_name3] = $price3;
             }
 
-            $_SESSION['tickets'] = $tickets;
-            $_SESSION['quantity'] = $quantity;
-            $_SESSION['show'] = $candy_show;
+            $_SESSION['booking']['tickets'] = $tickets;
+            $_SESSION['booking']['quantity'] = $quantity;
+            $_SESSION['booking']['show'] = $candy_show;
+            $_SESSION['booking']['total'] = 0;
+
+            $initialPrice = $_SESSION['booking']['show']['price'];
+            $total = 0;
+            foreach ($_SESSION['booking']['tickets'] as $key => $ticket) {
+                $reduction = intval($ticket['price']);
+                $ticketPrice = $initialPrice - $reduction;
+                $_SESSION['booking']['tickets'][$key]['ticketPrice'] = $ticketPrice;
+                $_SESSION['booking']['total'] += $ticketPrice;
+            }
+
 
             return $this
             ->twig
@@ -215,7 +226,8 @@ class BookingsController extends AbstractController
                     'id' => $id,
                     'candy_show' => $candy_show,
                     'quantity' => $quantity,
-                    'tickets' => $tickets,
+                    'tickets' => $_SESSION['booking']['tickets'],
+                    'total' => $_SESSION['booking']['total'],
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
@@ -233,26 +245,18 @@ class BookingsController extends AbstractController
 
     public function payment() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $price = $_SESSION['show']['price'];
-            $total = 0;
-            foreach ($_SESSION['tickets'] as $ticket) {
-                $price = $price - $ticket['price'];
-                $total += $price;
-            }
             
-            //var_dump($_SESSION['tickets']); die;
+            
             return $this
             ->twig
             ->render(
                 'Bookings/payment.html.twig',
                 [
                     'id' => $_POST['id'],
-                    'total' => $total,
-                    'price' => $price,
-                    'candy_show' => $_SESSION['show'],
-                    'tickets' => $_SESSION['tickets'],
-                    'quantity' => $_SESSION['quantity'],
+                    'total' => $_SESSION['booking']['total'],
+                    'candy_show' => $_SESSION['booking']['show'],
+                    'tickets' => $_SESSION['booking']['tickets'],
+                    'quantity' => $_SESSION['booking']['quantity'],
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
@@ -272,6 +276,7 @@ class BookingsController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $tickets = $_SESSION['tickets'];
+            $idShow = intval($_POST['id']);
 
             $bookingModel = new BookingsModel;
 
@@ -285,9 +290,19 @@ class BookingsController extends AbstractController
                 $bookingModel->insert($ticket);
             }
 
+            $candy_showModel = new Candy_showModel;
+            $show = $candy_showModel->selectOneById($idShow);
+
+            $candy_show = [
+                'id' => $idShow,
+                'sales' => $show['sales'] + $_SESSION['booking']['quantity']
+            ];
+            $candy_showModel->update($candy_show);
+
+
             $this->setFlash(
                 true,
-                'Bravo pour votre achat et bon concert !!'
+                'Bravo pour votre achat et bon concert ! 💃🕺'
             );
             header("Location:/home");
         } else {
