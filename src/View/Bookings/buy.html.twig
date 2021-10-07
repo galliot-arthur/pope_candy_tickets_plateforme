@@ -23,30 +23,36 @@
                 id="quantity"
                 placeholder="Quantité"
                 requiered>
+            <span 
+                id="max3"
+                class="input-group-text d-none">
+                3 max
+                </span>
         </div>
-        <div id="inputContainer">
+
+        <div id="place1">
             <div class="input-group mb-3">
                 <label 
                     class="input-group-text" 
-                    for="holder_name">
+                    for="holder_name1">
                     Porteur
                     </label>
                 <input 
                     type="text"
                     class="form-control"
-                    name="holder_name"
-                    id="holder_name"
+                    name="holder_name1"
+                    id="holder_name1"
                     placeholder="Jeremy Dubois"
                     required>
                 <label 
                     class="input-group-text" 
-                    for="type">
+                    for="type1">
                     Tarif
                     </label>
                 <select 
                     class="form-select" 
-                    name="type0"
-                    id="type"
+                    name="type1"
+                    id="type1"
                     requiered>
                     <option selected>Choisir...</option>
                     {% for price in prices %}
@@ -58,6 +64,74 @@
                 </select>
             </div>
         </div>
+
+        <div id="place2" class="d-none">
+            <div class="input-group mb-3">
+                <label 
+                    class="input-group-text" 
+                    for="holder_name2">
+                    Porteur
+                    </label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    name="holder_name2"
+                    id="holder_name2"
+                    placeholder="Jeremy Dubois">
+                <label 
+                    class="input-group-text" 
+                    for="type2">
+                    Tarif
+                    </label>
+                <select 
+                    class="form-select" 
+                    name="type2"
+                    id="type2"
+                    requiered>
+                    <option selected>Choisir...</option>
+                    {% for price in prices %}
+                        <option
+                            value="{{ price.id }}">
+                            {{ price.ticket_name }}
+                            </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div id="place3" class="d-none">
+            <div class="input-group mb-3">
+                <label 
+                    class="input-group-text" 
+                    for="holder_name3">
+                    Porteur
+                    </label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    name="holder_name3"
+                    id="holder_name3"
+                    placeholder="Jeremy Dubois">
+                <label 
+                    class="input-group-text" 
+                    for="type3">
+                    Tarif
+                    </label>
+                <select 
+                    class="form-select" 
+                    name="type3"
+                    id="type3">
+                    <option selected>Choisir...</option>
+                    {% for price in prices %}
+                        <option
+                            value="{{ price.id }}">
+                            {{ price.ticket_name }}
+                            </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
         <input
             class="btn btn-dark"
             type="submit" 
