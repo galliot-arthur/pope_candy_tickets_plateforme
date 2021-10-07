@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <h1>Editer une image</h1>
+
+    <form method="post" class="form-group">
+        <input 
+            type="hidden" 
+            value="{{ images.id }}" 
+            name="id">
+        <input 
+            class="form-control mb-3"
+            type="text" 
+            value="{{ images.alt }}" 
+            name="alt"
+            required
+            placeholder="titre de l'image">
+        <textarea
+            class="form-control mb-3"
+            type="text" 
+            name="context"
+            required
+            placeholder="description de l'image">
+            {{ images.context }}
+            </textarea>
+        <input 
+            class="btn btn-dark"
+            type="submit" 
+            value="Editer">
+    </form>
+{% endblock %}
