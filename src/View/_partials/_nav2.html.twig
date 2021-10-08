@@ -1,0 +1,12 @@
+{% block nav %}
+
+	<div class="container">
+		<div class="btn-group" style="width:100%;">
+			<a class="btn btn-light" href="\candy_show\index">CANDY TOUR</a>
+			{% if userSession is not empty %}
+				<a class="btn btn-light" href="\user\buyedTickets">VOS PLACES</a>
+			{% endif %}
+			<a class="btn btn-light" href="\artists\popecandy">POPE CANDY</a>
+		</div>
+	</div>
+{% endblock %}
