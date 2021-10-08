@@ -39,7 +39,7 @@ class Image extends AbstractController
 
                     if (in_array($extensionUpload, $acceptedExtensions)) { // Vérifie que l'extension est correct
                         // 
-                        $dossier = "C:\Users\magda\OneDrive\Bureau\DEV WEB WEB MOBILE PHILIANCE\Jean Francois NYS\pope_candy_tickets_plateforme\public\assets\images\\$folder";
+                        $dossier = "C:\laragon\www\pope_candy_tickets_plateforme\public\assets\images\\$folder";
                         $recordedFile = "\\$id.jpg";
 
                         if (!is_dir($dossier)) { // Si le nom de dossier n'existe pas alors on le crée
