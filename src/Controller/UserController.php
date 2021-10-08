@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\BookingsModel;
 use App\Model\UserModel;
 
 class UserController extends AbstractController
@@ -240,6 +241,10 @@ class UserController extends AbstractController
         if ($user && $user['id']) {
             $userModel = new UserModel;
             $userProfile = $userModel->selectOneById($user['id']);
+            $bookingModel = new BookingsModel;
+            $bookings = $bookingModel->selectBookingByUser($user['id']);
+            var_dump($bookings);die;
+
 
             return $this
                 ->twig
@@ -247,6 +252,7 @@ class UserController extends AbstractController
                     'User/profile.html.twig',
                     [
                         'userProfile' => $userProfile,
+                        'bookings' => $bookings,
                         'currentController' => 'user',
                         'pageFunction' => 'profile',
                         'userSession' => $this->userSession(),

@@ -42,7 +42,7 @@ class UserModel extends AbstractModel
      *
      * @return array
      */
-    public function selectUserWithBookings(): array
+    public function selectBookingByUser(): array
     {
         return $this
             ->pdo
@@ -61,7 +61,7 @@ class UserModel extends AbstractModel
                 b.ref AS showName,  
                 b.type AS ticketType
                 FROM user AS u
-                LEFT JOIN bookings AS b ON b.id = u.id_user"
+                LEFT JOIN bookings AS b ON b.id_user = u.id"
             )
             ->fetchAll();
     }

@@ -16,4 +16,20 @@ class BookingsModel extends AbstractModel
     {
         parent::__construct(self::TABLE);
     }
+
+
+    public function selectBookingByUser(int $userId)
+    {
+            $statement = $this
+            ->pdo
+            ->prepare(
+                "SELECT
+                *
+                FROM $this->table
+                WHERE id_user = ?"
+            );
+        $statement->execute([$userId]);
+        return $statement->fetchAll();
+    }
 }
+
