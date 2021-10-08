@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Image;
 use App\Model\ImagesModel;
 
 class ImagesController extends AbstractController
@@ -19,7 +20,9 @@ class ImagesController extends AbstractController
                 [
                     'images' => $images,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'images',
                 ]
             );
     }
@@ -46,7 +49,9 @@ class ImagesController extends AbstractController
                     'id' => $id,
                     'images' => $image,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'show',
+                    'currentController' => 'images',
                 ]
             );
     }
@@ -54,17 +59,38 @@ class ImagesController extends AbstractController
     public function add()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            if (!isset($_FILES)) {
+                $this->setFlash(
+                    false,
+                    'Merci de joindre un fichier.'
+                );
+                header("Location:/images/add");
+                exit;
+            }
+
             $imagesModel = new imagesModel();
             $images = [
-                'id' => $_POST['id'],
                 'alt' => $_POST['alt'],
                 'context' => $_POST['context'],
 
             ];
             $id = $imagesModel->insert($images);
 
-            if ($id) {
+            if (!$id) {
+                $this->setFlash(
+                    false,
+                    'Erreur dans la base de donnée.'
+                );
+                header("Location:/images/add");
+                exit;
+            }
 
+
+            $image = new Image;
+            $result = $image->create($id, 'photos');
+
+            if ($result) {
                 $this->setFlash(
                     true,
                     "Cet imagee a bien été ajouté."
@@ -72,11 +98,6 @@ class ImagesController extends AbstractController
                 header("Location:/images/show/$id");
                 exit;
             } else {
-
-                $this->setFlash(
-                    false,
-                    "Erreur, merci d'essayer à nouveau."
-                );
                 header("Location:/images/add");
                 exit;
             }
