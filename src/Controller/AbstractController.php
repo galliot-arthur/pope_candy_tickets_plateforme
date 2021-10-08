@@ -104,9 +104,10 @@ abstract class AbstractController
     public function getSalesStatusArray(array $values): array
     {
         foreach($values as $key => $value) {
-            $values[$key]['salesStatus'] =  ceil(intval($values[$key]['sales']) /  $values[$key]['capacity'] * 100);
+            $values[$key]['salesStatus'] =  ceil(intval($values[$key]['sales']) /  $values[$key]['capacity'] * 100) . "%";
             $values[$key]['sold_out'] = "coucou";
             if ($values[$key]['salesStatus'] >= 100) {
+                $values[$key]['salesStatus'] = "COMPLET";
                 $values[$key]['sold_out'] = "COMPLET";
             }
         }

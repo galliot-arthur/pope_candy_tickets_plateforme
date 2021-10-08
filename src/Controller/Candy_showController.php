@@ -12,7 +12,8 @@ class Candy_showController extends AbstractController
     public function index()
     {
         $candy_showModel = new Candy_showModel;
-        $candy_shows = $candy_showModel->allOrderedBy('show_start', false);
+        $candy_shows = $candy_showModel->allShowsWithArtist('show_start', false);
+        $candy_shows = $this->getSalesStatusArray($candy_shows);
 
         return $this
             ->twig
