@@ -4,16 +4,46 @@
 {% block content %}
     <div class="row">
         <div class="col-md-8">
+            <h2>Populaire</h2>
+            <ul class="list-group mb-3">
+                {% for tot_show in top_shows|sort(
+                    (a, b) => b.salesStatus <=> a.salesStatus
+                    )%}
+                    {% if tot_show.salesStatus > 60 %}
+                        <li class="list-group-item {{ tot_show.sold_out == "COMPLET" ? "list-group-item-danger" : "" }}">
+                            <div class="d-flex justify-content-between">
+                                <a
+                                    href="/candy_show/show/{{ tot_show.id }}">
+                                    Pope Candy w/ {{tot_show.artist_name}}
+                                </a>
+                                <div>{{ tot_show.show_start|date("d/m/y") }}</div>
+                            </div> 
+                            <div class="d-flex justify-content-between">
+                                <div>{{ tot_show.title }}</div>
+                                <div class="text-danger">
+                                    {% if tot_show.sold_out == "COMPLET" %}
+                                       <b>{{ tot_show.sold_out }}</b>
+                                    {% else %}
+                                        <a 
+                                            class="text-danger"
+                                            href="/candy_show/show/{{ tot_show.id }}">
+                                            Billeterie {{ tot_show.salesStatus }}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div> 
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <iframe style="width: 100%; height: auto;" src="https://www.youtube.com/embed/AzQJO6AyfaQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <hr>
             <h2>Prochaines dates</h2>
             <div class="row g-1 mb-3">
                 {% for candy_show in candy_shows %}
                     <div class="col-lg-4 col-sm-6">
                         <div class="card">
-{#                             <img 
-                                class="card-img-top"
-                                src="/assets/images/1200x680_gettyimages-1185574076.png" 
-                                alt="pop candy rap on stage"> #}
-                            <div class="card-header d-flex justify-content-between align-items-end">
+                            <div class="card-header d-flex justify-content-between align-items-center">
                                 <a
                                     class="lead"
                                     href="/candy_show/show/{{ candy_show.id }}">
@@ -24,9 +54,9 @@
                                 </div>
                             </div> 
                             <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div>{{ candy_show.title }}</div>
-                                    <div class="text-muted text-end"> 
+                                <div class="row">
+                                    <div class="col-8">{{ candy_show.title }}</div>
+                                    <div class="col-4 text-muted text-end"> 
                                         {{ candy_show.show_start|date("H:i") }} -
                                         {{ candy_show.show_end|date("H:i") }}
                                     </div>
@@ -50,7 +80,7 @@
                     <li class="list-group-item">
                         <a 
                             class="link-dark"
-                            href="/bookings/index">
+                            href="/candy_show/index">
                             Voir plus de concerts
                         </a>
                     </li>
@@ -60,31 +90,7 @@
         </div>
 
         <div class="col-md-4">
-            <h2>Les dates les plus hots</h2>
-            <ul class="list-group mb-3">
-                {% for tot_show in top_shows|sort(
-                    (a, b) => b.salesStatus <=> a.salesStatus
-                    )%}
-                    {% if tot_show.salesStatus > 60 %}
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <a
-                                    href="/candy_show/show/{{ tot_show.id }}">
-                                    Pope Candy w/ {{tot_show.artist_name}}
-                                </a>
-                                <div>{{ tot_show.show_start|date("d/m/y") }}</div>
-                            </div> 
-                            <div class="d-flex justify-content-between">
-                                <div>{{ tot_show.title }}</div>
-                                <div class="text-danger">
-                                    Billeterie {{ tot_show.salesStatus }} %
-                                </div>
-                            </div> 
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            <hr>
+            <iframe class="card border border-black-50" style="width: 100%; height: auto;" src="https://www.youtube.com/embed/oorVWW9ywG0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <h2>Photo Gallery</h2>
             {% include '_partials/_carousel.html.twig'%}
         </div>

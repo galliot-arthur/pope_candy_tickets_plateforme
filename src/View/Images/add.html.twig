@@ -3,49 +3,67 @@
 {% block content %}
 <h1>Ajouter une image</h1>
 <div class="card" style="width: 30rem;">
-<div class="card-body">
-    
-    
-    <form method="post">
-        <input 
-            type="hidden" 
-            value="{{ images.id }}" 
-            name="id">
-        <div class="input-group mb-3">
-        <input 
-            type="text" 
-            value="{{ images.alt}}" 
-            name="alt"
-            required
-            placeholder="mots clés">
-            </div>
-        <div class="input-group mb-3">
-        <input
-            type="text" 
-            value="{{ images.context}}" 
-            name="context"
-            required
-            placeholder="Contexte de l'image">
-            </div>
-            <br>
-            <label 
-            for="fichier"></label>
-            <input
-            class=" image mb-3"
-            type="file" 
-            value="{{ images.image}}" 
-            name="pj"
-            id="fichier"
-            required
-            placeholder="image"
-            accept="video/mp4,image/jpg, image/png">
+    <div class="card-body">
         
-        <input 
-            class="btn btn-success"
-            type="submit" 
-            value="Add">
+        
+        <form method="post" enctype="multipart/form-data">
+            <input 
+                type="hidden" 
+                value="{{ images.id }}" 
+                name="id">
+
+            <div class="input-group mb-3">
+                <label 
+                    class="input-group-text"
+                    for="alt">
+                    Mots Clés
+                </label>
+                <input 
+                    class="form-control"
+                    type="text" 
+                    value="{{ images.alt}}" 
+                    name="alt"
+                    id="alt"
+                    required
+                    placeholder="mots clés">
+            </div>
+
+            <div class="input-group mb-3">
+                <label 
+                    class="input-group-text"
+                    for="context">
+                    Context
+                </label>
+                <input
+                    class="form-control"
+                    type="text" 
+                    value="{{ images.context}}" 
+                    name="context"
+                    id="context"
+                    required
+                    placeholder="Contexte de l'image">
+            </div>
+
+            <label 
+                for="image">
+                Ajouter un fichier image
+            </label>
+            <input
+                class=" form-control mb-3"
+                type="file" 
+                value="{{ images.image}}" 
+                name="image"
+                id="image"
+                required
+                placeholder="image"
+                accept="video/mp4,image/jpg, image/png">
+        
+            <input 
+                class="btn btn-success"
+                type="submit" 
+                value="Add">
+        </form>
     </div>
-    </div
-    </form>
+</div
     
 {% endblock %}

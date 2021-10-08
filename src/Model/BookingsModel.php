@@ -17,6 +17,7 @@ class BookingsModel extends AbstractModel
         parent::__construct(self::TABLE);
     }
 
+<<<<<<< HEAD
 
     public function selectBookingByUser(int $userId)
     {
@@ -29,6 +30,25 @@ class BookingsModel extends AbstractModel
                 WHERE id_user = ?"
             );
         $statement->execute([$userId]);
+=======
+    public function getUserShow($id)
+    {
+        $statement = $this
+            ->pdo
+            ->prepare(
+                "SELECT
+                b.ref_id AS showId,
+                b.ref AS showName,  
+                b.type AS ticketType,
+                c.title AS showTitle,
+                c.show_start AS showStart,
+                c.id AS showId
+                FROM bookings AS b
+                LEFT JOIN candy_show AS c ON c.id = b.ref_id
+                WHERE b.id_user = ?"
+            );
+        $statement->execute([$id]);
+>>>>>>> 3df743962d5cabd342b16aa1dd29e286c52eeb5e
         return $statement->fetchAll();
     }
 }

@@ -163,4 +163,24 @@ class ArtistsController extends AbstractController
         }
         header('Location:/artists/index');
     }
+
+
+    public function popecandy()
+    {
+        $artistsModel = new ArtistsModel;
+        $candyman = $artistsModel->selectOneById(6);
+
+        return $this
+            ->twig
+            ->render(
+                "Artists/popecandy.html.twig",
+                [
+                    'artist' => $candyman,
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'popecandy',
+                    'currentController' => 'artists'
+                ]
+            );
+    }
 }

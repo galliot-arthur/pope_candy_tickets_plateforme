@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Controller;
 
 
-class Image
+class Image extends AbstractController
 {
 
     protected $media = "C:\MAMP\htdocs\MVC\Public\media";
@@ -21,7 +21,8 @@ class Image
         if (isset($_FILES['image']) and !empty($_FILES['image']['name'])) { // On vérifie qu'il y a bien un fichier
             $filename = $_FILES['image']['tmp_name']; // On récupère le nom du fichier
             list($originalWidth, $originalHeight, $originalType) = getimagesize($filename); // On récupère la taille de notre fichier (l'image)
-
+            echo "<pre>";
+            var_dump($_FILES['image']);echo "</pre>"; //die;
             if ($originalWidth >= 100 && $originalHeight >= 100 && $originalWidth <= 140000 && $originalHeight <= 140000) { // On vérifie que la taille de l'image est correcte
 
                 $ListeExtension = array('jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'png' => 'image/png', 'gif' => 'image/gif');
@@ -37,9 +38,9 @@ class Image
                     $extensionUpload = strtolower(substr(strrchr($_FILES['image']['name'], '.'), 1)); // Prend l'extension après le point, soit "jpg, jpeg ou png"
 
                     if (in_array($extensionUpload, $acceptedExtensions)) { // Vérifie que l'extension est correct
-
-                        $dossier = "$this->media\\$folder";
-                        $recordedFile = "$this->media\\$folder\\$id.jpg";
+                        // 
+                        $dossier = "C:\laragon\www\pope_candy_tickets_plateforme\public\assets\images\\$folder";
+                        $recordedFile = "\\$id.jpg";
 
                         if (!is_dir($dossier)) { // Si le nom de dossier n'existe pas alors on le crée
                             mkdir($dossier);
@@ -50,23 +51,27 @@ class Image
                             }
                         }
 
-                        $nom = $id;
-
                         $result = move_uploaded_file($_FILES['image']['tmp_name'], "$dossier\\$id.jpg"); // On fini par mettre la photo dans le dossier
                         return $result;
                     } else {
-                        echo "Votre photo doit être au format jpg.";
-                        $_SESSION['flash']['danger'] = "Votre photo doit être au format jpg.";
+                        $this->setFlash(
+                            false,
+                            'Votre photo doit être au format jpg.'
+                        );
                         return false;
                     }
                 } else {
-                    echo "Votre photo de profil ne doit pas dépasser 5 Mo !";
-                    $_SESSION['flash']['danger'] = "Votre photo de profil ne doit pas dépasser 5 Mo !";
+                    $this->setFlash(
+                        false,
+                        'Votre photo de profil ne doit pas dépasser 5 Mo !'
+                    );
                     return false;
                 }
             } else {
-                echo "Dimension de l'image minimum 400 x 400 et maximum 6000 x 6000 !";
-                $_SESSION['flash']['danger'] = "Dimension de l'image minimum 400 x 400 et maximum 6000 x 6000 !";
+                $this->setFlash(
+                    false,
+                    "Dimension de l'image minimum 400 x 400 et maximum 6000 x 6000 !"
+                );
                 return false;
             }
         }

@@ -81,7 +81,9 @@ class UserController extends AbstractController
                 [
                     'user' => $user,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'edit',
+                    'currentController' => 'user'
                 ]
             );
     }
@@ -142,7 +144,9 @@ class UserController extends AbstractController
                 'User/add.html.twig',
                 [
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'register',
+                    'currentController' => 'user'
                 ]
             );
     }
@@ -195,7 +199,9 @@ class UserController extends AbstractController
                 "User/login.html.twig",
                 [
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'login',
+                    'currentController' => 'user'
                 ]
             );
     }
@@ -267,5 +273,25 @@ class UserController extends AbstractController
             header("Location:/home");
             exit;
         }
+    }
+
+    public function buyedTickets()
+    {
+        $bookingModel = new BookingsModel;
+        //echo "<pre>"; var_dump($_SESSION['user']['id']); echo"</pre>"; die;
+        $shows = $bookingModel->getUserShow($_SESSION['user']['id']);
+
+        return $this
+            ->twig
+            ->render(
+                'User/buyedTickets.html.twig',
+                [
+                    'shows' => $shows,
+                    'currentController' => 'user',
+                    'pageFunction' => 'buyedTickets',
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
+            );
     }
 }
