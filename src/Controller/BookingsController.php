@@ -275,7 +275,7 @@ class BookingsController extends AbstractController
     public function payed() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $tickets = $_SESSION['tickets'];
+            $tickets = $_SESSION['booking']['tickets'];
             $idShow = intval($_POST['id']);
 
             $bookingModel = new BookingsModel;
@@ -283,7 +283,7 @@ class BookingsController extends AbstractController
             foreach($tickets as $ticket) {
                 $ticket = [
                     'ref_id' => $_POST['id'],
-                    'ref' => $_SESSION['show']['title'],
+                    'ref' => $_SESSION['booking']['show']['title'],
                     'id_user' => $_SESSION['user']['id'],
                     'type' => $ticket['ticket_type'],
                 ];
