@@ -2,33 +2,92 @@
 
 
 {% block content %}
-    {% include '_partials/_carousel.html.twig'%}
-    <h2>Prochaines dates</h2>
-    <ul class="list-group mb-3">
-        {% for candy_show in candy_shows %}
-            <li class="list-group-item">
-                <a
-                    href="/candy_show/show/{{ candy_show.id }}">
-                    {{ candy_show.title }}
-                </a>
-                <div>{{ candy_show.show_start|date("d/m/y") }}</div>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Prochaines dates</h2>
+            <div class="row g-1 mb-3">
+                {% for candy_show in candy_shows %}
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card">
+{#                             <img 
+                                class="card-img-top"
+                                src="/assets/images/1200x680_gettyimages-1185574076.png" 
+                                alt="pop candy rap on stage"> #}
+                            <div class="card-header d-flex justify-content-between align-items-end">
+                                <a
+                                    class="lead"
+                                    href="/candy_show/show/{{ candy_show.id }}">
+                                    Pope Candy w/ {{candy_show.artist_name}}
+                                </a>
+                                <div>
+                                    {{ candy_show.show_start|date("d/m/y") }}
+                                </div>
+                            </div> 
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>{{ candy_show.title }}</div>
+                                    <div class="text-muted text-end"> 
+                                        {{ candy_show.show_start|date("H:i") }} -
+                                        {{ candy_show.show_end|date("H:i") }}
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a 
+                                class="link-light"
+                                href="/bookings/buy/{{ candy_show.id }}">
+                                Acheter sa place
+                            </a>
+                        </div>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a 
+                            class="link-dark"
+                            href="/bookings/index">
+                            Voir plus de concerts
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <hr>
+        </div>
 
-    <h2>Les dates les plus hots</h2>
-    <ul class="list-group mb-3">
-        {% for tot_show in top_shows %}
-            <li class="list-group-item">
-                <a
-                    href="/candy_show/show/{{ tot_show.id }}">
-                    {{ tot_show.title }}
-                </a>
-                <div>Première partie: {{tot_show.artist_name}}</div>
-                <div>{{ tot_show.show_start|date("d/m/y") }}</div>
-            </li>
-        {% endfor %}
-    </ul>
+        <div class="col-md-4">
+            <h2>Les dates les plus hots</h2>
+            <ul class="list-group mb-3">
+                {% for tot_show in top_shows|sort(
+                    (a, b) => b.salesStatus <=> a.salesStatus
+                    )%}
+                    {% if tot_show.salesStatus > 60 %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <a
+                                    href="/candy_show/show/{{ tot_show.id }}">
+                                    Pope Candy w/ {{tot_show.artist_name}}
+                                </a>
+                                <div>{{ tot_show.show_start|date("d/m/y") }}</div>
+                            </div> 
+                            <div class="d-flex justify-content-between">
+                                <div>{{ tot_show.title }}</div>
+                                <div class="text-danger">
+                                    Billeterie {{ tot_show.salesStatus }} %
+                                </div>
+                            </div> 
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <hr>
+            <h2>Photo Gallery</h2>
+            {% include '_partials/_carousel.html.twig'%}
+        </div>
+    </div>
 
-    <h2>Photo Gallery</h2>
 {% endblock %}

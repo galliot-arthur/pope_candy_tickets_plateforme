@@ -35,11 +35,13 @@ class Candy_showModel extends AbstractModel
                 candy_show.sales, 
                 artists.name AS artist_name, 
                 artists.biography AS artist_biography, 
-                artists.website AS artist_website
+                artists.website AS artist_website,
+                venues.capacity AS capacity
                 FROM candy_show
-                LEFT JOIN artists ON candy_show.first_part = artists.id"
+                LEFT JOIN venues ON candy_show.venue = venues.id
+                LEFT JOIN artists ON candy_show.first_part = artists.id
+                ORDER BY show_start"
             )
             ->fetchAll();
     }
 }
-

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\Candy_showModel;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
@@ -95,8 +96,17 @@ abstract class AbstractController
         }
     }
 
-    public function getSalesStatus(int $id)
+    public function getSalesStatus(int $sales, int $capacity)
     {
-        
+        return $sales / $capacity * 100;
+    }
+
+    public function getSalesStatusArray(array $values): array
+    {
+        foreach($values as $key => $value) {
+            $values[$key]['salesStatus'] =  ceil(intval($values[$key]['sales']) /  $values[$key]['capacity'] * 100);
+        }
+        //echo "<pre>"; var_dump($values); echo "</pre><br/>-<br/>"; die;
+        return $values;
     }
 }
