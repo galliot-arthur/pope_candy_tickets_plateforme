@@ -11,13 +11,13 @@ class PricesController extends AbstractController
     public function index()
     {
         $pricesModel = new PricesModel;
-        $prices = $pricesModel->selectAll();
-        $venueModel = new VenueModel;
+        $prices = $pricesModel->selectPricesWithVenues();
+        //$venueModel = new VenueModel; //
 
         foreach ($prices as $key => $value) {
             $prices[$key]['ticket_name'] = $this->getTicketType($prices[$key]['ticket_type']);
-            $venue = $venueModel->selectOneById($prices[$key]['venue_id']);
-            $prices[$key]['venue_name'] = $venue['title'];
+            //$venue = $venueModel->selectOneById($prices[$key]['venue_id']); //
+            //$prices[$key]['venue_name'] = $venue['title']; //
         }
 
         return $this

@@ -16,14 +16,11 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
-    background: url('../images/popecandy1.png');
+    background: url('../images/pop-smoke1.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
-
-
-
 
 
 /* nav {
@@ -115,6 +112,8 @@ header button {
     margin-top: 5px;
 }
 
+
+/* 
 footer {
     margin-top: 40px;
     border-top: 5px solid #6f6f6f;
@@ -147,6 +146,7 @@ footer .services .service p {
 footer #contact {
     color: rgb(181, 181, 181);
 }
+ */
 
 @media screen and (max-width:680px) {
     nav .onglets {
@@ -169,11 +169,22 @@ footer #contact {
     }
 }
 
-.boxShadow{
-    transition: 0.75s;
+.boxShadow {
+    transition: box-shadow 0.75s;
 }
 
 
 .boxShadow:hover{
     box-shadow: 5px 5px 15px -3px grey;
+}
+
+.imgCover{
+    object-fit: cover;
+    height: calc(80vh - 56px);
+}
+.boxShadow:hover {
+    box-shadow: 0px 5px 15px -3px rgba(128, 128, 128, 0.342)
+}
+.myBorderRadius{
+    border-radius: 30px;
 }

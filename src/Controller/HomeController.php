@@ -15,8 +15,11 @@ class HomeController extends AbstractController
     {
 
         $candy_showModel = new Candy_showModel;
-        $candy_shows = $candy_showModel->allOrderedBy('show_start', false);
-        $top_shows = $candy_showModel->allOrderedBy('sales', true);
+        $candy_shows = $candy_showModel->allShowsWithArtist();
+        $top_shows = $candy_showModel->allShowsWithArtist();
+
+        $candy_shows = $this->getSalesStatusArray($candy_shows);
+        $top_shows = $this->getSalesStatusArray($top_shows);
 
         return $this
             ->twig

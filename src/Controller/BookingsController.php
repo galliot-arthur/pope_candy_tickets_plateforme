@@ -186,7 +186,6 @@ class BookingsController extends AbstractController
                 header("Location:/home");
             }
 
-
             $pricesModel = new PricesModel;
 
             $price1 = $pricesModel->selectOneById($type1);
@@ -204,8 +203,21 @@ class BookingsController extends AbstractController
                 $tickets[$holder_name3] = $price3;
             }
 
-            //echo "$quantity<br/>";
-            //var_dump($tickets); die;
+            $_SESSION['booking']['tickets'] = $tickets;
+            $_SESSION['booking']['quantity'] = $quantity;
+            $_SESSION['booking']['show'] = $candy_show;
+            $_SESSION['booking']['total'] = 0;
+
+            $initialPrice = $_SESSION['booking']['show']['price'];
+            $total = 0;
+            foreach ($_SESSION['booking']['tickets'] as $key => $ticket) {
+                $reduction = intval($ticket['price']);
+                $ticketPrice = $initialPrice - $reduction;
+                $_SESSION['booking']['tickets'][$key]['ticketPrice'] = $ticketPrice;
+                $_SESSION['booking']['total'] += $ticketPrice;
+            }
+
+
             return $this
             ->twig
             ->render(
@@ -214,7 +226,8 @@ class BookingsController extends AbstractController
                     'id' => $id,
                     'candy_show' => $candy_show,
                     'quantity' => $quantity,
-                    'tickets' => $tickets,
+                    'tickets' => $_SESSION['booking']['tickets'],
+                    'total' => $_SESSION['booking']['total'],
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
@@ -232,39 +245,18 @@ class BookingsController extends AbstractController
 
     public function payment() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $id = intval($_POST['id']);
-            $quantity = $_POST['quantity'];
-            $type = $_POST['type'];
-
-            $candyModel = new Candy_showModel;
-            $candy_show = $candyModel->selectOneById($id);
-
-            if (!$candy_show) {
-                $this->setFlash(
-                    false,
-                    'Element inconnu.'
-                );
-                header("Location:/home");
-            }
-
-            $pricesModel = new PricesModel;
-
-            $price = $pricesModel->selectOneById($type);
-            if (!$price) {
-                var_dump($type); die;
-            }
-            $price['name'] = $this->getTicketType($price['ticket_type']);
-
+            
+            
             return $this
             ->twig
             ->render(
                 'Bookings/payment.html.twig',
                 [
-                    'id' => $id,
-                    'candy_show' => $candy_show,
-                    'quantity' => $quantity,
-                    'price' => $price,
+                    'id' => $_POST['id'],
+                    'total' => $_SESSION['booking']['total'],
+                    'candy_show' => $_SESSION['booking']['show'],
+                    'tickets' => $_SESSION['booking']['tickets'],
+                    'quantity' => $_SESSION['booking']['quantity'],
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
@@ -283,33 +275,34 @@ class BookingsController extends AbstractController
     public function payed() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $id = intval($_POST['id']);
-            $quantity = $_POST['quantity'];
-            $type = $_POST['type'];
+            $tickets = $_SESSION['tickets'];
+            $idShow = intval($_POST['id']);
 
-            $candyModel = new Candy_showModel;
-            $candy_show = $candyModel->selectOneById($id);
-
-            if (!$candy_show) {
-                $this->setFlash(
-                    false,
-                    'Element inconnu.'
-                );
-                header("Location:/home");
-            }
             $bookingModel = new BookingsModel;
 
-            $ticket = [
-                'ref_id' => $_POST['id'],
-                'ref' => $candy_show['title'],
-                'id_user' => $_SESSION['user']['id'],
-                'type' => $type,
+            foreach($tickets as $ticket) {
+                $ticket = [
+                    'ref_id' => $_POST['id'],
+                    'ref' => $_SESSION['show']['title'],
+                    'id_user' => $_SESSION['user']['id'],
+                    'type' => $ticket['ticket_type'],
+                ];
+                $bookingModel->insert($ticket);
+            }
+
+            $candy_showModel = new Candy_showModel;
+            $show = $candy_showModel->selectOneById($idShow);
+
+            $candy_show = [
+                'id' => $idShow,
+                'sales' => $show['sales'] + $_SESSION['booking']['quantity']
             ];
-            $bookingModel->insert($ticket);
+            $candy_showModel->update($candy_show);
+
 
             $this->setFlash(
                 true,
-                'Bravo pour votre achat et bon concert !'
+                'Bravo pour votre achat et bon concert ! 💃🕺'
             );
             header("Location:/home");
         } else {

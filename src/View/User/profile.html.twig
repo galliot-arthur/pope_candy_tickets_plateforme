@@ -2,9 +2,38 @@
 
 {% block content %}
     <h1>{{ userProfile.firstname }} {{ userProfile.name }}</h1>
-    <p>Salut j'ai {{ userProfile.age }} ans et je vis au {{ userProfile.adress }}.</p>
-    <a href="/user/edit/{{ userProfile.id }}">Edit</a>
-    <a href="/user/delete/{{userProfile.id}}">Delete</a>
+<<<<<<< HEAD
+        <ul class="list-group">
+          <li class="list-group-item">
+              Prénom : {{ userProfile.firstname }}
+          </li>
+          <li class="list-group-item">
+              Nom : {{ userProfile.name }}
+          </li>
+          <li class="list-group-item">
+              Email : {{ userProfile.email }}
+          </li>
+          <li class="list-group-item">
+              Adresse : {{ userProfile.adress }}
+          </li>
+          <li class="list-group-item">
+              Age : {{ userProfile.age }} ans
+          </li>
+          <a class="btn btn-dark" href="/user/edit/{{ userProfile.id }}">Editer mon profil</a>
+        </ul>
+=======
+        <div class="card">
+        <div class="card-body">
+    <p>Votre Age : {{ userProfile.age }} ans 
     <br>
-    <a href="/user/index">Back to list</a>
+    Votre adresse : {{ userProfile.adress }}.
+    <br>
+    Votre Email : {{ userProfile.email }}.
+    <br>
+    Vos Réservation : {{user.id_user}}
+    </p>
+    <a class="btn btn-dark" href="/user/edit/{{ userProfile.id }}">Editer mon profil</a>
+  </div>
+</div>
+>>>>>>> de568e0f512e0a4416c206b1e46a452b7d57bef6
 {% endblock %}

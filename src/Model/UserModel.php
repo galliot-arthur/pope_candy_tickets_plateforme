@@ -35,4 +35,34 @@ class UserModel extends AbstractModel
         $statement->execute([$userId, $userId]);
         return $statement->fetch();
     }
+
+
+    /**
+     * Affiche toutes les valeurs d'une table.
+     *
+     * @return array
+     */
+    public function selectUserWithBookings(): array
+    {
+        return $this
+            ->pdo
+            ->query(
+                "SELECT
+                u.id,
+                u.name,
+                u.email,
+                u.password,
+                u.firstname,
+                u.adress,
+                u.age,
+                u.acces_right,
+                u.admin, 
+                b.ref_id AS showId, 
+                b.ref AS showName,  
+                b.type AS ticketType
+                FROM user AS u
+                LEFT JOIN bookings AS b ON b.id = u.id_user"
+            )
+            ->fetchAll();
+    }
 }

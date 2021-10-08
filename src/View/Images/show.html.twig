@@ -1,25 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>{{ images.alt }}</h1>
+    <h1>{{ images.context }}</h1>
 
     <div class="card">
+        <img src="/assets/images/photos/{{ images.id }}.jpg" 
+            class="card-img-top" 
+            alt="{{ images.alt }}">
         <div class="card-body">
-            {{ images.alt }}
-            <br/>
-            
-            
-        <a href="{{ images.image }}">
-        <div class="card" style="width: 18rem;">
-        <img src="{{ images.image }}" 
-        class="card-img-top" 
-        alt="{{ images.alt }}">
-        <div class="card-body">
-            {{ images.alt }}
-        </div>
-            {{ images.context }}
-        </div>
-        </a>
+            Mots Clés : {{ images.alt }}
         </div>
     </div>
 

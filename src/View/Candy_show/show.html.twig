@@ -10,14 +10,43 @@
     {% endif %}
     <div class="card">
         <div class="card-body">
-            <div>Salle de concert : <b>{{ candy_show.venue }}</b></div>
-            <div>Première partie : <a href="{{ candy_show.first_part_website }}">{{ candy_show.first_part ? candy_show.first_part : "<i>Pas de première partie</i>" }}</a></div>
-            <div>Tarif Unitaire : <b>{{ candy_show.price }}€ HT</b></div>
-            <div>Heure début : {{ candy_show.show_start|date("H:i") }}</div>
-            <div>Heure fin : {{ candy_show.show_end|date("H:i") }}</div>
-            <div>Ouverture des ventes : {{ candy_show.sales_on|date("d / m / y") }}</div>
-            <div>Nombres de places vendues : <b>{{ candy_show.sales }}</b></div>
-            <a href="/bookings/buy/{{ candy_show.id }}" class="btn btn-dark mt-3">Acheter</a>
+            <div>
+                Salle de concert :
+                <b>{{ candy_show.venue }}</b>
+            </div>
+            <div>
+                Première partie :
+                <a href="{{ candy_show.first_part_website }}"
+                    {{ candy_show.first_part ?
+                        candy_show.first_part :
+                        "<i>Pas de première partie</i>" }} 
+                        </a>
+            </div>
+            <div>
+                Tarif Unitaire : 
+                <b>{{ candy_show.price }}€ HT</b>
+            </div>
+            <div>
+                Heure début : 
+                {{ candy_show.show_start|date("H:i") }}
+            </div>
+            <div>
+                Heure fin : 
+                {{ candy_show.show_end|date("H:i") }}
+            </div>
+            <div>
+                Ouverture des ventes : 
+                {{ candy_show.sales_on|date("d / m / y") }}
+            </div>
+            <div>
+                Nombres de places vendues : 
+                <b>{{ candy_show.sales }}</b>
+            </div>
+            <a 
+                href="/bookings/buy/{{ candy_show.id }}" 
+                class="btn btn-dark mt-3">
+                Acheter
+            </a>
         </div>
     </div>
 {% endblock %}
