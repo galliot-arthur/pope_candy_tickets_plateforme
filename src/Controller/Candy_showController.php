@@ -32,7 +32,7 @@ class Candy_showController extends AbstractController
     {
         $candy_showModel = new Candy_showModel;
         $candy_show = $candy_showModel
-            ->selectOneById($id);
+            ->oneShowsWithArtist($id);
         if (!$candy_show) {
             $this->setFlash(
                 false,

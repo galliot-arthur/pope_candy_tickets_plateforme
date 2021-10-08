@@ -114,7 +114,9 @@ class ImagesController extends AbstractController
                 "images/add.html.twig",
                 [
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'add',
+                    'currentController' => 'images',
                 ]
             );
     }
@@ -156,7 +158,9 @@ class ImagesController extends AbstractController
                     'id' => $id,
                     'images' => $images,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'edit',
+                    'currentController' => 'images',
                 ]
             );
     }
