@@ -28,7 +28,12 @@ class PricesModel extends AbstractModel
         return $this
             ->pdo
             ->query(
-                "SELECT p.venue_id, p.price, p.ticket_type, v.title AS venueTitle, v.town AS town ,v.address AS venue_address
+                "SELECT 
+                p.venue_id, 
+                p.price, p.ticket_type, 
+                v.title AS venueTitle, 
+                v.town AS town,
+                v.address AS venue_address
                 FROM prices AS p
                 LEFT JOIN venues AS v ON v.id = p.venue_id"
             )
