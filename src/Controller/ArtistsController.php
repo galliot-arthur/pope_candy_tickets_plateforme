@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\ArtistsModel;
+use App\Model\ImagesModel;
 
 class ArtistsController extends AbstractController
 {
@@ -170,12 +171,16 @@ class ArtistsController extends AbstractController
         $artistsModel = new ArtistsModel;
         $candyman = $artistsModel->selectOneById(6);
 
+        $imageModel = new ImagesModel;
+        $pictures = $imageModel->selectAll();
+
         return $this
             ->twig
             ->render(
                 "Artists/popecandy.html.twig",
                 [
                     'artist' => $candyman,
+                    'pictures' => $pictures,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'popecandy',

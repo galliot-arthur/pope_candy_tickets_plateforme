@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Candy_showModel;
+use App\Model\ImagesModel;
 
 class HomeController extends AbstractController
 {
@@ -21,6 +22,9 @@ class HomeController extends AbstractController
         $candy_shows = $this->getSalesStatusArray($candy_shows);
         $top_shows = $this->getSalesStatusArray($top_shows);
 
+        $imageModel = new ImagesModel;
+        $pictures = $imageModel->selectAll();
+
         return $this
             ->twig
             ->render(
@@ -28,6 +32,7 @@ class HomeController extends AbstractController
                 [
                     'candy_shows' => $candy_shows,
                     'top_shows' => $top_shows,
+                    'pictures' => $pictures,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
