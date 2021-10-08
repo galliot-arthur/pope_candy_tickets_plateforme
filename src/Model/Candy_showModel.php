@@ -22,7 +22,8 @@ class Candy_showModel extends AbstractModel
         return $this
             ->pdo
             ->query(
-                "SELECT candy_show.id,
+                "SELECT 
+                candy_show.id,
                 candy_show.title,
                 candy_show.venue, 
                 candy_show.first_part, 
