@@ -2,6 +2,21 @@
 
 {% block content %}
     <h1>{{ userProfile.firstname }} {{ userProfile.name }}</h1>
+<<<<<<< HEAD
+        <div class="card">
+        <div class="card-body">
+    <p>Votre Age : {{ userProfile.age }} ans 
+    <br>
+    Votre adresse : {{ userProfile.adress }}.
+    <br>
+    Votre Email : {{ userProfile.email }}.
+    <br>
+    Vos Réservations : {{bookings}}.
+    </p>
+    <a class="btn btn-dark" href="/user/edit/{{ userProfile.id }}">Editer mon profil</a>
+  </div>
+</div>
+=======
         <ul class="list-group">
           <li class="list-group-item">
               Prénom : {{ userProfile.firstname }}
@@ -20,4 +35,5 @@
           </li>
           <a class="btn btn-dark" href="/user/edit/{{ userProfile.id }}">Editer mon profil</a>
         </ul>
+>>>>>>> 3df743962d5cabd342b16aa1dd29e286c52eeb5e
 {% endblock %}
