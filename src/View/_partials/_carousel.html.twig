@@ -1,19 +1,14 @@
-<div id="carouselExampleFade" class="carousel slide carousel-fade col-5" data-bs-ride="carousel" style="opacity:1;">
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style="opacity:1;">
 
 
 
 <div class="carousel-inner">
-
-
-
     {% for picture in pictures %}      
       <div class="carousel-item {{ loop.first ? " active" : " " }}">
         <img src="/assets/images/photos/{{ picture.id }}.jpg" class="d-block w-100 imgCover myBorderRadius border border-secondary" alt="{{ picture.alt }}">
         <div class="carousel-caption d-none d-md-block">
           <h2 class="text-light">Pop Candy</h2>
-<button type="button" class="btn btn-light rounded-pill"><a class="noUnderline" href="/candy_show/index">Réserver</a></button>
-
-
+          <button type="button" class="btn btn-light rounded-pill"><a class="noUnderline" href="/candy_show/index">Réserver</a></button>
         </div>
       </div>
     {% endfor %}
@@ -26,4 +21,5 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+
 </div>
