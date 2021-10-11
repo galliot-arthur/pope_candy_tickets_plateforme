@@ -17,7 +17,6 @@ class BookingsModel extends AbstractModel
         parent::__construct(self::TABLE);
     }
 
-<<<<<<< HEAD
 
     public function selectBookingByUser(int $userId)
     {
@@ -30,7 +29,8 @@ class BookingsModel extends AbstractModel
                 WHERE id_user = ?"
             );
         $statement->execute([$userId]);
-=======
+    
+    }
     public function getUserShow($id)
     {
         $statement = $this
@@ -48,7 +48,6 @@ class BookingsModel extends AbstractModel
                 WHERE b.id_user = ?"
             );
         $statement->execute([$id]);
->>>>>>> 3df743962d5cabd342b16aa1dd29e286c52eeb5e
         return $statement->fetchAll();
     }
 }

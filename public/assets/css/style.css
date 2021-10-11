@@ -173,18 +173,19 @@ footer #contact {
     transition: box-shadow 0.75s;
 }
 
-
-.boxShadow:hover{
+.boxShadow:hover {
     box-shadow: 5px 5px 15px -3px grey;
 }
 
-.imgCover{
+.imgCover {
     object-fit: cover;
     height: calc(80vh - 56px);
 }
+
 .boxShadow:hover {
     box-shadow: 0px 5px 15px -3px rgba(128, 128, 128, 0.342)
 }
-.myBorderRadius{
-    border-radius: 30px;
+
+.myBorderRadius {
+    border-radius: 30px!important;
 }
