@@ -20,7 +20,9 @@ class ArtistsController extends AbstractController
                 [
                     'artists' => $artists,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'artists',
                 ]
             );
     }
@@ -47,7 +49,9 @@ class ArtistsController extends AbstractController
                     'id' => $id,
                     'artists' => $artist,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'show',
+                    'currentController' => 'artists',
                 ]
             );
     }
@@ -95,7 +99,9 @@ class ArtistsController extends AbstractController
                 "Artists/add.html.twig",
                 [
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'add',
+                    'currentController' => 'artists',
                 ]
             );
     }
@@ -138,7 +144,9 @@ class ArtistsController extends AbstractController
                     'id' => $id,
                     'artists' => $artists,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'edit',
+                    'currentController' => 'artists',
                 ]
             );
     }

@@ -34,7 +34,9 @@ class BookingsController extends AbstractController
                 [
                     'bookings' => $bookings,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'index',
+                    'currentController' => 'bookings',
                 ]
             );
     }
@@ -70,7 +72,9 @@ class BookingsController extends AbstractController
                 [
                     'booking' => $booking,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'show',
+                    'currentController' => 'bookings',
                 ]
             );
     }
@@ -107,7 +111,9 @@ class BookingsController extends AbstractController
                 [
                     'booking' => $booking,
                     'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert()
+                    'flash' => $this->flashAlert(),
+                    'currentFunction' => 'edit',
+                    'currentController' => 'bookings',
                 ]
             );
     }
@@ -154,7 +160,7 @@ class BookingsController extends AbstractController
                     'candy_show' => $candy_show,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
-                    'currentFunction' => 'index',
+                    'currentFunction' => 'buy',
                     'currentController' => 'candy_show',
                 ]
             );
@@ -231,7 +237,7 @@ class BookingsController extends AbstractController
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
-                    'currentController' => 'candy_show',
+                    'currentController' => 'bookinks',
                 ]
             );
         } else {
@@ -259,8 +265,8 @@ class BookingsController extends AbstractController
                     'quantity' => $_SESSION['booking']['quantity'],
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
-                    'currentFunction' => 'index',
-                    'currentController' => 'candy_show',
+                    'currentFunction' => 'payment',
+                    'currentController' => 'bookings',
                 ]
             );
         } else {
