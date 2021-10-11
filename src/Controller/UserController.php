@@ -249,7 +249,7 @@ class UserController extends AbstractController
             $userProfile = $userModel->selectOneById($user['id']);
             $bookingModel = new BookingsModel;
             $bookings = $bookingModel->selectBookingByUser($user['id']);
-            var_dump($bookings);die;
+            //var_dump($bookings);die;
 
 
             return $this
