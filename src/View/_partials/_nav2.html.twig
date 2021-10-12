@@ -1,12 +1,21 @@
 {% block nav %}
 
 	<div class="container">
-		<div class="btn-group" style="width:100%; border-radius: 30px;">
-			<a class="btn btn-light" href="\candy_show\index">CANDY TOUR</a>
+		<div>
+			<a class="btn btn-light mb-1 me-1" href="\candy_show\index">
+				CANDY TOUR
+				<i class="fa fa-plane" aria-hidden="true"></i>
+			</a>
 			{% if userSession is not empty %}
-				<a class="btn btn-light" href="\user\buyedTickets">VOS PLACES</a>
+				<a class="btn btn-light mb-1 me-1" href="\user\buyedTickets">
+					VOS PLACES
+					<i class="fa fa-ticket" aria-hidden="true"></i>
+				</a>
 			{% endif %}
-			<a class="btn btn-light" href="\artists\popecandy">POPE CANDY</a>
+			<a class="btn btn-light mb-1 me-1" href="\artists\popecandy">
+				POPE CANDY
+				<i class="fa fa-microphone" aria-hidden="true"></i>
+			</a>
 		</div>
 	</div>
 {% endblock %}
