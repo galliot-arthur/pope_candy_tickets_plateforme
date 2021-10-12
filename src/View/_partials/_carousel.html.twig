@@ -1,25 +1,63 @@
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style="opacity:1;">
-
-
-
-<div class="carousel-inner">
-    {% for picture in pictures %}      
-      <div class="carousel-item {{ loop.first ? " active" : " " }}">
-        <img src="/assets/images/photos/{{ picture.id }}.jpg" class="d-block w-100 imgCover myBorderRadius border border-secondary" alt="{{ picture.alt }}">
-        <div class="carousel-caption d-none d-md-block">
-          <h2 class="text-light">Pop Candy</h2>
-          <button type="button" class="btn btn-light rounded-pill"><a class="noUnderline" href="/candy_show/index">Réserver</a></button>
+<div 
+  id="carouselExampleFade" 
+  class="carousel slide carousel-fade" 
+  data-bs-ride="carousel" 
+  style="opacity:1;">
+  <div class="carousel-inner">
+      {% for picture in pictures %}      
+        <div 
+          class="carousel-item {{ loop.first ?
+          " active" :
+          " " }}">
+          <img 
+            src="/assets/images/photos/{{ picture.id }}.jpg" 
+            class="d-block w-100 imgCover myBorderRadius" 
+            alt="{{ picture.alt }}">
+          <div 
+            class="carousel-caption d-none d-md-block">
+            <h2 class="text-light">
+              Pop Candy
+              </h2>
+            <button 
+              type="button" 
+              class="btn btn-light rounded-pill">
+              <a 
+                class="noUnderline" 
+                href="/candy_show/index">
+                Réserver
+              </a>
+              </button>
+          </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
 
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-
+    <button 
+      class="carousel-control-prev" 
+      type="button" 
+      data-bs-target="#carouselExampleFade" 
+      data-bs-slide="prev">
+      <span 
+        class="carousel-control-prev-icon" 
+        aria-hidden="true">
+        </span>
+      <span 
+        class="visually-hidden">
+        Previous
+        </span>
+    </button>
+    <button 
+      class="carousel-control-next" 
+      type="button" 
+      data-bs-target="#carouselExampleFade" 
+      data-bs-slide="next">
+        <span 
+          class="carousel-control-next-icon" 
+          aria-hidden="true">
+          </span>
+        <span 
+          class="visually-hidden">
+          Next
+          </span>
+    </button>
+  </div>
 </div>

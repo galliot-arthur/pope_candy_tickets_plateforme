@@ -3,11 +3,6 @@
 {% block content %}
     <h1>Editer {{ venue.title }}</h1>
 
-    <div class="d-flex justify-content-center mb-3">
-        <a class="btn btn-dark m-1" href="/venue/index">Index Salles</a>
-        <a class="btn btn-dark m-1" href="/venue/show/{{ venue.id }}">Retour</a>
-    </div>
-
     <form method="post">
         <input type="hidden" value="{{ venue.id }}" name="id">
         <label 

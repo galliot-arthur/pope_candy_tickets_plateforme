@@ -36,7 +36,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-            <iframe class="card border border-secondary myBorderRadius" style="width: 100%; height: auto;" src="https://www.youtube.com/embed/AzQJO6AyfaQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="myBorderRadius" style="width: 100%; height: auto;" src="https://www.youtube.com/embed/AzQJO6AyfaQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <hr>
             <h2>Prochaines dates</h2>
             <div class="row g-1 mb-3">
@@ -90,9 +90,12 @@
         </div>
 
         <div class="col-md-4">
-            <iframe class="card border border-secondary myBorderRadius" style="width: 100%; height: auto;" src="https://www.youtube.com/embed/oorVWW9ywG0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="myBorderRadius mb-3" style="width: 100%; height: auto;" src="https://www.youtube.com/embed/oorVWW9ywG0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <h2>Photo Gallery</h2>
             {% include '_partials/_carousel.html.twig'%}
+            <h2 class="mt-3">Retrouvez nous sur les réseaux</h2>
+            {% include '_partials/_socials.html.twig'%}
+
         </div>
     </div>
 
