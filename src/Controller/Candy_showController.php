@@ -42,7 +42,13 @@ class Candy_showController extends AbstractController
             header("Location:/home");
             exit;
         }
-    
+        // On vérifie que le concert n'est pas déja complet, 
+        // au quel cas on bloque la possibilité d'acheter
+        $sold_out = $this
+            ->getSalesStatus(
+                $candy_show['sales'],
+                $candy_show['capacity']
+            );
 
         return $this
             ->twig
@@ -51,6 +57,7 @@ class Candy_showController extends AbstractController
                 [
                     'id' => $id,
                     'candy_show' => $candy_show,
+                    'sold_out' => $sold_out,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'show',

@@ -44,6 +44,10 @@
                     Ouverture des ventes : 
                     {{ candy_show.sales_on|date("d / m / y") }}
                 </div>
+            {% elseif sold_out == "COMPLET" %}
+                <div class="btn btn-dark mt-3" >
+                    COMPLET
+                </div>
             {% else %}
                 <a 
                     href="/bookings/buy/{{ candy_show.id }}" 
