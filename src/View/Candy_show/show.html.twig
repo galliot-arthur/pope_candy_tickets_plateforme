@@ -48,6 +48,10 @@
                 <div class="btn btn-dark mt-3" >
                     COMPLET
                 </div>
+            {% elseif alreadyBought %}
+                <div class="text-muted mt-3" >
+                    Vous avez déja acheté le nombre maximum de places pour ce concert.
+                </div>
             {% else %}
                 <a 
                     href="/bookings/buy/{{ candy_show.id }}" 

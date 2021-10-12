@@ -142,18 +142,20 @@ class BookingsController extends AbstractController
             header("Location:/home");
             exit;
         }
+
         // On Vérifie que l'utilisateur n'as pas déja acheté le nombre
         // maximum de places pour ce concert
         $userId = ($this->userSession())['id'];
-        
         
         $bookingModel = new BookingsModel;
         $bookings = $bookingModel->selectAllWhere('id_user', $userId);
         if (count($bookings) >= 3) {
             $this->alreadyBought();
             exit;
+        } else {
+            // On calcule le nombre de place que l'utilisateurs peut encore acheter
+            $userCanBuy = 3 - count($bookings);
         }
-        echo "<pre>"; var_dump($bookings); echo "</pre>"; die;
 
         // On vient chercher tous les prix qui lui sont associés
         $pricesModel = new PricesModel;
@@ -172,6 +174,7 @@ class BookingsController extends AbstractController
                 [
                     'prices' => $prices,
                     'candy_show' => $candy_show,
+                    'userCanBuy' => $userCanBuy,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'buy',
