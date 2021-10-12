@@ -53,10 +53,7 @@ class UserController extends AbstractController
                     false,
                     'Parametres invalides, merci de rééssayer.'
                 );
-                $this->setFlash(
-                    true,
-                    "Profile edité avec succès"
-                );
+
                 header("Location:/user/edit/$id");
                 exit;
             }
@@ -71,10 +68,11 @@ class UserController extends AbstractController
             ];
             $userModel->update($user);
 
-
             // message success
-
-
+            $this->setFlash(
+                true,
+                "Profile edité avec succès"
+            );
             header("Location: /user/profile/$id");
             exit;
         }
@@ -332,7 +330,21 @@ class UserController extends AbstractController
                 'id' => $id,
                 'admin' => $admin
             ];
-            $userModel->update($userToUpdate);
+            $result = $userModel->update($userToUpdate);
+
+            if (!$result) {
+                $this->setFlash(
+                    false,
+                    'Erreur, merci de réesayer.'
+                );
+            }
+            else{
+                $this->setFlash(
+                    true,
+                    'Utilisateur correctement modifié.'
+                );
+            }
+                
             header("Location: /user/index");
             exit;
         }
