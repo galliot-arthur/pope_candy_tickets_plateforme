@@ -1,80 +1,51 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Ajoutez une salle de concert</h1>
+  <h1>Ajoutez une salle de concert</h1>
 
-    <div class="d-flex justify-content-center mb-3">
+  {# <div class="d-flex justify-content-center mb-3"> 
         <a class="btn btn-dark m-1" href="/venue/index">Index Salles</a>
+    </div>#}
+
+  <form method="post">
+    <input type="hidden" value="{{ venue.id }}" name="id">
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon3">Nom</span>
+      <input type="text" class="form-control" value="{{ venue.title }}" id="basic-url" aria-describedby="basic-addon3">
     </div>
 
-    <form method="post">
-        <input type="hidden" value="{{ venue.id }}" name="id">
-        <label 
-            for="title">
-            Nom</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.title }}" 
-            id="title"
-            name="title">
-        <label 
-            for="town">
-            Ville </label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.town }}" 
-            id="town"
-            name="town">
-        <label 
-            for="disabled_access">
-            Accès Handicapé</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.disabled_acces }}" 
-            id="disabled_access"
-            name="disabled_access">
-        <label 
-            for="address">
-            Adresse</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.adress }}" 
-            id="address"
-            name="address">
-        <label 
-            for="capacity">
-            Capacité</label>
-        <input 
-            class="form-control mb-3"
-            type="number"
-            value="{{ venue.capacity }}"
-            id="capacity"
-            name="capacity">
-        <label 
-            for="vip_available">
-            vip_available</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.vip_available }}" 
-            id="vip_available"
-            name="vip_available">
-        <label 
-            for="prices">
-            Prix En tableaux</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.prices }}" 
-            id="prices"
-            name="prices">
-        <input 
-            class="btn btn-success"
-            type="submit" 
-            value="Ajouter">
-    </form>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="town">Ville</span>
+      <input type="text" class="form-control" value="{{ venue.town }}" id="basic-url" aria-describedby="basic-addon3">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="town">Accès Handicapé</span>
+      <input type="text" class="form-control" value="{{ venue.disabled_acces }}" id="basic-url" aria-describedby="basic-addon3">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="town">Adresse</span>
+      <input type="text" class="form-control" value="{{ venue.adress }}" id="basic-url" name="adress" aria-describedby="basic-addon3">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon3">Capacité</span>
+      <input type="text" class="form-control" value="{{ venue.capacity }}" id="basic-url" name="capacity" aria-describedby="basic-addon3">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-text">
+        <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+      </div>
+      <input type="text" class="form-control" value="venue.vip_available" aria-label="Text input with checkbox">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon3">vip_available</span><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+      <input type="text" class="form-control" value="{{ venue.vip_available }}" id="basic-url" name="capacity" aria-describedby="basic-addon3">
+    </div>
+
+    <input class="btn btn-success" type="submit" value="Ajouter">
+  </form>
 {% endblock %}
