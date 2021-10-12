@@ -7,45 +7,53 @@
         <a class="btn btn-dark m-1" href="/venue/index">Index Salles</a>
     </div>#}
 
-  <form method="post">
+    <form method="post">
     <input type="hidden" value="{{ venue.id }}" name="id">
 
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon3">Nom</span>
-      <input type="text" class="form-control" value="{{ venue.title }}" id="basic-url" aria-describedby="basic-addon3">
+        <span class="input-group-text" id="basic-addon3">Nom</span>
+        <input type="text" class="form-control" value="{{ venue.title }}" 
+        id="basic-url" aria-describedby="basic-addon3">
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text" id="town">Ville</span>
-      <input type="text" class="form-control" value="{{ venue.town }}" id="basic-url" aria-describedby="basic-addon3">
-    </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="town">Accès Handicapé</span>
-      <input type="text" class="form-control" value="{{ venue.disabled_acces }}" id="basic-url" aria-describedby="basic-addon3">
+        <span class="input-group-text" id="town">Ville</span>
+        <input type="text" class="form-control" value="{{ venue.town }}" 
+        id="basic-url" aria-describedby="basic-addon3">
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text" id="town">Adresse</span>
-      <input type="text" class="form-control" value="{{ venue.adress }}" id="basic-url" name="adress" aria-describedby="basic-addon3">
+        <div class="input-group-text">
+        <input class="form-check-input mt-0" type="checkbox" 
+        value="{{ venue.disabled_acces }}" aria-label="Checkbox for following text input">
+    </div>
+        <input type="text" class="form-control" value="Accès Handicapé" 
+        aria-label="Text input with checkbox">
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon3">Capacité</span>
-      <input type="text" class="form-control" value="{{ venue.capacity }}" id="basic-url" name="capacity" aria-describedby="basic-addon3">
+        <span class="input-group-text" id="town">Adresse</span>
+        <input type="text" class="form-control" value="{{ venue.adress }}" 
+        id="basic-url" name="adress" aria-describedby="basic-addon3">
     </div>
 
     <div class="input-group mb-3">
-      <div class="input-group-text">
-        <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-      </div>
-      <input type="text" class="form-control" value="venue.vip_available" aria-label="Text input with checkbox">
+        <span class="input-group-text" id="basic-addon3">Capacité</span>
+        <input type="text" class="form-control" value="{{ venue.capacity }}" 
+        id="basic-url" name="capacity" aria-describedby="basic-addon3">
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon3">vip_available</span><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-      <input type="text" class="form-control" value="{{ venue.vip_available }}" id="basic-url" name="capacity" aria-describedby="basic-addon3">
+        <div class="input-group-text">
+        <input class="form-check-input mt-0" type="checkbox" value="{{ venue.vip_available }}" 
+        aria-label="Checkbox for following text input">
     </div>
+        <input type="text" class="form-control" value="Vip Available" 
+        aria-label="Text input with checkbox">
+    </div>
+
+    
 
     <input class="btn btn-success" type="submit" value="Ajouter">
-  </form>
+    </form>
 {% endblock %}
