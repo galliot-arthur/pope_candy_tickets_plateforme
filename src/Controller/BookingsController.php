@@ -129,6 +129,17 @@ class BookingsController extends AbstractController
      */
     public function buy(int $id)
     {
+        // on vérifie que l'utilisateur est bien connecté
+        if (!$this->userSession()) {
+            $this->setFlash(
+                true,
+                "Merci de vous connecter pour continuer votre commande."
+            );
+            header("Location:/user/login");
+            exit;
+        }
+
+
         //on vérifie le show que l'on est en train d'acheter
         // existe bien 
         $candy_showModel = new Candy_showModel;
