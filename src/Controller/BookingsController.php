@@ -142,12 +142,14 @@ class BookingsController extends AbstractController
             exit;
         }
 
+
         // On vient chercher tous les prix qui lui sont associés
         $pricesModel = new PricesModel;
         $prices = $pricesModel
             ->selectAllWhere('venue_id', $candy_show['venue']);
         foreach ($prices as $key => $value) {
-            $prices[$key]['ticket_name'] = $this->getTicketType($prices[$key]['ticket_type']);
+            $prices[$key]['ticket_name'] = $this
+                ->getTicketType($prices[$key]['ticket_type']);
         }
 
         // On affiche
