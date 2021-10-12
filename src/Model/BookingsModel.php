@@ -65,7 +65,7 @@ class BookingsModel extends AbstractModel
                 WHERE b.id_user = ?
                 AND b.ref_id = ?"
                 );
-            $values[] = $show_id;
+            $values = [$user_id, $show_id];
         }
 
         $statement->execute($values);

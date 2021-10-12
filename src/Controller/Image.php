@@ -25,7 +25,8 @@ class Image extends AbstractController
             $filename = $_FILES['image']['tmp_name']; // On récupère le nom du fichier
             list($originalWidth, $originalHeight, $originalType) = getimagesize($filename); // On récupère la taille de notre fichier (l'image)
             echo "<pre>";
-            var_dump($_FILES['image']);echo "</pre>"; 
+            var_dump($_FILES['image']);
+            echo "</pre>";
             if ($originalWidth >= 100 && $originalHeight >= 100 && $originalWidth <= 140000 && $originalHeight <= 140000) { // On vérifie que la taille de l'image est correcte
 
                 //$ListeExtension = array('jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'png' => 'image/png', 'gif' => 'image/gif');
@@ -49,16 +50,17 @@ class Image extends AbstractController
                         echo "extension<br>";
                         if (!is_dir($dossier)) { // Si le nom de dossier n'existe pas alors on le crée
                             mkdir($dossier);
-                            echo"mkdir<br>";
+                            echo "mkdir<br>";
                         } else {
 
                             if (file_exists("$recordedFile")) {
                                 unlink("$recordedFile");
-                                echo"unlink<br>";
+                                echo "unlink<br>";
                             }
                         }
 
-                        $result = move_uploaded_file($_FILES['image']['tmp_name'], "$dossier\\$id.jpg");var_dump($result); die; // On fini par mettre la photo dans le dossier
+                        $result = move_uploaded_file($_FILES['image']['tmp_name'], "$dossier\\$id.jpg");
+                        var_dump($result); // On fini par mettre la photo dans le dossier
                         return $result;
                     } else {
                         $this->setFlash(
@@ -86,6 +88,6 @@ class Image extends AbstractController
 
     public function delete(int $id, string $folder)
     {
-        unlink("$this->media\\$folder\\$id.jpg");
+        unlink("C:\laragon\www\pope_candy_tickets_plateforme\public\assets\images\\$folder\\$id.jpg");
     }
 }
