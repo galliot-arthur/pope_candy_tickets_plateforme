@@ -70,6 +70,11 @@ class UserController extends AbstractController
                 'age' => $_POST['age'],
             ];
             $userModel->update($user);
+
+
+            // message success
+
+
             header("Location: /user/profile/$id");
             exit;
         }
@@ -293,5 +298,54 @@ class UserController extends AbstractController
                     'flash' => $this->flashAlert()
                 ]
             );
+    }
+
+    public function giveAdminRights(int $id)
+    {
+        if (!$this->userSession()) {
+            header("Location:/home");
+            exit;
+        }
+        if ($_SESSION['user']['admin'] != 1) {
+            header("Location:/home");
+            exit;
+        }
+
+        $userModel = new UserModel;
+        $user = $userModel->selectOneById($id);
+
+        if (!$user) {
+            $this->setFlash(
+                false,
+                'Utilisateur inconnu.'
+            );
+            header("Location:/home");
+            exit;
+        }
+
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            isset($_POST['admin']) ? $admin = 1 : $admin = 0;
+
+            $userToUpdate = [
+                'id' => $id,
+                'admin' => $admin
+            ];
+            $userModel->update($userToUpdate);
+            header("Location: /user/index");
+            exit;
+        }
+
+        return $this->twig->render(
+            'User/admin_rights.html.twig',
+            [
+                'user' => $user,
+                'userSession' => $this->userSession(),
+                'flash' => $this->flashAlert(),
+                'currentFunction' => 'giveAdminRights',
+                'currentController' => 'user'
+            ]
+        );
     }
 }

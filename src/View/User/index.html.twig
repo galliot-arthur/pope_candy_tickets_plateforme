@@ -9,6 +9,11 @@
                 <a href="/user/edit/{{ user.id }}">
                     {{ user.id }} : {{ user.firstname }} {{ user.name }}
                 </a>
+                {% if userSession.admin %}
+                    <a href="/user/giveAdminrights/{{ user.id }}">Modifier droits Admin</a>
+                {% endif %}
+                
+
                 {{ user.email }}
             </li>
         {% else %}

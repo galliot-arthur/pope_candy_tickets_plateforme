@@ -29,6 +29,7 @@ class PricesModel extends AbstractModel
             ->pdo
             ->query(
                 "SELECT 
+                p.id,
                 p.venue_id, 
                 p.price, p.ticket_type, 
                 v.title AS venueTitle, 

@@ -4,24 +4,23 @@
 /* @import url('../media/Quick\ Love.ttf'); */
 
 @font-face {
-    font-family: "Ginto";
-    src: url("../media/GothBallCrap.woff2") format("woff2");
+	font-family: "Ginto";
+	src: url("../media/GothBallCrap.woff2") format("woff2");
 }
 
 html {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
-    font-family: 'Montserrat', sans-serif;
-    background: url('../images/pop-smoke1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Montserrat', sans-serif;
+	background: url('../images/pop-smoke1.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
 }
-
 
 /* nav {
     display: flex;
@@ -32,39 +31,38 @@ body {
 } */
 
 h1 {
-    text-shadow: 0 1px 0 #ffffff1f, 0 -1px 0 #79baf01f;
-    color: white;
+	text-shadow: 0 1px 0 #ffffff1f, 0 -1px 0 #79baf01f;
+	color: white;
 }
 
 nav h2 {
-    font-family: 'Ginto', sans-serif;
-    text-transform: uppercase;
-    font-size: 3rem;
-    margin-bottom: 0;
-    text-shadow: 2px 1px 50px #ce595946, 0 -1px 0 #79baf01f;
+	font-family: 'Ginto', sans-serif;
+	text-transform: uppercase;
+	font-size: 3rem;
+	margin-bottom: 0;
+	text-shadow: 2px 1px 50px #ce595946, 0 -1px 0 #79baf01f;
 }
 
 nav h3 {
-    font-family: 'Ginto', sans-serif;
-    margin: 0;
-    font-size: 2rem;
-    text-shadow: 2px 1px 50px #ce595946, 0 -1px 0 #79baf01f;
+	font-family: 'Ginto', sans-serif;
+	margin: 0;
+	font-size: 2rem;
+	text-shadow: 2px 1px 50px #ce595946, 0 -1px 0 #79baf01f;
 }
 
 header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
-    padding: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #fff;
+	padding: 40px;
 }
 
 header h1 {
-    font-family: 'Ginto', serif;
-    font-size: 50px;
-    text-transform: uppercase;
+	font-family: 'Ginto', serif;
+	font-size: 50px;
+	text-transform: uppercase;
 }
-
 
 /* header h4 {
     margin-top: -20px;
@@ -86,32 +84,31 @@ header button {
 } */
 
 .main {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .main .content .card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: 20px;
 }
 
 .main .content .card .left {
-    flex: 0 0 30%;
-    padding: 20px;
-    background-color: black;
-    color: #fff;
+	flex: 0 0 30%;
+	padding: 20px;
+	background-color: black;
+	color: #fff;
 }
 
 .main .content .card .right img {
-    height: 300px;
-    width: 400px;
-    margin-top: 5px;
+	height: 300px;
+	width: 400px;
+	margin-top: 5px;
 }
-
 
 /* 
 footer {
@@ -148,44 +145,54 @@ footer #contact {
 }
  */
 
-@media screen and (max-width:680px) {
-    nav .onglets {
-        margin-left: 0px;
-        margin-bottom: 20px;
-    }
-    .main .card {
-        margin: 10px;
-    }
-    .main .content .card .right img {
-        height: 200px;
-        width: 100%;
-        margin-top: -0px;
-    }
-    .main .content .card {
-        display: block;
-    }
-    footer {
-        padding: 30px;
-    }
+@media screen and (max-width: 680px) {
+	nav .onglets {
+		margin-left: 0px;
+		margin-bottom: 20px;
+	}
+	.main .card {
+		margin: 10px;
+	}
+	.main .content .card .right img {
+		height: 200px;
+		width: 100%;
+		margin-top: -0px;
+	}
+	.main .content .card {
+		display: block;
+	}
+	footer {
+		padding: 30px;
+	}
 }
 
 .boxShadow {
-    transition: box-shadow 0.75s;
+	transition: box-shadow 0.75s;
 }
 
 .boxShadow:hover {
-    box-shadow: 5px 5px 15px -3px grey;
+	box-shadow: 5px 5px 15px -3px grey;
 }
 
 .imgCover {
-    object-fit: cover;
-    height: calc(80vh - 56px);
+	object-fit: cover;
+	height: calc(80vh - 56px);
 }
 
 .boxShadow:hover {
-    box-shadow: 0px 5px 15px -3px rgba(128, 128, 128, 0.342)
+	box-shadow: 0px 5px 15px -3px rgba(128, 128, 128, 0.342);
 }
 
 .myBorderRadius {
-    border-radius: 30px!important;
+	border-radius: 30px !important;
+}
+
+#sizeCarousel {
+	height: 0;
+	width: 60%;
+	padding-bottom: 100%;
+	margin-left: 20%;
+}
+.noUnderline {
+	text-decoration: none;
 }
