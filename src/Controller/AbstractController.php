@@ -118,7 +118,6 @@ abstract class AbstractController
                 $values[$key]['sold_out'] = "COMPLET";
             }
         }
-        //echo "<pre>"; var_dump($values); echo "</pre><br/>-<br/>"; die;
         return $values;
     }
 }

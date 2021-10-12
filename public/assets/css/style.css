@@ -98,7 +98,11 @@ header h1 {
 }
 
 .noUnderline {
-    text-decoration: none;
+    text-decoration: none!important;
+}
+
+.text-small {
+    font-size: 0.85rem;
 }
 
 .card {
