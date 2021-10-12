@@ -55,7 +55,9 @@ class Candy_showController extends AbstractController
         if ($this->userSession()) {
             $userId = ($this->userSession())['id'];
             $bookingModel = new BookingsModel;
-            $bookings = $bookingModel->selectAllWhere('id_user', $userId);
+            $bookings = $bookingModel->selectAllWhere([
+                'id_user' => $userId
+            ]);
             if (count($bookings) >= 3) {
                 $alreadyBought = true;
             } else {

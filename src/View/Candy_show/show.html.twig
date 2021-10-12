@@ -27,7 +27,7 @@
                                 <b>{{ candy_show.price }}€ HT</b><br/>
                             </div>
                             {% if candy_show.sales_on|date("dmy") > "now"|date("dmy") %}
-                                <div>
+                                <div class="text-muted mt-3">
                                     Ouverture des ventes : 
                                     {{ candy_show.sales_on|date("d / m / y") }}
                                 </div>

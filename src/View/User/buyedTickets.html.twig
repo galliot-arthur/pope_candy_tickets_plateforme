@@ -2,27 +2,36 @@
 
 {% block content %}
 
-    <h1>Vos places</h1>
-    <ul class="list-group">
-        <li class="list-group-item text-muted">
-            Vos différentes places pour les spectacles de POPE CANDY :
-        </li>
-        {% for show in shows|sort((a ,b) => a.showStart <=> b.showStart) %}
-            <li class="list-group-item">
-                <h4>{{ show.showTitle }} le {{ show.showStart|date('d/m/y')}}</h4>
-                <div class="row">
-                    <div class="col-8">
-                        Commence à {{ show.showStart|date('H:i')}}
-                    </div>
-                    <div class="col-4">
-                        <a href="/candy_show/show/{{ show.showId }}">Plus de détails</a>
-                    </div>
-                </div>
-            </li>
-        {% else %}
-            <li class="list-group-item d-flex justify-content-between">Nothing to display</li>
-        {% endfor %}
-    </ul>
+	<h1>Vos places</h1>
+	<ul class="list-group">
+		<li class="list-group-item text-muted">
+			Vos différentes places pour les spectacles de POPE CANDY :
+		</li>
+		{% for show in shows|sort((a ,b) => a.showStart <=> b.showStart) %}
+			<li class="list-group-item">
+				<h4>{{ show.showTitle }}
+					le
+					{{ show.showStart|date('d/m/y')}}
+                </h4>
+				<div class="row">
+					<div class="col-8">
+						Commence à
+						{{ show.showStart|date('H:i')}}
+					</div>
+					<div class="col-4">
+						<a 
+                            href="/candy_show/show/{{ show.showId }}">
+                            Plus de détails
+                            </a>
+					</div>
+				</div>
+			</li>
+		{% else %}
+			<li 
+                class="list-group-item d-flex justify-content-between">
+                Vous n'avez pas encore acheté de billet sur notre site.
+                </li>
+		{% endfor %}
+	</ul>
 
 {% endblock %}
-

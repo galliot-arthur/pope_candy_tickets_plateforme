@@ -157,10 +157,13 @@ class BookingsController extends AbstractController
         // On Vérifie que l'utilisateur n'as pas déja acheté le nombre
         // maximum de places pour ce concert
         $userId = ($this->userSession())['id'];
-        
+
         $bookingModel = new BookingsModel;
-        $bookings = $bookingModel->selectAllWhere('id_user', $userId);
-        //echo "<pre>"; var_dump($bookings);  echo"</pre>"; die;
+        $bookings = $bookingModel->selectAllWhere([
+            'id_user' => $userId,
+            'ref_id' => $id
+        ]);
+        // echo "<pre>"; var_dump($bookings); echo "</pre>"; die;
         if (count($bookings) >= 3) {
             $this->setFlash(
                 true,
@@ -176,7 +179,9 @@ class BookingsController extends AbstractController
         // On vient chercher tous les prix qui lui sont associés
         $pricesModel = new PricesModel;
         $prices = $pricesModel
-            ->selectAllWhere('venue_id', $candy_show['venue']);
+            ->selectAllWhere([
+                'venue_id' => $candy_show['venue']
+            ]);
         foreach ($prices as $key => $value) {
             $prices[$key]['ticket_name'] = $this
                 ->getTicketType($prices[$key]['ticket_type']);
@@ -199,7 +204,8 @@ class BookingsController extends AbstractController
             );
     }
 
-    public function confirm_buy() {
+    public function confirm_buy()
+    {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -258,21 +264,21 @@ class BookingsController extends AbstractController
 
 
             return $this
-            ->twig
-            ->render(
-                'Bookings/confirmBuy.html.twig',
-                [
-                    'id' => $id,
-                    'candy_show' => $candy_show,
-                    'quantity' => $quantity,
-                    'tickets' => $_SESSION['booking']['tickets'],
-                    'total' => $_SESSION['booking']['total'],
-                    'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert(),
-                    'currentFunction' => 'index',
-                    'currentController' => 'bookinks',
-                ]
-            );
+                ->twig
+                ->render(
+                    'Bookings/confirmBuy.html.twig',
+                    [
+                        'id' => $id,
+                        'candy_show' => $candy_show,
+                        'quantity' => $quantity,
+                        'tickets' => $_SESSION['booking']['tickets'],
+                        'total' => $_SESSION['booking']['total'],
+                        'userSession' => $this->userSession(),
+                        'flash' => $this->flashAlert(),
+                        'currentFunction' => 'index',
+                        'currentController' => 'bookinks',
+                    ]
+                );
         } else {
             $this->setFlash(
                 false,
@@ -282,26 +288,27 @@ class BookingsController extends AbstractController
         }
     }
 
-    public function payment() {
+    public function payment()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
-            
+
+
             return $this
-            ->twig
-            ->render(
-                'Bookings/payment.html.twig',
-                [
-                    'id' => $_POST['id'],
-                    'total' => $_SESSION['booking']['total'],
-                    'candy_show' => $_SESSION['booking']['show'],
-                    'tickets' => $_SESSION['booking']['tickets'],
-                    'quantity' => $_SESSION['booking']['quantity'],
-                    'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert(),
-                    'currentFunction' => 'payment',
-                    'currentController' => 'bookings',
-                ]
-            );
+                ->twig
+                ->render(
+                    'Bookings/payment.html.twig',
+                    [
+                        'id' => $_POST['id'],
+                        'total' => $_SESSION['booking']['total'],
+                        'candy_show' => $_SESSION['booking']['show'],
+                        'tickets' => $_SESSION['booking']['tickets'],
+                        'quantity' => $_SESSION['booking']['quantity'],
+                        'userSession' => $this->userSession(),
+                        'flash' => $this->flashAlert(),
+                        'currentFunction' => 'payment',
+                        'currentController' => 'bookings',
+                    ]
+                );
         } else {
             $this->setFlash(
                 false,
@@ -311,7 +318,8 @@ class BookingsController extends AbstractController
         }
     }
 
-    public function payed() {
+    public function payed()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $tickets = $_SESSION['booking']['tickets'];
@@ -319,7 +327,7 @@ class BookingsController extends AbstractController
 
             $bookingModel = new BookingsModel;
 
-            foreach($tickets as $ticket) {
+            foreach ($tickets as $ticket) {
                 $ticket = [
                     'ref_id' => $_POST['id'],
                     'ref' => $_SESSION['booking']['show']['title'],
@@ -365,7 +373,8 @@ class BookingsController extends AbstractController
         header('Location:/bookings/index');
     }
 
-    public function alreadyBought (int $show_id) {
+    public function alreadyBought(int $show_id)
+    {
 
         $user_id = $_SESSION['user']['id'];
 
