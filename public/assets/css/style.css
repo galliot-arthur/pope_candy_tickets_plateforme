@@ -4,195 +4,141 @@
 /* @import url('../media/Quick\ Love.ttf'); */
 
 @font-face {
-	font-family: "Ginto";
-	src: url("../media/GothBallCrap.woff2") format("woff2");
+    font-family: "Ginto";
+    src: url("../media/GothBallCrap.woff2") format("woff2");
 }
 
 html {
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-	margin: 0px;
-	padding: 0px;
-	font-family: 'Montserrat', sans-serif;
-	background: url('../images/pop-smoke1.jpg');
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+    background: url('../images/pop-smoke1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-/* nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 5px solid #6f6f6f;
-} */
-
 h1 {
-	text-shadow: 0 1px 0 #ffffff1f, 0 -1px 0 #79baf01f;
-	color: white;
+    text-shadow: 0 1px 0 #ffffff1f, 0 -1px 0 #79baf01f;
+    color: white;
+    text-transform: uppercase;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-align: center;
 }
 
 nav h2 {
-	font-family: 'Ginto', sans-serif;
-	text-transform: uppercase;
-	font-size: 3rem;
-	margin-bottom: 0;
-	text-shadow: 2px 1px 50px #ce595946, 0 -1px 0 #79baf01f;
+    font-family: 'Ginto', sans-serif;
+    text-transform: uppercase;
+    font-size: 3rem;
+    margin-bottom: 0;
+    text-shadow: 2px 1px 50px #ce595946, 0 -1px 0 #79baf01f;
 }
 
 nav h3 {
-	font-family: 'Ginto', sans-serif;
-	margin: 0;
-	font-size: 2rem;
-	text-shadow: 2px 1px 50px #ce595946, 0 -1px 0 #79baf01f;
+    font-family: 'Ginto', sans-serif;
+    margin: 0;
+    font-size: 2rem;
+    text-shadow: 2px 1px 50px #ce595946, 0 -1px 0 #79baf01f;
 }
 
 header {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	color: #fff;
-	padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    padding: 40px;
 }
 
 header h1 {
-	font-family: 'Ginto', serif;
-	font-size: 50px;
-	text-transform: uppercase;
+    font-family: 'Ginto', serif;
+    font-size: 50px;
+    text-transform: uppercase;
 }
-
-/* header h4 {
-    margin-top: -20px;
-    font-size: 20px;
-    text-align: center;
-    border-bottom: 1px solid #fff;
-}
-
-header button {
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #000;
-    border: none;
-    margin-bottom: 30px;
-    outline: none;
-    font-size: 20px;
-    font-family: 'Playfair Display', serif;
-    cursor: pointer;
-} */
 
 .main {
-	margin-top: 40px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .main .content .card {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .main .content .card .left {
-	flex: 0 0 30%;
-	padding: 20px;
-	background-color: black;
-	color: #fff;
+    flex: 0 0 30%;
+    padding: 20px;
+    background-color: black;
+    color: #fff;
 }
 
 .main .content .card .right img {
-	height: 300px;
-	width: 400px;
-	margin-top: 5px;
+    height: 300px;
+    width: 400px;
+    margin-top: 5px;
 }
-
-/* 
-footer {
-    margin-top: 40px;
-    border-top: 5px solid #6f6f6f;
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-    padding: 30px 100px;
-}
-
-footer h4 {
-    font-family: 'Playfair Display', serif;
-    border-bottom: 1px solid white;
-    width: 20%;
-    padding-bottom: 5px;
-}
-
-footer .services {
-    margin-top: -10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-footer .services .service {
-    margin-right: 30px;
-}
-
-footer .services .service p {
-    max-width: 300px;
-}
-
-footer #contact {
-    color: rgb(181, 181, 181);
-}
- */
 
 @media screen and (max-width: 680px) {
-	nav .onglets {
-		margin-left: 0px;
-		margin-bottom: 20px;
-	}
-	.main .card {
-		margin: 10px;
-	}
-	.main .content .card .right img {
-		height: 200px;
-		width: 100%;
-		margin-top: -0px;
-	}
-	.main .content .card {
-		display: block;
-	}
-	footer {
-		padding: 30px;
-	}
+    nav .onglets {
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+    .main .card {
+        margin: 10px;
+    }
+    .main .content .card .right img {
+        height: 200px;
+        width: 100%;
+        margin-top: -0px;
+    }
+    .main .content .card {
+        display: block;
+    }
+    footer {
+        padding: 30px;
+    }
 }
 
 .boxShadow {
-	transition: box-shadow 0.75s;
+    transition: box-shadow 0.75s;
 }
 
 .boxShadow:hover {
-	box-shadow: 5px 5px 15px -3px grey;
+    box-shadow: 5px 5px 15px -3px grey;
 }
 
 .imgCover {
-	object-fit: cover;
-	height: calc(80vh - 56px);
+    object-fit: cover;
+    height: calc(80vh - 56px);
 }
 
 .boxShadow:hover {
-	box-shadow: 0px 5px 15px -3px rgba(128, 128, 128, 0.342);
+    box-shadow: 0px 5px 15px -3px rgba(128, 128, 128, 0.342);
 }
 
 .myBorderRadius {
-	border-radius: 30px !important;
+    border-radius: 30px !important;
 }
 
 #sizeCarousel {
-	height: 0;
-	width: 60%;
-	padding-bottom: 100%;
-	margin-left: 20%;
+    height: 0;
+    width: 60%;
+    padding-bottom: 100%;
+    margin-left: 20%;
 }
+
 .noUnderline {
-	text-decoration: none;
+    text-decoration: none;
 }
