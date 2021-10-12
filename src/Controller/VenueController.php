@@ -202,4 +202,9 @@ class VenueController extends AbstractController
         );
         header('Location:/venue/index');
     }
+
+    public function addImage(int $id)
+    {
+        
+    }
 }
