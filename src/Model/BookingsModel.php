@@ -20,7 +20,7 @@ class BookingsModel extends AbstractModel
 
     public function selectBookingByUser(int $userId)
     {
-            $statement = $this
+        $statement = $this
             ->pdo
             ->prepare(
                 "SELECT
@@ -29,14 +29,15 @@ class BookingsModel extends AbstractModel
                 WHERE id_user = ?"
             );
         $statement->execute([$userId]);
-    
     }
-    public function getUserShow($id)
+    public function getUserShow(int $user_id, $show_id = null)
     {
-        $statement = $this
-            ->pdo
-            ->prepare(
-                "SELECT
+        // In case we don't precise the show_id
+        if (!$show_id) {
+            $statement = $this
+                ->pdo
+                ->prepare(
+                    "SELECT
                 b.ref_id AS showId,
                 b.ref AS showName,  
                 b.type AS ticketType,
@@ -46,9 +47,28 @@ class BookingsModel extends AbstractModel
                 FROM bookings AS b
                 LEFT JOIN candy_show AS c ON c.id = b.ref_id
                 WHERE b.id_user = ?"
-            );
-        $statement->execute([$id]);
+                );
+            $values = [$user_id];
+        } else {
+            $statement = $this
+                ->pdo
+                ->prepare(
+                    "SELECT
+                b.ref_id AS showId,
+                b.ref AS showName,  
+                b.type AS ticketType,
+                c.title AS showTitle,
+                c.show_start AS showStart,
+                c.id AS showId
+                FROM bookings AS b
+                LEFT JOIN candy_show AS c ON c.id = b.ref_id
+                WHERE b.id_user = ?
+                AND b.ref_id = ?"
+                );
+            $values[] = $show_id;
+        }
+
+        $statement->execute($values);
         return $statement->fetchAll();
     }
 }
-

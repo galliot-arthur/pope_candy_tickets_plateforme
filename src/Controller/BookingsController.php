@@ -160,8 +160,13 @@ class BookingsController extends AbstractController
         
         $bookingModel = new BookingsModel;
         $bookings = $bookingModel->selectAllWhere('id_user', $userId);
+        //echo "<pre>"; var_dump($bookings);  echo"</pre>"; die;
         if (count($bookings) >= 3) {
-            $this->alreadyBought();
+            $this->setFlash(
+                true,
+                'Vous avez déja acheté des places pour ce concert.'
+            );
+            header("Location:/bookings/alreadyBought/$id");
             exit;
         } else {
             // On calcule le nombre de place que l'utilisateurs peut encore acheter
@@ -360,7 +365,24 @@ class BookingsController extends AbstractController
         header('Location:/bookings/index');
     }
 
-    public function alreadyBought () {
-        echo "déja acheté";
+    public function alreadyBought (int $show_id) {
+
+        $user_id = $_SESSION['user']['id'];
+
+        $bookingModel = new BookingsModel;
+        $shows = $bookingModel->getUserShow($user_id, $show_id);
+
+        return $this
+            ->twig
+            ->render(
+                'User/buyedTickets.html.twig',
+                [
+                    'shows' => $shows,
+                    'currentController' => 'bookings',
+                    'pageFunction' => 'alreadyBought',
+                    'userSession' => $this->userSession(),
+                    'flash' => $this->flashAlert()
+                ]
+            );
     }
 }

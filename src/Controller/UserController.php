@@ -281,8 +281,8 @@ class UserController extends AbstractController
     public function buyedTickets()
     {
         $bookingModel = new BookingsModel;
-        //echo "<pre>"; var_dump($_SESSION['user']['id']); echo"</pre>"; die;
         $shows = $bookingModel->getUserShow($_SESSION['user']['id']);
+        //echo "<pre>"; var_dump($shows); echo"</pre>"; die;
 
         return $this
             ->twig
@@ -321,7 +321,7 @@ class UserController extends AbstractController
             exit;
         }
 
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             isset($_POST['admin']) ? $admin = 1 : $admin = 0;
@@ -337,14 +337,13 @@ class UserController extends AbstractController
                     false,
                     'Erreur, merci de réesayer.'
                 );
-            }
-            else{
+            } else {
                 $this->setFlash(
                     true,
                     'Utilisateur correctement modifié.'
                 );
             }
-                
+
             header("Location: /user/index");
             exit;
         }
