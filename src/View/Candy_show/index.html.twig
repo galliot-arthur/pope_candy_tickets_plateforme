@@ -13,15 +13,18 @@
                             href="/candy_show/show/{{ candy_show.id }}">
                             POPE CANDY w/ {{ candy_show.artist_name }}
                         </a><br/>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
                         {{ candy_show.title }}
                     </div>
                     <div class="col-4 text-end d-flex flex-column justify-content-between">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
                         {{ candy_show.show_start|date("d/m/y") }}
                         {% if userSession.admin == 1 %}
                             <div class="text-danger">Billeterie {{ candy_show.salesStatus }}</div>
                         {% endif %}
                         
                         <div class="text-muted">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
                             {{ candy_show.show_start|date("H:i") }} -
                             {{ candy_show.show_end|date("H:i") }}
                         </div>
