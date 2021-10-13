@@ -13,7 +13,7 @@
     {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
 </head>
-<body class="d-flex flex-column h-100">
+<body class="container d-flex flex-column h-100">
 
     {% if userSession.admin == 1 %}
         {% include "_partials/_admin_nav.html.twig" %}
@@ -23,7 +23,7 @@
     {% include "_partials/_nav2.html.twig" %}
 
 
-    <main class="container my-3">
+    <main class="my-3">
         {% include "_partials/_flash.html.twig" %}
         {% block content %}{% endblock %}
     </main>

@@ -5,11 +5,29 @@
     <div class="card">
         <div class="card-body">
             <h2>Pope Candy - {{ candy_show.title }}</h2>
-            {% for key, ticket in tickets %}
-                <div class="ms-3">1 place <b>tarif {{ ticket.name }}</b> au nom de <b>{{ key }}</b>.
-                <br/><b>{{ ticket.ticketPrice}} € HT</b></div>
-            {% endfor %}
-            <div class="ms-3 mb-3 lead">Total = {{ total }} € HT</div>
+            <ul 
+                style="background: transparent;"
+                class="list-group list-group-flush mb-1" >
+                {% for key, ticket in tickets %}
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        <div class="ms-3 text-small">
+                            1 place
+                            <b>tarif {{ ticket.name }}</b>
+                            au nom de <b>{{ key }}</b>.
+                            <br/>
+                            <b>{{ ticket.ticketPrice}} € HT</b>
+                        </div>
+                    </li>
+                {% endfor %}
+            <li class="list-group-item d-flex align-items-center">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <div>
+                    <div class="ms-3 text-muted">TOTAL HT = {{ total }} € HT</div>
+                    <div class="ms-3">TOTAL TTC= {{ total * 1.20 }} € TTC</div>
+                </div>
+            </li>
+            </ul>
             <form method="post" action="/bookings/payment">
                 <input 
                     type="text" 

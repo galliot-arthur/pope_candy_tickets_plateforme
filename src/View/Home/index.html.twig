@@ -13,13 +13,14 @@
                         <li class="list-group-item {{ tot_show.sold_out == "COMPLET" ? "list-group-item-danger" : "" }}">
                             <div class="d-flex justify-content-between">
                                 <a
+                                    class="noUnderline"
                                     href="/candy_show/show/{{ tot_show.id }}">
                                     Pope Candy w/ {{tot_show.artist_name}}
                                 </a>
                                 <div>
-                                    <span class="text-muted">
+                                    {# <span class="text-muted">
                                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                                    </span>
+                                    </span> #}
                                     {{ tot_show.show_start|date("d/m/y") }}
                                 </div>
                             </div> 
@@ -33,8 +34,9 @@
                                        <b>{{ tot_show.sold_out }}</b>
                                     {% else %}
                                         <a 
-                                            class="text-danger"
+                                            class="text-danger noUnderline"
                                             href="/candy_show/show/{{ tot_show.id }}">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                             Billeterie {{ tot_show.salesStatus }}
                                         </a>
                                     {% endif %}
@@ -54,7 +56,7 @@
                             <div class="mx-2 mt-2 bg-black-50 d-flex justify-content-between align-items-start">
                                 <div>
                                     <a
-                                        class="h2"
+                                        class="h2 noUnderline"
                                         href="/candy_show/show/{{ candy_show.id }}">
                                         Pope Candy & {{candy_show.artist_name}}<br/>
                                     </a>
