@@ -166,17 +166,17 @@ class ImagesController extends AbstractController
     }
     public function delete(int $id)
     {
-        $imagesModel = new ImagesModel();
-        $result = $imagesModel->delete($id);
+        $imageDatabase = new ImagesModel;
+        $imageFileInServer = new Image;
+        $imageDatabase->delete($id);
+        $result = $imageFileInServer->delete($id, 'photos');
 
         if ($result) {
-
             $this->setFlash(
                 true,
                 "Cette image a bien été supprimé."
             );
         } else {
-
             $this->setFlash(
                 false,
                 "Erreur, merci d'essayer à nouveau."

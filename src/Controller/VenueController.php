@@ -118,7 +118,7 @@ class VenueController extends AbstractController
             if ($result) {
                 $this->setFlash(
                     true,
-                    "Ce lieu à bien été ajouté."
+                    "Ce lieu à bien été édité."
                 );
             };
         }
@@ -205,6 +205,7 @@ class VenueController extends AbstractController
 
     public function addImage(int $id)
     {
+<<<<<<< HEAD
         // if ($_FILES['image']['name']) {
 
         //     if (!isset($_FILES)) {
@@ -233,5 +234,7 @@ class VenueController extends AbstractController
         //         exit;
         //     }
 
+=======
+>>>>>>> 89b2d23c4b3afd9b5c8326eb827f999af534beef
     }
 }

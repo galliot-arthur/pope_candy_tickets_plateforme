@@ -3,24 +3,39 @@
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/home/index"><h2>Pop Candy</h2><h3>on tour</h3></a>
 
-			<ul class="navbar-nav">
+			<ul class="">
 				<li class="nav-item">
-					<a class="btn btn-light mb-1 me-1 boxShadow" href="/home/index">Accueil</a>
+					<a class="btn btn-light mb-1 me-1 boxShadow" href="/home/index">
+						Accueil
+						<i class="fa fa-home" aria-hidden="true"></i>
+					</a>
 				</li>
 
 				{% if userSession is empty %}
 					<li class="nav-item">
-						<a class="btn btn-light mb-1 me-1 boxShadow" href="/user/login">Login</a>
+						<a class="btn btn-light mb-1 me-1 boxShadow" href="/user/login">
+							Login
+							<i class="fa fa-sign-in" aria-hidden="true"></i>
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="btn btn-light mb-1 boxShadow" href="/user/register">S'inscrire</a>
+						<a class="btn btn-light mb-1 boxShadow" href="/user/register">
+							S'inscrire
+							<i class="fa fa-sign-in" aria-hidden="true"></i>
+						</a>
 					</li>
 				{% else %}
 					<li class="nav-item">
-						<a class="btn btn-light mb-1 me-1" href="/user/profile">Profil</a>
+						<a class="btn btn-light mb-1 me-1" href="/user/profile">
+							Profil
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="btn btn-light mb-1" href="/user/logout">Log Out</a>
+						<a class="btn btn-light mb-1" href="/user/logout">
+							Log Out
+							<i class="fa fa-sign-out" aria-hidden="true"></i>
+						</a>
 					</li>
 				{% endif %}
 

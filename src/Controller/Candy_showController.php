@@ -52,12 +52,17 @@ class Candy_showController extends AbstractController
             );
         // On Vérifie que l'utilisateur n'as pas déja acheté le nombre
         // maximum de places pour ce concert
-        $userId = ($this->userSession())['id'];
-        
-        $bookingModel = new BookingsModel;
-        $bookings = $bookingModel->selectAllWhere('id_user', $userId);
-        if (count($bookings) >= 3) {
-            $alreadyBought = true;
+        if ($this->userSession()) {
+            $userId = ($this->userSession())['id'];
+            $bookingModel = new BookingsModel;
+            $bookings = $bookingModel->selectAllWhere([
+                'id_user' => $userId
+            ]);
+            if (count($bookings) >= 3) {
+                $alreadyBought = true;
+            } else {
+                $alreadyBought = false;
+            }
         } else {
             $alreadyBought = false;
         }

@@ -43,33 +43,53 @@
                 {% for candy_show in candy_shows %}
                     <div class="col-lg-4 col-sm-6">
                         <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <a
-                                    class="lead"
-                                    href="/candy_show/show/{{ candy_show.id }}">
-                                    Pope Candy w/ {{candy_show.artist_name}}
-                                </a>
+                            <div class="mx-2 mt-2 bg-black-50 d-flex justify-content-between align-items-start">
                                 <div>
+                                    <a
+                                        class="h2"
+                                        href="/candy_show/show/{{ candy_show.id }}">
+                                        Pope Candy & {{candy_show.artist_name}}<br/>
+                                    </a>
+                                    <div class="text-dark noUnderline">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        {{ candy_show.title }}
+                                    </div>
+                                </div>
+                                <div class="text-end text-muted">
+                                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
                                     {{ candy_show.show_start|date("d/m/y") }}
                                 </div>
                             </div> 
-                            <div class="card-body">
+                            <div class="mx-2 mb-2">
                                 <div class="row">
-                                    <div class="col-8">{{ candy_show.title }}</div>
+                                    <div class="col-8 d-flex flex-column justify-content-end">
+                                        
+
+                                        <div class="mt-2">
+                                            {% if candy_show.sold_out == "COMPLET" %}
+                                                <b>{{ tot_show.sold_out }}</b>
+                                            {% elseif candy_show.sales_on|date("dmy") > "now"|date("dmy") %}
+                                                <div class="text-muted">
+                                                    Ouverture des ventes : 
+                                                    {{ candy_show.sales_on|date("d/m/y") }}
+                                                </div>
+                                            {% else %}
+                                                <a 
+                                                    class="btn btn-outline-secondary mb-1"
+                                                    href="/bookings/buy/{{ candy_show.id }}">
+                                                    Réserver
+                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                     <div class="col-4 text-muted text-end"> 
-                                        {{ candy_show.show_start|date("H:i") }} -
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i><br/>
+                                        {{ candy_show.show_start|date("H:i") }} <br/>
                                         {{ candy_show.show_end|date("H:i") }}
                                     </div>
                                 </div>
-    
                             </div>
-                        </div>
-                        <div class="text-center">
-                            <a 
-                                class="link-light"
-                                href="/bookings/buy/{{ candy_show.id }}">
-                                Acheter sa place
-                            </a>
                         </div>
                         <hr>
                     </div>
@@ -82,6 +102,7 @@
                             class="link-dark "
                             href="/candy_show/index">
                             Voir plus de concerts
+                            <i class="fa fa-plus" aria-hidden="true"></i>
                         </a>
                     </li>
                 </ul>
