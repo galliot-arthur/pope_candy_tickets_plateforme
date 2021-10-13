@@ -8,11 +8,17 @@
         <div class="card-body">
             Vous êtes en train de payer pour :
             <h4>Pope Candy - {{ candy_show.title }}</h4>
+
             {% for key, ticket in tickets %}
-                <div class="ms-3">1 place <b>tarif {{ ticket.name }}</b> au nom de <b>{{ key }}</b>.
-                <br/><b>{{ ticket.ticketPrice}} € HT</b></div>
+                <div class="ms-3">
+                    1 place <b>tarif {{ ticket.name }}</b> au nom de <b>{{ key }}</b>.<br/>
+                    <b>{{ ticket.ticketPrice}} € HT</b>
+                </div>
             {% endfor %}
-            <div class="ms-3 mb-3 lead">Total = {{ total }} € HT</div>
+
+            <div class="ms-3 mb-3 lead">
+                Total = {{ total }} € HT
+            </div>
             <div>
                 <b>Notre centrale de paiement se fait en sourire.</b> 😊
             </div>
@@ -21,6 +27,7 @@
                     Merci de sourire devant votre écran pendant 6 secondes pour payer. 😊
                 </b>
             </div>
+            <a href="/home" class="btn btn-outline-secondary mt-1">Annuler</a>
         </div>
 
         <form method="post" action="/bookings/payed">
@@ -39,16 +46,14 @@
                 value="{{ price.price }}"
                 name="type"
                 hidden>
-            <div class="input-group mb-3">
             <input
                 class="btn btn-dark"
                 type="submit" 
                 value="Confirmer mon achat"
                 hidden>
-            <a href="/home" class="btn btn-outline-secondary">Annuler</a>
         </form>
-
     </div>
+    
 {% endblock %}
 
 {% block javascript %}

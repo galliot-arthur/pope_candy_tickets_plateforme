@@ -3,26 +3,47 @@
 	<div class="btn-group">
 		{# index #}
 		{% if (currentFunction == "index" and currentController != "user") %}
-			<a class="btn btn-outline-light" href="/{{ currentController }}/add">Add</a>
+			<a class="btn btn-outline-light" href="/{{ currentController }}/add">
+				Add
+				<i class="fa fa-pencil" aria-hidden="true"></i>
+			</a>
 		{% endif %}
 		{# show #}
 		{%  if (currentFunction == "show" and currentController != "user") %}
-			<a class="btn btn-outline-light" href="/{{ currentController }}/edit/{{ id|number_format }}">Edit</a>
-			<a class="btn btn-outline-light" href="/{{ currentController }}/delete/{{ id|number_format }}">Delete</a>
+			<a class="btn btn-outline-light" href="/{{ currentController }}/edit/{{ id|number_format }}">
+				Edit
+				<i class="fa fa-pencil" aria-hidden="true"></i>
+			</a>
+			<a class="btn btn-outline-light" href="/{{ currentController }}/delete/{{ id|number_format }}">
+				Delete
+				<i class="fa fa-trash" aria-hidden="true"></i>
+			</a>
 		{% endif %}
 		{# add/edit #}
 		{%  if (currentFunction == "edit" and currentController != "user") %}
-			<a class="btn btn-outline-light" href="/{{ currentController }}/show/{{ id|number_format }}">Back to post</a>
+			<a class="btn btn-outline-light" href="/{{ currentController }}/show/{{ id|number_format }}">
+				Back to show
+				<i class="fa fa-eye" aria-hidden="true"></i>
+			</a>
 		{% endif %}
-		<a class="btn btn-outline-light" href="/{{ currentController }}/index">Index {{ currentController }}</a>
-		<a class="btn btn-outline-light" href="/home/admin">Admin</a>
+		<a class="btn btn-outline-light" href="/{{ currentController }}/index">
+			Index {{ currentController }}
+			<i class="fa fa-home" aria-hidden="true"></i>
+		</a>
+		<a class="btn btn-outline-light" href="/home/admin">
+			Admin
+			<i class="fa fa-lock" aria-hidden="true"></i>
+		</a>
 	</div>
 </div>
 {% else %}
 <div class="container-fluid d-flex justify-content-center bg-dark p-1 border-bottom border-white">
 	<div class="btn-group">
 		{# home #}
-		<a class="btn btn-outline-light" href="/home/admin">Admin</a>
+		<a class="btn btn-outline-light" href="/home/admin">
+			Admin
+			<i class="fa fa-lock" aria-hidden="true"></i>
+		</a>
 	</div>
 </div>
 {% endif %}

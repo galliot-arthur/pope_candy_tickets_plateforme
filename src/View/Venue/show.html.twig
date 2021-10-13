@@ -1,11 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-dark m-1" href="/venue/edit/{{ venue.id }}">Editer</a>
-        <a class="btn btn-dark m-1" href="/venue/delete/{{venue.id}}">Supprimer</a>
-        <a class="btn btn-dark m-1" href="/home/admin">Administration</a>
-    </div>
 
     <h1>{{ venue.title }}</h1>
 
@@ -16,6 +11,7 @@
             <div>Accès Mobilité réduite : <b>{{ venue.disabled_access }}</b></div>
             <div>Accès VIP : <b>{{ venue.vip_available }}</b></div>
         </div>
+        <img src="/assets/images/venues/{{venue.id}}.jpg" alt="illustration de {{venue.title}}">
     </div>
 
 

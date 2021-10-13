@@ -2,22 +2,25 @@
 
 {% block content %}
     <h1>{{ userProfile.firstname }} {{ userProfile.name }}</h1>
-        <ul class="list-group">
-          <li class="list-group-item">
-              Prénom : {{ userProfile.firstname }}
-          </li>
-          <li class="list-group-item">
-              Nom : {{ userProfile.name }}
-          </li>
-          <li class="list-group-item">
-              Email : {{ userProfile.email }}
-          </li>
-          <li class="list-group-item">
-              Adresse : {{ userProfile.adress }}
-          </li>
-          <li class="list-group-item">
-              Age : {{ userProfile.age }} ans
-          </li>
-          <a class="btn btn-dark" href="/user/edit/{{ userProfile.id }}">Editer mon profil</a>
-        </ul>
+    <a class="btn btn-dark mb-2" href="/user/edit/{{ userProfile.id }}">
+        Editer mon profil
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+    </a>
+    <ul class="list-group">
+      <li class="list-group-item">
+          Prénom : {{ userProfile.firstname }}
+      </li>
+      <li class="list-group-item">
+          Nom : {{ userProfile.name }}
+      </li>
+      <li class="list-group-item">
+          Email : {{ userProfile.email }}
+      </li>
+      <li class="list-group-item">
+          Adresse : {{ userProfile.adress }}
+      </li>
+      <li class="list-group-item">
+          Age : {{ userProfile.age }} ans
+      </li>
+    </ul>
 {% endblock %}

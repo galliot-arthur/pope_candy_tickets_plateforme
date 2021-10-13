@@ -53,10 +53,7 @@ class UserController extends AbstractController
                     false,
                     'Parametres invalides, merci de rééssayer.'
                 );
-                $this->setFlash(
-                    true,
-                    "Profile edité avec succès"
-                );
+
                 header("Location:/user/edit/$id");
                 exit;
             }
@@ -71,10 +68,11 @@ class UserController extends AbstractController
             ];
             $userModel->update($user);
 
-
             // message success
-
-
+            $this->setFlash(
+                true,
+                "Profile edité avec succès"
+            );
             header("Location: /user/profile/$id");
             exit;
         }
@@ -283,8 +281,8 @@ class UserController extends AbstractController
     public function buyedTickets()
     {
         $bookingModel = new BookingsModel;
-        //echo "<pre>"; var_dump($_SESSION['user']['id']); echo"</pre>"; die;
         $shows = $bookingModel->getUserShow($_SESSION['user']['id']);
+        //echo "<pre>"; var_dump($shows); echo"</pre>"; die;
 
         return $this
             ->twig
@@ -323,7 +321,7 @@ class UserController extends AbstractController
             exit;
         }
 
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             isset($_POST['admin']) ? $admin = 1 : $admin = 0;
@@ -332,7 +330,20 @@ class UserController extends AbstractController
                 'id' => $id,
                 'admin' => $admin
             ];
-            $userModel->update($userToUpdate);
+            $result = $userModel->update($userToUpdate);
+
+            if (!$result) {
+                $this->setFlash(
+                    false,
+                    'Erreur, merci de réesayer.'
+                );
+            } else {
+                $this->setFlash(
+                    true,
+                    'Utilisateur correctement modifié.'
+                );
+            }
+
             header("Location: /user/index");
             exit;
         }

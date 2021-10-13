@@ -118,7 +118,7 @@ class VenueController extends AbstractController
             if ($result) {
                 $this->setFlash(
                     true,
-                    "Ce lieu à bien été ajouté."
+                    "Ce lieu à bien été édité."
                 );
             };
         }
@@ -201,5 +201,9 @@ class VenueController extends AbstractController
             "Ce lieu à bien été supprimée"
         );
         header('Location:/venue/index');
+    }
+
+    public function addImage(int $id)
+    {
     }
 }

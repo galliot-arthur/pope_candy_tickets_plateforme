@@ -198,22 +198,33 @@ abstract class AbstractModel
 
 
     /**
-     * Une fonction query avec une modulation sur le WHERE
+     * Une fonction query avec des modulations sur le WHERE
      *
-     * @param string $key 
-     * @param string $value
+     * @param array $array Tableau de recherche "WHERE $key = $value"
      * @return void
      */
-    public function selectAllWhere(string $key, string $value): array
+    public function selectAllWhere(array $array): array
     {
+        $fields = "";
+        $values = [];
+        $firstKey = true;
+        foreach ($array as $key => $value) {
+            if ($firstKey) {
+                $fields .= "$key = ?";
+                $firstKey = false;
+            } else {
+                $fields .= "and $key = ?";
+            }
+            $values[] = $value;
+        }
         $statement = $this
             ->pdo
             ->prepare(
                 "SELECT * 
             FROM $this->table 
-            WHERE $key = ?"
+            WHERE $fields"
             );
-        $statement->execute([$value]);
+        $statement->execute($values);
         return $statement->fetchAll();
     }
 }
