@@ -59,7 +59,7 @@ class Image extends AbstractController
                             }
                         } */
 
-                        $result = move_uploaded_file($_FILES['image']['tmp_name'], "$dossier\\$id.jpg");
+                        $result = move_uploaded_file($_FILES['image']['tmp_name'], "$dossier/$id.jpg");
                         var_dump($result); // On fini par mettre la photo dans le dossier
                         return $result;
                     } else {
