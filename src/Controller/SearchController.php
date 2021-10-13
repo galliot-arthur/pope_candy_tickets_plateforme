@@ -20,8 +20,7 @@ class SearchController extends AbstractController
 
         $searchModel = new SearchModel;
         $search = $searchModel->allShowsWithArtist();
-        $top_shows = $searchModel->allShowsWithArtist();
-
+        
         $search = $this->getSalesStatusArray($search);
         $top_shows = $this->getSalesStatusArray($top_shows);
 
