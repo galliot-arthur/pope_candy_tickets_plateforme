@@ -17,8 +17,10 @@
                         {{ candy_show.title }}
                     </div>
                     <div class="col-4 text-end d-flex flex-column justify-content-between">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                        {{ candy_show.show_start|date("d/m/y") }}
+                        <span>
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            {{ candy_show.show_start|date("d/m/y") }}
+                        </span>
                         {% if userSession.admin == 1 %}
                             <div class="text-danger">Billeterie {{ candy_show.salesStatus }}</div>
                         {% endif %}
