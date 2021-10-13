@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>POPE CANDY TOUR</h1>
+
+    <ul class="list-group">
+        {% for candy_show in candy_shows %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-8">
+                        <a 
+                            class="lead"
+                            href="/candy_show/show/{{ candy_show.id }}">
+                            POPE CANDY w/ {{ candy_show.artist_name }}
+                        </a><br/>
+                        {{ candy_show.title }}
+                    </div>
+                    <div class="col-4 text-end d-flex flex-column justify-content-between">
+                        {{ candy_show.show_start|date("d/m/y") }}
+                        {% if userSession.admin == 1 %}
+                            <div class="text-danger">Billeterie {{ candy_show.salesStatus }}</div>
+                        {% endif %}
+                        
+                        <div class="text-muted">
+                            {{ candy_show.show_start|date("H:i") }} -
+                            {{ candy_show.show_end|date("H:i") }}
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        {% else %}
+            <li class="list-group-item">Nothing to display</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
