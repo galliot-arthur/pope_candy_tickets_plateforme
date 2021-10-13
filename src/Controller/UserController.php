@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Model\ArtistsModel;
 use App\Model\BookingsModel;
+use App\Model\Candy_showModel;
 use App\Model\UserModel;
 
 class UserController extends AbstractController
@@ -281,15 +283,22 @@ class UserController extends AbstractController
     public function buyedTickets()
     {
         $bookingModel = new BookingsModel;
-        $shows = $bookingModel->getUserShow($_SESSION['user']['id']);
-        //echo "<pre>"; var_dump($shows); echo"</pre>"; die;
-
+        $tickets = $bookingModel->getUserShow($_SESSION['user']['id']);
+        
+        
+        $artistsModel = new ArtistsModel;
+        $candy_showModel = new Candy_showModel;
+        foreach($tickets as $key => $ticket) {
+            $show = $candy_showModel->selectOneById($ticket['showId']);
+            $tickets[$key]['first_part'] = ($artistsModel->selectOneById($show['first_part']))['name']; 
+        }
+        
         return $this
             ->twig
             ->render(
                 'User/buyedTickets.html.twig',
                 [
-                    'shows' => $shows,
+                    'tickets' => $tickets,
                     'currentController' => 'user',
                     'pageFunction' => 'buyedTickets',
                     'userSession' => $this->userSession(),

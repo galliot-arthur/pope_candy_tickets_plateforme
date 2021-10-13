@@ -38,15 +38,16 @@ class BookingsModel extends AbstractModel
                 ->pdo
                 ->prepare(
                     "SELECT
-                b.ref_id AS showId,
-                b.ref AS showName,  
-                b.type AS ticketType,
-                c.title AS showTitle,
-                c.show_start AS showStart,
-                c.id AS showId
-                FROM bookings AS b
-                LEFT JOIN candy_show AS c ON c.id = b.ref_id
-                WHERE b.id_user = ?"
+                    b.ref_id AS showId,
+                    b.ref AS showName,  
+                    b.type AS ticketType,
+                    b.holder,
+                    c.title AS showTitle,
+                    c.show_start AS showStart,
+                    c.id AS showId
+                    FROM bookings AS b
+                    LEFT JOIN candy_show AS c ON c.id = b.ref_id
+                    WHERE b.id_user = ?"
                 );
             $values = [$user_id];
         } else {
@@ -54,16 +55,16 @@ class BookingsModel extends AbstractModel
                 ->pdo
                 ->prepare(
                     "SELECT
-                b.ref_id AS showId,
-                b.ref AS showName,  
-                b.type AS ticketType,
-                c.title AS showTitle,
-                c.show_start AS showStart,
-                c.id AS showId
-                FROM bookings AS b
-                LEFT JOIN candy_show AS c ON c.id = b.ref_id
-                WHERE b.id_user = ?
-                AND b.ref_id = ?"
+                    b.ref_id AS showId,
+                    b.ref AS showName,  
+                    b.type AS ticketType,
+                    c.title AS showTitle,
+                    c.show_start AS showStart,
+                    c.id AS showId
+                    FROM bookings AS b
+                    LEFT JOIN candy_show AS c ON c.id = b.ref_id
+                    WHERE b.id_user = ?
+                    AND b.ref_id = ?"
                 );
             $values = [$user_id, $show_id];
         }

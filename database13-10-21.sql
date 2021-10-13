@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : ven. 08 oct. 2021 à 13:30
+-- Généré le : mer. 13 oct. 2021 à 09:13
 -- Version du serveur : 5.7.33
 -- Version de PHP : 7.4.19
 
@@ -56,6 +56,7 @@ CREATE TABLE `bookings` (
   `ref_id` int(11) DEFAULT NULL,
   `ref` varchar(50) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
+  `holder` varchar(255) NOT NULL,
   `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -63,67 +64,29 @@ CREATE TABLE `bookings` (
 -- Déchargement des données de la table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `ref_id`, `ref`, `id_user`, `type`) VALUES
-(9, 6, 'Paris @ AccorHotels Arena', 3, 1),
-(10, 6, 'Paris @ AccorHotels Arena', 3, 1),
-(11, 6, 'Paris @ AccorHotels Arena', 3, 0),
-(12, 8, 'Grenoble @ La Belle Electrique', 3, 0),
-(13, 8, 'Grenoble @ La Belle Electrique', 3, 1),
-(14, 8, 'Grenoble @ La Belle Electrique', 3, 0),
-(15, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(16, 7, 'Grenoble @ La Belle Electrique', 3, 1),
-(17, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(18, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(19, 9, 'Grenoble @ La Belle Electrique', 6, 1),
-(20, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(21, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(22, 9, 'Grenoble @ La Belle Electrique', 6, 1),
-(23, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(24, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(25, 9, 'Grenoble @ La Belle Electrique', 6, 1),
-(26, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(27, 7, 'Grenoble @ La Belle Electrique', 6, 0),
-(28, 7, 'Grenoble @ La Belle Electrique', 6, 1),
-(29, 7, 'Grenoble @ La Belle Electrique', 6, 0),
-(30, 7, 'Grenoble @ La Belle Electrique', 6, 0),
-(31, 7, 'Grenoble @ La Belle Electrique', 6, 1),
-(32, 7, 'Grenoble @ La Belle Electrique', 6, 0),
-(33, 8, 'Grenoble @ La Belle Electrique', 6, 0),
-(34, 8, 'Grenoble @ La Belle Electrique', 6, 1),
-(35, 8, 'Grenoble @ La Belle Electrique', 6, 0),
-(36, 8, 'Grenoble @ La Belle Electrique', 6, 0),
-(37, 8, 'Grenoble @ La Belle Electrique', 6, 1),
-(38, 8, 'Grenoble @ La Belle Electrique', 6, 0),
-(39, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(40, 9, 'Grenoble @ La Belle Electrique', 6, 1),
-(41, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(42, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(43, 9, 'Grenoble @ La Belle Electrique', 6, 1),
-(44, 9, 'Grenoble @ La Belle Electrique', 6, 0),
-(45, 9, 'Toulouse @ Le Bikini', 3, 1),
-(46, 9, 'Toulouse @ Le Bikini', 3, 1),
-(47, 9, 'Toulouse @ Le Bikini', 3, 1),
-(48, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(49, 7, 'Grenoble @ La Belle Electrique', 3, 1),
-(50, 7, 'Grenoble @ La Belle Electrique', 3, 2),
-(51, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(52, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(53, 7, 'Grenoble @ La Belle Electrique', 3, 1),
-(54, 7, 'Grenoble @ La Belle Electrique', 3, 1),
-(55, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(56, 7, 'Grenoble @ La Belle Electrique', 3, 1),
-(57, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(58, 7, 'Grenoble @ La Belle Electrique', 3, 1),
-(59, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(60, 7, 'Grenoble @ La Belle Electrique', 3, 1),
-(61, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(62, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(63, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(64, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(65, 7, 'Grenoble @ La Belle Electrique', 3, 1),
-(66, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(67, 7, 'Grenoble @ La Belle Electrique', 3, 0),
-(68, 7, 'Grenoble @ La Belle Electrique', 3, 1);
+INSERT INTO `bookings` (`id`, `ref_id`, `ref`, `id_user`, `holder`, `type`) VALUES
+(101, 7, 'Grenoble @ La Belle Electrique', 3, 'Sophie Valencourt', 0),
+(102, 7, 'Grenoble @ La Belle Electrique', 3, 'Eric Vautier', 1),
+(103, 7, 'Grenoble @ La Belle Electrique', 3, 'Daphné Azudot', 2),
+(104, 10, 'Marseille @ Stade Orange Vélodrome', 3, 'John Talabot', 1),
+(105, 10, 'Marseille @ Stade Orange Vélodrome', 3, 'Silvie Vartant', 1),
+(106, 10, 'Marseille @ Stade Orange Vélodrome', 3, 'Peter Grimson', 1),
+(107, 6, 'Paris @ AccorHotels Arena', 3, 'Leo Costa', 0),
+(108, 6, 'Paris @ AccorHotels Arena', 3, 'Silvie Vartant', 1),
+(109, 6, 'Paris @ AccorHotels Arena', 3, 'Lucie Balard', 0),
+(110, 7, 'Grenoble @ La Belle Electrique', 6, 'Sophie Valencourt', 0),
+(111, 7, 'Grenoble @ La Belle Electrique', 6, 'Jean Duboit', 1),
+(112, 10, 'Marseille @ Stade Orange Vélodrome', 6, 'John Talabot', 1),
+(113, 10, 'Marseille @ Stade Orange Vélodrome', 6, 'Eric Vautier', 1),
+(114, 10, 'Marseille @ Stade Orange Vélodrome', 6, 'Daphné Azudot', 1),
+(115, 6, 'Paris @ AccorHotels Arena', 6, 'John Talabot', 0),
+(116, 6, 'Paris @ AccorHotels Arena', 6, 'Eric Vautier', 0),
+(117, 6, 'Paris @ AccorHotels Arena', 6, 'Daphné Azudot', 1),
+(118, 7, 'Grenoble @ La Belle Electrique', 8, 'François Gaurale', 0),
+(119, 7, 'Grenoble @ La Belle Electrique', 8, 'Eulalie Delpierre', 2),
+(120, 10, 'Marseille @ Stade Orange Vélodrome', 8, 'François Gaurale', 1),
+(121, 10, 'Marseille @ Stade Orange Vélodrome', 8, 'Eulalie Delpierre', 1),
+(122, 10, 'Marseille @ Stade Orange Vélodrome', 8, 'Peter Grimson', 1);
 
 -- --------------------------------------------------------
 
@@ -150,11 +113,11 @@ CREATE TABLE `candy_show` (
 --
 
 INSERT INTO `candy_show` (`id`, `title`, `venue`, `first_part`, `first_part_website`, `price`, `show_start`, `show_end`, `sales_on`, `sold_out`, `sales`) VALUES
-(6, 'Paris @ AccorHotels Arena', 3, '2', NULL, 100, '2022-04-09 21:30:00', '2022-04-09 00:30:00', '2021-12-11 00:00:00', 1, 25),
-(7, 'Grenoble @ La Belle Electrique', 10, '4', NULL, 60, '2021-10-27 21:00:00', '2021-10-27 23:30:00', '2021-10-07 00:00:00', NULL, 27),
-(8, 'Nice @ Palais Nikaïa', 12, '5', NULL, 95, '2022-08-05 20:30:00', '2022-08-05 23:30:00', '2021-10-25 00:00:00', NULL, 6),
-(9, 'Toulouse @ Le Bikini', 11, '1', NULL, 60, '2023-04-29 21:00:00', '2023-04-29 23:30:00', '2021-12-25 00:00:00', NULL, 11),
-(10, 'Marseille @ Stade Orange Vélodrome', 14, '2', NULL, 70, '2022-04-02 21:30:00', '2022-04-02 00:30:00', '2021-11-20 00:00:00', NULL, 0);
+(6, 'Paris @ AccorHotels Arena', 3, '2', NULL, 100, '2022-04-09 21:30:00', '2022-04-09 00:30:00', '2021-12-11 00:00:00', NULL, 6),
+(7, 'Grenoble @ La Belle Electrique', 10, '4', NULL, 60, '2021-10-27 21:00:00', '2021-10-27 23:30:00', '2021-10-07 00:00:00', NULL, 7),
+(8, 'Nice @ Palais Nikaïa', 12, '5', NULL, 95, '2022-08-05 20:30:00', '2022-08-05 23:30:00', '2021-10-25 00:00:00', NULL, 0),
+(9, 'Toulouse @ Le Bikini', 11, '1', NULL, 60, '2023-04-29 21:00:00', '2023-04-29 23:30:00', '2021-12-25 00:00:00', NULL, 0),
+(10, 'Marseille @ Stade Orange Vélodrome', 14, '2', NULL, 70, '2022-04-02 21:30:00', '2022-04-02 00:30:00', '2021-10-13 00:00:00', NULL, 9);
 
 -- --------------------------------------------------------
 
@@ -167,6 +130,16 @@ CREATE TABLE `images` (
   `alt` varchar(255) NOT NULL,
   `context` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `images`
+--
+
+INSERT INTO `images` (`id`, `alt`, `context`) VALUES
+(13, 'pope candy in limoge\'s streets', '                                    Pope Candy à Limoge\r\n            \r\n            \r\n            '),
+(14, 'pope candy on stage', 'Pope Candy au Soda Festival, Paris 2019'),
+(16, 'pope candy nice picture', 'Pope Candy à Los Angeles, 2019'),
+(17, 'pope candy fashion week 2020', 'Pope Candy lors de la fashion week à Paris en 2020');
 
 -- --------------------------------------------------------
 
@@ -221,12 +194,16 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `firstname`, `adress`, `age`, `acces_right`, `admin`) VALUES
-(1, 'Decilien', 'roosevelt.decilien@yahoo.fr', '$2y$10$ZdwEadnzX1A/V9cALp.Rhu7l1uVAtMM.SE6Bl6G2EsI53GRUQqsCG', 'Magdarline', 'poissy', 32, NULL, NULL),
-(2, 'Morin', 'morino@edgardino.com', '$2y$10$NZo97h6HvN41lSdTL0ih7O3cfuICkBql02UlQ.xehCauPlMPDNaOC', 'Edgard', 'sdsd', 107, NULL, NULL),
-(3, 'Bernard', 'tapis@tuvasnousmanquer.fr', '$2y$10$xmJNnCKY8hDKBhnOlyOSnejZWWJt/pWGGzp/N0BSXtMC/lLPBfNZW', 'Tapis', 'Paradis', 78, NULL, '1'),
-(4, 'Frechon', 'frais@choin.org', '$2y$10$WLFjEao.NSMa2W.dC894Vubidp.24W.9ghf9Osep.6ITqYNL7qquG', 'Eric', 'azeazea', 64, NULL, NULL),
+(1, 'Decilien', 'roosevelt.decilien@yahoo.fr', '$2y$10$ZdwEadnzX1A/V9cALp.Rhu7l1uVAtMM.SE6Bl6G2EsI53GRUQqsCG', 'Magdarline', 'poissy', 32, NULL, '1'),
+(2, 'Morin', 'morino@edgardino.com', '$2y$10$NZo97h6HvN41lSdTL0ih7O3cfuICkBql02UlQ.xehCauPlMPDNaOC', 'Edgard', 'sdsd', 107, NULL, '1'),
+(3, 'Tapis', 'tapis@tuvasnousmanquer.fr', '$2y$10$xmJNnCKY8hDKBhnOlyOSnejZWWJt/pWGGzp/N0BSXtMC/lLPBfNZW', 'Bernard', 'Paradis', 78, NULL, '1'),
+(4, 'Frechon', 'frais@choin.org', '$2y$10$WLFjEao.NSMa2W.dC894Vubidp.24W.9ghf9Osep.6ITqYNL7qquG', 'Eric', 'azeazea', 64, NULL, '0'),
 (5, 'Junio', 'jujugege@gmail.com', '$2y$10$jj72l2vR6Fa22L/2wq9IwOWUjwRMmH0zeLo9Q82RnQ2lwqCXi2FYy', 'Gerard', 'Chez le père noel', 64, NULL, NULL),
-(6, 'BIGBOYYY', 'bigboy@caramail.fr', '$2y$10$IOYLMMdKbgz274tdJVsW.OgA/76TBVjm0x4lGQAuH3QhqyLYtl7cq', 'Eric', '75 rue des Octobres Bleu 75020 Paris', 34, NULL, NULL);
+(6, 'BIGBOYYY', 'bigboy@caramail.fr', '$2y$10$IOYLMMdKbgz274tdJVsW.OgA/76TBVjm0x4lGQAuH3QhqyLYtl7cq', 'Eric', '75 rue des Octobres Bleu 75020 Paris', 34, NULL, NULL),
+(7, 'Princesse', 'princesse@star.com', '$2y$10$bmuXtBrOwXYrpZ/XpuuUCOrvXztJ3lNRVfhjkq7btNSc6x3vleon6', 'Amidala', 'Tatoine', 24, NULL, NULL),
+(8, 'Godard', 'jj@cinetek.fr', '$2y$10$7eCxwHDdooMqTOkcbZ0z3uGR3n0YFM5kvqad4v3cTZvXVQabnoEmW', 'Jean Luc', '75 rue des Octobres Bleu 75020 Paris', 90, NULL, NULL),
+(9, 'Talaboman', 'johntalabot@hiverndiscs.com', '$2y$10$QTEZgy3pRVl0lxNtYvgroOi6C7p03gyk2Aqn75l/g4dOcjamFVoSe', 'John', 'Carrer de Mallorca, 401, 08013 Barcelona, Espagne', 45, NULL, NULL),
+(10, 'Davant', 'soph666@gmail.com', '$2y$10$ozNbdC3cgvoNxBP5Iz4J3O0sTzMF/vovsBykNJBrkZy9c4IDx1O4O', 'Sophie', 'Meteo France', 64, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -250,13 +227,13 @@ CREATE TABLE `venues` (
 --
 
 INSERT INTO `venues` (`id`, `title`, `town`, `disabled_access`, `address`, `capacity`, `vip_available`, `prices`) VALUES
-(2, 'Transbordeur', 'Villeurbanne', 1, '3 Bd de Stalingrad, 69100 Villeurbanne', 30, 0, 0),
-(3, 'AccorHotels Arena', 'Paris', 1, '8 Bd de Bercy, 75012 Paris', 60, 1, 0),
-(10, 'La Belle Electrique', 'Grenoble', 1, '12 Esp. Andry Farcy, 38000 Grenoble', 30, 1, 0),
-(11, 'Le Bikini', 'Toulouse', 1, 'Parc Technologique du Canal, Rue Théodore Monod, 31520 Ramonville-Saint-Agne', 10, 0, 0),
+(2, 'Transbordeur', 'Villeurbanne', 1, '3 Bd de Stalingrad, 69100 Villeurbanne', 9, 0, 0),
+(3, 'AccorHotels Arena', 'Paris', 1, '8 Bd de Bercy, 75012 Paris', 7, 1, 0),
+(10, 'La Belle Electrique', 'Grenoble', 1, '12 Esp. Andry Farcy, 38000 Grenoble', 14, 1, 0),
+(11, 'Le Bikini', 'Toulouse', 1, 'Parc Technologique du Canal, Rue Théodore Monod, 31520 Ramonville-Saint-Agne', 4, 0, 0),
 (12, 'Palais Nikaïa', 'Nice', 1, 'Bd du Mercantour, 06200 Nice', 9, 1, 0),
-(13, 'H Arena', 'Nantes', 1, 'Rue René Viviani, 44200 Nantes', 50, 1, 0),
-(14, 'Stade Orange Vélodrome', 'Marseille', 1, '3 Bd Michelet, 13008 Marseille', 80, 1, 0);
+(13, 'H Arena', 'Nantes', 1, 'Rue René Viviani, 44200 Nantes', 12, 1, 0),
+(14, 'Stade Orange Vélodrome', 'Marseille', 1, '3 Bd Michelet, 13008 Marseille', 12, 1, 0);
 
 --
 -- Index pour les tables déchargées
@@ -326,19 +303,19 @@ ALTER TABLE `artists`
 -- AUTO_INCREMENT pour la table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT pour la table `candy_show`
 --
 ALTER TABLE `candy_show`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pour la table `prices`
@@ -350,7 +327,7 @@ ALTER TABLE `prices`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `venues`
