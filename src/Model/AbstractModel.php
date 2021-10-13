@@ -227,4 +227,18 @@ abstract class AbstractModel
         $statement->execute($values);
         return $statement->fetchAll();
     }
+
+    public function search(string $search) {
+        $statement=$this
+            ->pdo
+            ->prepare(
+                "SELECT * 
+                FROM $this->table 
+                WHERE title 
+                LIKE '%$search%' 
+                ORDER BY id DESC");
+        $statement->execute([$search]);
+        return $statement->fetchAll();
+    }
+
 }

@@ -17,24 +17,29 @@ class SearchController extends AbstractController
      */
     public function index()
     {
+        if(isset($_POST['search']) AND !empty($_POST['search'])) {
+            $search = htmlspecialchars($_POST['search']);
 
-        $searchModel = new SearchModel;
-        $search = $searchModel->allShowsWithArtist();
+            $searchModel = new Candy_showModel;
+
+            $results = $searchModel->search($search);
+
+            
+            
+            // if($articles->rowCount() == 0) {
+                // $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%'.$q.'%" ORDER BY id DESC');
+            // }
+        }
+
         
-        $search = $this->getSalesStatusArray($search);
-        $top_shows = $this->getSalesStatusArray($top_shows);
-
-        $searchModel = new SearchModel;
-        $pictures = $searchModel->selectAll();
+    
 
         return $this
             ->twig
             ->render(
                 'Search/index.html.twig',
                 [
-                    'search' => $search,
-                    'top_shows' => $top_shows,
-                    'pictures' => $pictures,
+                    'results' => $results,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
