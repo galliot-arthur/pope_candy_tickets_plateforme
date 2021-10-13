@@ -16,9 +16,21 @@
         POPE CANDY
         <i class="fa fa-star" aria-hidden="true"></i>
       </a>
-      <form action="/search/index" method="POST" class="btn btn-light mb-1 me-1">
-        <input  type="search" name="search" placeholder="Recherche..."/>
-        <input type="submit" value="Valider"/>
+      <form 
+          action="/search/index" 
+          method="POST" 
+          class="btn btn-light mb-1 me-1"
+          style="width: 200px;">
+          <input 
+            class="form-search"
+            type="search"
+            name="search"
+            placeholder="Rechercher"/>
+          <button 
+            class="form-search-button"
+            type="submit">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
       </form>
     </div>
   </div>

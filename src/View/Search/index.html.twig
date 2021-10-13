@@ -30,7 +30,14 @@
             </li>
 
         {% else %}
-            <li class="list-group-item">Nothing to display</li>
+            <li class="list-group-item">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                Aucuns résultats.
+                <br>
+                <span class="text-muted">
+                    Merci de préciser votre recherche.
+                </span>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

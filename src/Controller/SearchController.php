@@ -24,11 +24,13 @@ class SearchController extends AbstractController
 
             $results = $searchModel->search($search);
 
-            
-            
-            // if($articles->rowCount() == 0) {
-                // $articles = $bdd->query('SELECT titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%'.$q.'%" ORDER BY id DESC');
-            // }
+        } else {
+            header("Location:/home");
+            $this->setFlash(
+                false,
+                "Merci de préciser votre recherche."
+            );
+            exit;
         }
 
         
@@ -40,22 +42,6 @@ class SearchController extends AbstractController
                 'Search/index.html.twig',
                 [
                     'results' => $results,
-                    'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert(),
-                    'currentFunction' => 'index',
-                    'currentController' => 'home',
-                ]
-            );
-    }
-
-    public function admin()
-    {
-
-        return $this
-            ->twig
-            ->render(
-                "Search/index.html.twig",
-                [
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),
                     'currentFunction' => 'index',
