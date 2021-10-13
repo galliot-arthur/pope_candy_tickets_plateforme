@@ -292,7 +292,6 @@ class BookingsController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
             return $this
                 ->twig
                 ->render(
@@ -327,16 +326,16 @@ class BookingsController extends AbstractController
 
             $bookingModel = new BookingsModel;
 
-            foreach ($tickets as $ticket) {
+            foreach ($tickets as $key => $ticket) {
                 $ticket = [
                     'ref_id' => $_POST['id'],
                     'ref' => $_SESSION['booking']['show']['title'],
                     'id_user' => $_SESSION['user']['id'],
+                    'holder' => $key,
                     'type' => $ticket['ticket_type'],
                 ];
                 $bookingModel->insert($ticket);
             }
-
             $candy_showModel = new Candy_showModel;
             $show = $candy_showModel->selectOneById($idShow);
 

@@ -67,7 +67,11 @@
 
                                         <div class="mt-2">
                                             {% if candy_show.sold_out == "COMPLET" %}
-                                                <b>{{ tot_show.sold_out }}</b>
+                                                <a 
+                                                    href="/candy_show/show/{{ candy_show.id }}"
+                                                    class="text-danger noUnderline">
+                                                    <b>{{ candy_show.sold_out }}</b>
+                                                    </a>
                                             {% elseif candy_show.sales_on|date("dmy") > "now"|date("dmy") %}
                                                 <div class="text-muted">
                                                     Ouverture des ventes : 
