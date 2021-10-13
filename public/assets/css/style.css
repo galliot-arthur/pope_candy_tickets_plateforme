@@ -28,6 +28,13 @@ h1 {
     text-transform: uppercase;
 }
 
+.h1 {
+    text-shadow: 0 1px 0 #ffffff1f, 0 -1px 0 #79baf01f;
+    color: white;
+    text-transform: uppercase;
+    text-align: left;
+}
+
 h2 {
     text-transform: uppercase;
     font-weight: bolder;
