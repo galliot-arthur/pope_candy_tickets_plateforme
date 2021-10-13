@@ -59,9 +59,10 @@
                     name="type1"
                     id="type1"
                     requiered>
-                    <option selected>Choisir...</option>
+                    <option>Choisir...</option>
                     {% for price in prices %}
                         <option
+                            {{ loop.first ? "selected" : "" }}
                             value="{{ price.id }}">
                             {{ price.ticket_name }}
                             </option>
@@ -93,9 +94,10 @@
                     name="type2"
                     id="type2"
                     requiered>
-                    <option selected>Choisir...</option>
+                    <option>Choisir...</option>
                     {% for price in prices %}
                         <option
+                            {{ loop.first ? "selected" : "" }}
                             value="{{ price.id }}">
                             {{ price.ticket_name }}
                             </option>
@@ -126,9 +128,10 @@
                     class="form-select" 
                     name="type3"
                     id="type3">
-                    <option selected>Choisir...</option>
+                    <option>Choisir...</option>
                     {% for price in prices %}
                         <option
+                            {{ loop.first ? "selected" : "" }}
                             value="{{ price.id }}">
                             {{ price.ticket_name }}
                             </option>
