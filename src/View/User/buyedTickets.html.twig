@@ -7,22 +7,29 @@
 		<li class="list-group-item text-muted">
 			Vos différentes places pour les spectacles de POPE CANDY :
 		</li>
-		{% for show in shows|sort((a ,b) => a.showStart <=> b.showStart) %}
+		{# {{ category = 0 }} #}
+		{% for show in tickets|sort((a ,b) => a.showStart <=> b.showStart) %}
+
 			<li class="list-group-item">
-				<h4>{{ show.showTitle }}
-					le
-					{{ show.showStart|date('d/m/y')}}
-                </h4>
+				<a
+                    class="h2 noUnderline"
+                    href="/candy_show/show/{{ show.showId }}">
+                    Pope Candy & {{show.first_part}}<br/>
+                </a>
+				<h5>
+					<i class="fa fa-map-marker" aria-hidden="true"></i>
+					{{ show.showTitle }}
+                </h5>
 				<div class="row">
 					<div class="col-8">
+						<i class="fa fa-calendar-o" aria-hidden="true"></i>
+						{{ show.showStart|date('d/m/y')}} <br>
 						Commence à
 						{{ show.showStart|date('H:i')}}
 					</div>
 					<div class="col-4">
-						<a 
-                            href="/candy_show/show/{{ show.showId }}">
-                            Plus de détails
-                            </a>
+						Nom : <br>
+						<b>{{ show.holder }}</b>
 					</div>
 				</div>
 			</li>
@@ -30,7 +37,7 @@
 			<li 
                 class="list-group-item d-flex justify-content-between">
                 Vous n'avez pas encore acheté de billet sur notre site.
-                </li>
+            </li>
 		{% endfor %}
 	</ul>
 

@@ -205,5 +205,33 @@ class VenueController extends AbstractController
 
     public function addImage(int $id)
     {
+        // if ($_FILES['image']['name']) {
+
+        //     if (!isset($_FILES)) {
+        //         $this->setFlash(
+        //             false,
+        //             'Merci de joindre un fichier.'
+        //         );
+        //         header("Location:/images/add");
+        //         exit;
+        //     }
+
+        //     $imagesModel = new imagesModel();
+        //     $images = [
+        //         'alt' => $_POST['alt'],
+        //         'context' => $_POST['context'],
+
+        //     ];
+        //     $id = $imagesModel->insert($images);
+
+        //     if (!$id) {
+        //         $this->setFlash(
+        //             false,
+        //             'Erreur dans la base de donnée.'
+        //         );
+        //         header("Location:/images/add");
+        //         exit;
+        //     }
+
     }
 }

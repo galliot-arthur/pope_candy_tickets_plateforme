@@ -66,7 +66,15 @@ class Candy_showController extends AbstractController
         } else {
             $alreadyBought = false;
         }
-
+        $address = str_replace(
+            ' ',
+            '+',
+            str_replace(
+                ['.', ','],
+                '',
+                $candy_show['venueAddress']
+            )
+        );
 
         return $this
             ->twig
@@ -76,6 +84,7 @@ class Candy_showController extends AbstractController
                     'id' => $id,
                     'candy_show' => $candy_show,
                     'sold_out' => $sold_out,
+                    'address' => $address,
                     'alreadyBought' => $alreadyBought,
                     'userSession' => $this->userSession(),
                     'flash' => $this->flashAlert(),

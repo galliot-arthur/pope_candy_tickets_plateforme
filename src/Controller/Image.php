@@ -44,10 +44,10 @@ class Image extends AbstractController
 
                     if (in_array($extensionUpload, $acceptedExtensions)) { // Vérifie que l'extension est correct
                         // 
-                        $dossier = "C:\laragon\www\pope_candy_tickets_plateforme\public\assets\images\\$folder";
+                        $dossier = __DIR__ . "/../../public/assets/images/$folder";
                         //$dossier = "\assets\images\\$folder";
-                        $recordedFile = "\\$id.jpg";
-                        echo "extension<br>";
+                        $recordedFile = "/$id.jpg";
+/*                         echo "extension<br>";
                         if (!is_dir($dossier)) { // Si le nom de dossier n'existe pas alors on le crée
                             mkdir($dossier);
                             echo "mkdir<br>";
@@ -57,9 +57,9 @@ class Image extends AbstractController
                                 unlink("$recordedFile");
                                 echo "unlink<br>";
                             }
-                        }
+                        } */
 
-                        $result = move_uploaded_file($_FILES['image']['tmp_name'], "$dossier\\$id.jpg");
+                        $result = move_uploaded_file($_FILES['image']['tmp_name'], "$dossier/$id.jpg");
                         var_dump($result); // On fini par mettre la photo dans le dossier
                         return $result;
                     } else {
