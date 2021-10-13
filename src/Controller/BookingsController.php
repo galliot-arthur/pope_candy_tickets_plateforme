@@ -327,7 +327,6 @@ class BookingsController extends AbstractController
             $bookingModel = new BookingsModel;
 
             foreach ($tickets as $key => $ticket) {
-                //echo "<pre>"; var_dump($key); echo "</pre>";
                 $ticket = [
                     'ref_id' => $_POST['id'],
                     'ref' => $_SESSION['booking']['show']['title'],
@@ -337,7 +336,6 @@ class BookingsController extends AbstractController
                 ];
                 $bookingModel->insert($ticket);
             }
-            //die;
             $candy_showModel = new Candy_showModel;
             $show = $candy_showModel->selectOneById($idShow);
 
