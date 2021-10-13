@@ -16,10 +16,16 @@
                                     href="/candy_show/show/{{ tot_show.id }}">
                                     Pope Candy w/ {{tot_show.artist_name}}
                                 </a>
-                                <div>{{ tot_show.show_start|date("d/m/y") }}</div>
+                                <div>
+                                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                    {{ tot_show.show_start|date("d/m/y") }}
+                                </div>
                             </div> 
                             <div class="d-flex justify-content-between">
-                                <div>{{ tot_show.title }}</div>
+                                <div>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    {{ tot_show.title }}
+                                </div>
                                 <div class="text-danger">
                                     {% if tot_show.sold_out == "COMPLET" %}
                                        <b>{{ tot_show.sold_out }}</b>
