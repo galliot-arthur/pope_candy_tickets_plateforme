@@ -1,82 +1,88 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Modifier son profil{% endblock %}
+
 {% block content %}
     <h1>{{ user.firstname }} {{ user.name }} : Modifier mon profil</h1>
-    <form method="post">
-        <div class="input-group mb-3">
-            <label
-                class="input-group-text"
-                for="show_date">
-                Nom
-                </label>
-            <input 
-                class="form-control"
-                type="text" 
-                value="{{ user.name  }}" 
-                name="name" 
-                placeholder="Nom" 
-                required>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <div class="input-group mb-3">
+                    <label
+                        class="input-group-text"
+                        for="show_date">
+                        Nom
+                        </label>
+                    <input 
+                        class="form-control"
+                        type="text" 
+                        value="{{ user.name  }}" 
+                        name="name" 
+                        placeholder="Nom" 
+                        required>
+                </div>
+                
+                <div class="input-group mb-3">
+                    <label
+                        class="input-group-text"
+                        for="show_date">
+                        Prénom
+                        </label>
+                    <input
+                        class="form-control" 
+                        type="text" 
+                        value="{{ user.firstname }}" 
+                        name="firstname" 
+                        placeholder="Prénom" 
+                        required>
+                </div>
+                <div class="input-group mb-3">
+                    <label
+                        class="input-group-text"
+                        for="show_date">
+                        Email
+                        </label>
+                    <input 
+                        class="form-control"
+                        type="email" 
+                        value="{{ user.email }}" 
+                        name="email" 
+                        placeholder="E-mail" 
+                        required>
+                </div>
+                <div class="input-group mb-3">
+                    <label
+                        class="input-group-text"
+                        for="show_date">
+                        Adresse
+                        </label>
+                    <input 
+                        class="form-control"
+                        type="text" 
+                        value="{{ user.adress }}" 
+                        name="adress" 
+                        placeholder="Adresse" 
+                        required>
+                </div>
+                <div class="input-group mb-3">
+                    <label
+                        class="input-group-text"
+                        for="show_date">
+                        Age
+                        </label>
+                    <input 
+                        class="form-control"
+                        type="number" 
+                        value="{{ user.age }}" 
+                        name="age" 
+                        placeholder="Age" 
+                        required>
+                </div>
+                <input 
+                    class="btn btn-dark" 
+                    type="submit" 
+                    value="Modifier mon Profil">
+            </form>
         </div>
-        
-        <div class="input-group mb-3">
-            <label
-                class="input-group-text"
-                for="show_date">
-                Prénom
-                </label>
-            <input
-                class="form-control" 
-                type="text" 
-                value="{{ user.firstname }}" 
-                name="firstname" 
-                placeholder="Prénom" 
-                required>
-        </div>
-        <div class="input-group mb-3">
-            <label
-                class="input-group-text"
-                for="show_date">
-                Email
-                </label>
-            <input 
-                class="form-control"
-                type="email" 
-                value="{{ user.email }}" 
-                name="email" 
-                placeholder="E-mail" 
-                required>
-        </div>
-        <div class="input-group mb-3">
-            <label
-                class="input-group-text"
-                for="show_date">
-                Adresse
-                </label>
-            <input 
-                class="form-control"
-                type="text" 
-                value="{{ user.adress }}" 
-                name="adress" 
-                placeholder="Adresse" 
-                required>
-        </div>
-        <div class="input-group mb-3">
-            <label
-                class="input-group-text"
-                for="show_date">
-                Age
-                </label>
-            <input 
-                class="form-control"
-                type="number" 
-                value="{{ user.age }}" 
-                name="age" 
-                placeholder="Age" 
-                required>
-        </div>
-        <input 
-            class="btn btn-dark" 
-            type="submit" 
-            value="Editer mon Profil">
-    </form>
+    </div>
 {% endblock %}

@@ -13,73 +13,6 @@ use App\Model\PricesModel;
 class BookingsController extends AbstractController
 {
 
-
-    /**
-     * Display item listing
-     *
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    public function index()
-    {
-        $bookingModel = new BookingsModel();
-        $bookings = $bookingModel->selectAll();
-
-        return $this
-            ->twig
-            ->render(
-                'Bookings/index.html.twig',
-                [
-                    'bookings' => $bookings,
-                    'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert(),
-                    'currentFunction' => 'index',
-                    'currentController' => 'bookings',
-                ]
-            );
-    }
-
-
-    /**
-     * Display item informations specified by $id
-     *
-     * @param int $id
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    public function show(int $id)
-    {
-        $bookingModel = new BookingsModel();
-        $booking = $bookingModel->selectOneById($id);
-
-        if (!$booking) {
-            $this->setFlash(
-                false,
-                'Element inconnu.'
-            );
-            header("Location:/home");
-            exit;
-        }
-
-        return $this
-            ->twig
-            ->render(
-                'Bookings/show.html.twig',
-                [
-                    'booking' => $booking,
-                    'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert(),
-                    'currentFunction' => 'show',
-                    'currentController' => 'bookings',
-                ]
-            );
-    }
-
-
     /**
      * Display item edition page specified by $id
      *
@@ -233,18 +166,24 @@ class BookingsController extends AbstractController
 
             $pricesModel = new PricesModel;
 
-            $price1 = $pricesModel->selectOneById($type1);
-            $price1['name'] = $this->getTicketType($price1['ticket_type']);
+            $price1 = $pricesModel
+                ->selectOneById($type1);
+            $price1['name'] = $this
+                ->getTicketType($price1['ticket_type']);
             $tickets[$holder_name1] = $price1;
 
             if ($quantity == 2 || $quantity == 3) {
-                $price2 = $pricesModel->selectOneById($type2);
-                $price2['name'] = $this->getTicketType($price2['ticket_type']);
+                $price2 = $pricesModel
+                    ->selectOneById($type2);
+                $price2['name'] = $this
+                    ->getTicketType($price2['ticket_type']);
                 $tickets[$holder_name2] = $price2;
             }
             if ($quantity == 3) {
-                $price3 = $pricesModel->selectOneById($type3);
-                $price3['name'] = $this->getTicketType($price3['ticket_type']);
+                $price3 = $pricesModel
+                    ->selectOneById($type3);
+                $price3['name'] = $this
+                    ->getTicketType($price3['ticket_type']);
                 $tickets[$holder_name3] = $price3;
             }
 
@@ -348,28 +287,18 @@ class BookingsController extends AbstractController
 
             $this->setFlash(
                 true,
-                'Bravo pour votre achat et bon concert ! 💃🕺'
+                'Bravo pour votre achat et bon concert !
+                <i class="fa fa-music" aria-hidden="true"></i>'
             );
-            header("Location:/home");
+            header("Location:/home/index");
+            unset($_SESSION['booking']);
         } else {
             $this->setFlash(
                 false,
                 'Element inconnu.'
             );
-            header("Location:/home");
+            header("Location:/home/index");
         }
-    }
-
-    /**
-     * Handle item deletion
-     *
-     * @param int $id
-     */
-    public function delete(int $id)
-    {
-        $bookingModel = new BookingsModel();
-        $bookingModel->delete($id);
-        header('Location:/bookings/index');
     }
 
     public function alreadyBought(int $show_id)
@@ -378,14 +307,14 @@ class BookingsController extends AbstractController
         $user_id = $_SESSION['user']['id'];
 
         $bookingModel = new BookingsModel;
-        $shows = $bookingModel->getUserShow($user_id, $show_id);
+        $tickets = $bookingModel->getUserShow($user_id, $show_id);
 
         return $this
             ->twig
             ->render(
                 'User/buyedTickets.html.twig',
                 [
-                    'shows' => $shows,
+                    'tickets' => $tickets,
                     'currentController' => 'bookings',
                     'pageFunction' => 'alreadyBought',
                     'userSession' => $this->userSession(),

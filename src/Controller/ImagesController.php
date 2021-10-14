@@ -169,21 +169,14 @@ class ImagesController extends AbstractController
         $imageDatabase = new ImagesModel;
         $imageFileInServer = new Image;
         $imageDatabase->delete($id);
-        $result = $imageFileInServer->delete($id, 'photos');
+        $imageFileInServer->delete($id, 'photos');
 
-        if ($result) {
-            $this->setFlash(
-                true,
-                "Cette image a bien été supprimé."
-            );
-        } else {
-            $this->setFlash(
-                false,
-                "Erreur, merci d'essayer à nouveau."
-            );
-            header("Location:/images/show/$id");
-            exit;
-        }
+
+        $this->setFlash(
+            true,
+            "Cette photo a bien été supprimé."
+        );
         header('Location:/images/index');
+        exit;
     }
 }

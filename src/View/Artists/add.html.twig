@@ -1,34 +1,61 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Ajouter un nouvel Artiste ou Groupe{% endblock %}
+
 {% block content %}
-    <h1>Add a new Artist</h1>
+    <h1>Ajouter un nouvel Artiste ou Groupe</h1>
     
-    <form method="post">
-        <input 
-            type="hidden" 
-            value="{{ artists.id }}" 
-            name="id">
-        <input 
-            type="text" 
-            value="{{ artists.name }}" 
-            name="name"
-            required
-            placeholder="Nom de l'artiste ou du groupe">
-        <input
-            type="text" 
-            value="{{ artists.biography }}" 
-            name="biography"
-            required
-            placeholder="Courte Biographie">
-        <input 
-            type="url" 
-            value="{{ artists.website }}" 
-            name="website"
-            required
-            placeholder="Site internet">
-        <input 
-            class="btn btn-success"
-            type="submit" 
-            value="Add">
+    <form 
+        class="card"
+        method="post">
+        <div class="card-body">
+            <input 
+                type="hidden" 
+                value="{{ artists.id }}" 
+                name="id">
+            <div class="input-group mb-3">
+                <label for="name" class="input-group-text">
+                    Mc Solaar
+                    </label>
+                <input 
+                    class="form-control"
+                    type="text" 
+                    value="{{ artists.name }}" 
+                    name="name"
+                    id="name"
+                    required
+                    placeholder="Nom de l'artiste ou du groupe">
+            </div>
+            <div class="input-group mb-3">
+                <label for="biography" class="input-group-text">
+                    Biographie
+                    </label>
+                <textarea 
+                    class="form-control"
+                    name="biography" 
+                    id="biography" 
+                    cols="30" rows="5"
+                    required>
+                    {{ artists.biography }}
+                </textarea>
+            </div>
+            <div class="input-group mb-3">
+                <label for="website" class="input-group-text">
+                    Site internet
+                    </label>
+                <input 
+                    class="form-control"
+                    type="url" 
+                    value="{{ artists.website }}" 
+                    name="website"
+                    id="website"
+                    required
+                    placeholder="https://www.monsite.com">
+                </div>
+            <input 
+                class="btn btn-dark"
+                type="submit" 
+                value="Ajouter">
+        </div>
     </form>
 {% endblock %}

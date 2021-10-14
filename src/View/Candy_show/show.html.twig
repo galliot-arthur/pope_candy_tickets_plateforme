@@ -1,13 +1,17 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}{{ candy_show.title }}{% endblock %}
+
 {% block content %}
 
     <h1>{{ candy_show.title }}</h1>
+
     {% if candy_show.soldout %}
         <div class="alert alert-sucess">
             <b>SOLD OUT</b>
         </div>
     {% endif %}
+
     <div class="card">
         <div class="card-body row">
             <div class="col-lg-5">

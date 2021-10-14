@@ -1,55 +1,101 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Ajoutez une salle de concert{% endblock %}
+
 {% block content %}
-  <h1>Ajoutez une salle de concert</h1>
+    <h1>Ajoutez une salle de concert</h1>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" value="{{ venue.id }}" name="id">
 
-    <form method="post">
-    <input type="hidden" value="{{ venue.id }}" name="id">
+                <div class="input-group mb-3">
+                    <label
+                        for="title" 
+                        class="input-group-text">
+                        Nom
+                    </label>
+                    <input 
+                        type="text"
+                        class="form-control"
+                        value="{{ venue.title }}" 
+                        name="title"
+                        id="title">
+                </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">Nom</span>
-        <input type="text" class="form-control" value="{{ venue.title }}" 
-        id="basic-url" aria-describedby="basic-addon3">
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text" 
+                        for="town">
+                        Ville
+                    </label>
+                    <input 
+                        type="text"
+                        class="form-control"
+                        value="{{ venue.town }}" 
+                        name="town"
+                        id="town">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input 
+                            class="form-check-input mt-0"
+                            type="checkbox" 
+                            value="{{ venue.disabled_acces }}"
+                            name="disabled_acces"
+                            id="disabled_acces">
+                    </div>
+                    <label 
+                        for="disabled_acces"
+                        class="input-group-text">
+                        <i class="fa fa-wheelchair-alt" aria-hidden="true"></i>
+                        <span class="ms-2">
+                            Accès Mobilité
+                        </span>
+                    </label>
+                </div>
+
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text" 
+                        for="address">
+                        Adresse
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        value="{{ venue.adress }}" 
+                        id="address" 
+                        name="address">
+                </div>
+
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text" 
+                        for="capacity">
+                        Capacité
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        value="{{ venue.capacity }}" 
+                        id="capacity" 
+                        name="capacity">
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="col-5">
+                        <input 
+                            class="btn btn-dark" 
+                            type="submit" 
+                            value="Ajouter">
+                    </div>
+                    <div class="col-7 text-muted">
+                        Vous pourrez ajouter une photo dans un second temps.
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="town">Ville</span>
-        <input type="text" class="form-control" value="{{ venue.town }}" 
-        id="basic-url" aria-describedby="basic-addon3">
-    </div>
-
-    <div class="input-group mb-3">
-        <div class="input-group-text">
-        <input class="form-check-input mt-0" type="checkbox" 
-        value="{{ venue.disabled_acces }}" aria-label="Checkbox for following text input">
-    </div>
-        <input type="text" class="form-control" value="Accès Handicapé" 
-        aria-label="Text input with checkbox">
-    </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="town">Adresse</span>
-        <input type="text" class="form-control" value="{{ venue.adress }}" 
-        id="basic-url" name="adress" aria-describedby="basic-addon3">
-    </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">Capacité</span>
-        <input type="text" class="form-control" value="{{ venue.capacity }}" 
-        id="basic-url" name="capacity" aria-describedby="basic-addon3">
-    </div>
-
-    <div class="input-group mb-3">
-        <div class="input-group-text">
-        <input class="form-check-input mt-0" type="checkbox" value="{{ venue.vip_available }}" 
-        aria-label="Checkbox for following text input">
-    </div>
-        <input type="text" class="form-control" value="Vip Available" 
-        aria-label="Text input with checkbox">
-    </div>
-
-    
-
-    <input class="btn btn-success" type="submit" value="Ajouter">
-    </form>
 {% endblock %}

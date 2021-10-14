@@ -1,19 +1,51 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Salles ou Festivals{% endblock %}
+
 {% block content %}
 	<h1>Salles ou Festivals</h1>
 
 	<ul class="list-group">
 		{% for venue in venues %}
 			<li class="list-group-item">
-				<a href="/venue/show/{{ venue.id }}">
-					{{ venue.title }}
-				</a>
-				-<b> {{ venue.town }} </b> -
-				<i>{{ venue.capacity }} places</i>
+				<div class="row">
+					<div class="col-9">
+						<a href="/venue/show/{{ venue.id }}">
+							{{ venue.title }}
+						</a>
+						<br>
+						<b>
+							<i class="fa fa-map-marker" aria-hidden="true"></i>
+							{{ venue.town }}
+						</b>
+						<div>
+							<i class="fa fa-user" aria-hidden="true"></i>
+							Capacité :
+							<i>{{ venue.capacity }} places</i>
+						</div>
+						<div>
+							{{ venue.disabled_access ? 
+								"<i class='fa fa-wheelchair-alt' aria-hidden='true'></i>
+								Accès Mobilité Réduite" 
+								: "" }}
+						</div>
+					</div>
+					<div class="col-3 d-flex justify-content-center align-items-center">
+						<a 
+							class="btn"
+							href="/venue/edit/{{ venue.id }}">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</a>
+						<a 
+							class="btn"
+							href="/venue/delete/{{ venue.id }}">
+							<i class="fa fa-trash" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
 			</li>
 		{% else %}
-			<li>Nothing to display</li>
+			<li>Aucunes salles enregistrée.</li>
 		{% endfor %}
 	</ul>
 

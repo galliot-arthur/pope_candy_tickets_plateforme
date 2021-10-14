@@ -1,82 +1,88 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Editer une réduction{% endblock %}
+
 {% block content %}
 
     <h1>Editer une réduction</h1>
 
-    <form method="post">
-        <input 
-            type="hidden" 
-            value="{{ prices.id }}" 
-            name="id" >
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <input 
+                    type="hidden" 
+                    value="{{ prices.id }}" 
+                    name="id" >
 
-        <div class="input-group mb-3">
-            <label 
-                class="input-group-text" 
-                for="venue_id">
-                Salle ou Festival
-                </label>
-            <select 
-                class="form-select" 
-                name="venue_id"
-                id="venue_id"
-                requiered>
-                <option selected>Choisir...</option>
-                {% for venue in venues %}
-                    <option
-                        {{ venue.id == prices.venue_id ? "selected" : "" }}
-                        value="{{ venue.id }}">
-                        {{ venue.title }}
-                        </option>
-                {% endfor %}
-            </select>
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text" 
+                        for="venue_id">
+                        Salle ou Festival
+                        </label>
+                    <select 
+                        class="form-select" 
+                        name="venue_id"
+                        id="venue_id"
+                        requiered>
+                        <option selected>Choisir...</option>
+                        {% for venue in venues %}
+                            <option
+                                {{ venue.id == prices.venue_id ? "selected" : "" }}
+                                value="{{ venue.id }}">
+                                {{ venue.title }}
+                                </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text" 
+                        for="price">
+                        Valeur de la réduction
+                        </label>
+                    <input 
+                        class="form-control"
+                        type="number" 
+                        value="{{prices.price}}"
+                        name="price" 
+                        id="price"
+                        required
+                        placeholder="entrer le prix">
+
+                <div class="input-group mb-3 mt-3">
+                    <label 
+                        class="input-group-text" 
+                        for="ticket_type">
+                        Tarif
+                        </label>
+                    <select 
+                        class="form-select" 
+                        name="ticket_type"
+                        id="ticket_type"
+                        requiered>
+                        <option selected>Choisir...</option>
+                            <option
+                                {{ prices.ticket_type == 0 ? "selected" : "" }} 
+                                value="0">Normal</option>
+                            <option
+                                {{ prices.ticket_type == 1 ? "selected" : "" }} 
+                                value="1">Réduit</option>
+                            <option
+                                {{ prices.ticket_type == 2 ? "selected" : "" }} 
+                                value="2">VIP</option>
+                            <option
+                                {{ prices.ticket_type == 3 ? "selected" : "" }} 
+                                value="3">Invitation</option>
+                    </select>
+
+                    <input 
+                        class="btn btn-success"
+                        type="submit" 
+                        value="Editer">
+                </div>
+            </form>
         </div>
-
-        <div class="input-group mb-3">
-            <label 
-                class="input-group-text" 
-                for="price">
-                Valeur de la réduction
-                </label>
-            <input 
-                class="form-control"
-                type="number" 
-                value="{{prices.price}}"
-                name="price" 
-                id="price"
-                required
-                placeholder="entrer le prix">
-
-        <div class="input-group mb-3 mt-3">
-            <label 
-                class="input-group-text" 
-                for="ticket_type">
-                Tarif
-                </label>
-            <select 
-                class="form-select" 
-                name="ticket_type"
-                id="ticket_type"
-                requiered>
-                <option selected>Choisir...</option>
-                    <option
-                        {{ prices.ticket_type == 0 ? "selected" : "" }} 
-                        value="0">Normal</option>
-                    <option
-                        {{ prices.ticket_type == 1 ? "selected" : "" }} 
-                        value="1">Réduit</option>
-                    <option
-                        {{ prices.ticket_type == 2 ? "selected" : "" }} 
-                        value="2">VIP</option>
-                    <option
-                        {{ prices.ticket_type == 3 ? "selected" : "" }} 
-                        value="3">Invitation</option>
-            </select>
-
-            <input 
-                class="btn btn-success"
-                type="submit" 
-                value="Editer">
-        </div>
-    </form>
+    </div>
 {% endblock %}

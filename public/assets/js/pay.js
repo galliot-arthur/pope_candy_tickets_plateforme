@@ -1,4 +1,4 @@
-form = document.querySelector('form')
+form = document.querySelector('#confirmPayment')
 
 setTimeout(() => {
     form.submit()

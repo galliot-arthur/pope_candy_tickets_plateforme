@@ -15,7 +15,7 @@ class SearchController extends AbstractController
      * Display home page
      * @return string
      */
-    public function index()
+    public function searchIndex()
     {
         if(isset($_POST['search']) AND !empty($_POST['search'])) {
             $search = htmlspecialchars($_POST['search']);

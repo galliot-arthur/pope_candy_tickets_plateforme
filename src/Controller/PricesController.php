@@ -34,35 +34,6 @@ class PricesController extends AbstractController
             );
     }
 
-    public function show(int $id)
-    {
-        $pricesModel = new PricesModel();
-        $price = $pricesModel->selectOneById($id);
-
-        if (!$price) {
-            $this->setFlash(
-                false,
-                'Element inconnu.'
-            );
-            header("Location:/home");
-            exit;
-        }
-
-        return $this
-            ->twig
-            ->render(
-                'Prices/show.html.twig',
-                [
-                    'id' => $id,
-                    'price' => $price,
-                    'userSession' => $this->userSession(),
-                    'flash' => $this->flashAlert(),
-                    'currentFunction' => 'show',
-                    'currentController' => 'prices',
-                ]
-            );
-    }
-
     public function add()
     {
         $venueModel = new VenueModel;

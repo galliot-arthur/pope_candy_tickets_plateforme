@@ -1,26 +1,61 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}{{ userProfile.firstname }} {{ userProfile.name }}{% endblock %}
+
 {% block content %}
     <h1>{{ userProfile.firstname }} {{ userProfile.name }}</h1>
-    <a class="btn btn-dark mb-2" href="/user/edit/{{ userProfile.id }}">
-        Editer mon profil
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-    </a>
+
     <ul class="list-group">
-      <li class="list-group-item">
-          Prénom : {{ userProfile.firstname }}
-      </li>
-      <li class="list-group-item">
-          Nom : {{ userProfile.name }}
-      </li>
-      <li class="list-group-item">
-          Email : {{ userProfile.email }}
-      </li>
-      <li class="list-group-item">
-          Adresse : {{ userProfile.adress }}
-      </li>
-      <li class="list-group-item">
-          Age : {{ userProfile.age }} ans
-      </li>
+        <li class="list-group-item">
+        <div class="row">
+            <div class="col-5">
+                <span class="text-muted">Prénom : </span>
+            </div>
+            <div class="col-7">
+                {{ userProfile.firstname }}
+            </div>
+            <div class="col-5">
+                <span class="text-muted">Nom : </span>
+            </div>
+            <div class="col-7">
+                {{ userProfile.name }}
+            </div>
+        </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-5 ">
+                    <span class="text-muted">
+                        Email :  <br>
+                    </span>
+                </div>
+                <div class="col-7">
+                    {{ userProfile.email }} <br>
+                </div>
+                <div class="col-5 ">
+                    <span class="text-muted">
+                        Adresse :  <br>
+                    </span>
+                </div>
+                <div class="col-7">
+                    {{ userProfile.adress }} <br>
+                </div>
+                <div class="col-5 ">
+                    <span class="text-muted">
+                        Age : 
+                    </span>
+                </div>
+                <div class="col-7">
+                    {{ userProfile.age }} ans
+                </div>
+            </div>
+        </li>
+
+        <li class="list-group-item">
+            <a class="btn btn-dark" href="/user/edit/{{ userProfile.id }}">
+                Editer mon profil
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+        </li>
     </ul>
 {% endblock %}

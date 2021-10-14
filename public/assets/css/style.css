@@ -20,6 +20,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    word-break: break-word;
 }
 
 h1 {
@@ -120,6 +121,7 @@ header h1 {
 ul {
     list-style: none;
     padding: 0;
+    overflow: hidden;
 }
 
 .card>*,
@@ -144,4 +146,8 @@ ul {
 
 .form-search {
     width: 70%;
+}
+
+.form-search:focus {
+    outline: none;
 }

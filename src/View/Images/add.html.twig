@@ -1,11 +1,11 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Ajouter une image au carousel{% endblock %}
+
 {% block content %}
-<h1>Ajouter une image</h1>
-<div class="card" style="width: 30rem;">
+<h1>Ajouter une image au carousel</h1>
+<div class="card">
     <div class="card-body">
-        
-        
         <form method="post" enctype="multipart/form-data">
             <input 
                 type="hidden" 
@@ -61,7 +61,7 @@
             <input 
                 class="btn btn-success"
                 type="submit" 
-                value="Add">
+                value="Ajouter">
         </form>
     </div>
 </div

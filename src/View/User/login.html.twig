@@ -1,76 +1,92 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
-<h1>Se connecter</h1>
-<form method="post" class="form-group">
-    <input 
-        class="form-control mb-3"
-        type="text"
-        value="{{ user.name  }}"
-        name="user"
-        placeholder="Prénom ou Email" 
-        required>
-    <input
-        class="form-control mb-3"
-        type="password"
-        value="{{ user.password }}"
-        name="password"
-        placeholder="Mot de passe"
-        required>
-    <input
-        class="btn btn-dark mb-3"
-        type="submit"
-        value="Connexion">
-</form>
-<hr>
-<h2 class="h1">Ou s'enregistrer</h2>
-<form action="/user/register" method="post" class="form-group">
-    <input 
-        class="form-control mb-3"
-        type="text" 
-        value="{{ user.name  }}" 
-        name="name" 
-        placeholder="Nom" 
-        required>
-    <input 
-        class="form-control mb-3"
-        type="text" 
-        value="{{ user.firstname }}" 
-        name="firstname" 
-        placeholder="Prénom" 
-        required>
-    <input 
-        class="form-control mb-3"
-        type="email" 
-        value="{{ user.email }}" 
-        name="email" 
-        placeholder="E-mail" 
-        required>
-    <input 
-        class="form-control mb-3"
-        type="password" 
-        value="{{ user.password }}" 
-        name="password" 
-        placeholder="Mot de passe" 
-        required>
-    <input 
-        class="form-control mb-3"
-        type="text" 
-        value="{{ user.adress }}" 
-        name="adress" 
-        placeholder="Adresse" 
-        required>
-    <input 
-        class="form-control mb-3"
-        type="number" 
-        value="{{ user.age }}" 
-        name="age" 
-        placeholder="Age" 
-        required>
-    <input 
-        class="btn btn-dark" 
-        type="submit" 
-        value="S'enregistrer">
-</form>
+{% block title %}Se connecter{% endblock %}
 
+{% block content %}
+    <h1>Se connecter</h1>
+    <div class="card">
+        <div class="card-body">
+            <form 
+                method="post" 
+                class="form-group">
+                <input 
+                    class="form-control mb-3"
+                    type="text"
+                    value="{{ user.name  }}"
+                    name="user"
+                    placeholder="Prénom ou Email" 
+                    required>
+                <input
+                    class="form-control mb-3"
+                    type="password"
+                    value="{{ user.password }}"
+                    name="password"
+                    placeholder="Mot de passe"
+                    required>
+                <input
+                    class="btn btn-dark mb-3"
+                    type="submit"
+                    value="Connexion">
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2 class="h1">Ou s'enregistrer</h2>
+    <div class="card">
+        <div class="card-body">
+            <form 
+                action="/user/register" 
+                method="post" 
+                class="form-group">
+                <input 
+                    class="form-control mb-3"
+                    type="text" 
+                    value="{{ user.name  }}" 
+                    name="name" 
+                    placeholder="Nom" 
+                    required>
+                <input 
+                    class="form-control mb-3"
+                    type="text" 
+                    value="{{ user.firstname }}" 
+                    name="firstname" 
+                    placeholder="Prénom" 
+                    required>
+                <input 
+                    class="form-control mb-3"
+                    type="email" 
+                    value="{{ user.email }}" 
+                    name="email" 
+                    placeholder="E-mail" 
+                    required>
+                <input 
+                    class="form-control mb-3"
+                    type="password" 
+                    value="{{ user.password }}" 
+                    name="password" 
+                    placeholder="Mot de passe" 
+                    required>
+                <input 
+                    class="form-control mb-3"
+                    type="text" 
+                    value="{{ user.adress }}" 
+                    name="adress" 
+                    placeholder="Adresse" 
+                    required>
+                <input 
+                    class="form-control mb-3"
+                    type="number" 
+                    value="{{ user.age }}" 
+                    name="age" 
+                    placeholder="Age" 
+                    required>
+                <input 
+                    class="btn btn-dark" 
+                    type="submit" 
+                    value="S'enregistrer">
+            </form>
+        </div>
+    </div>
 {% endblock %}

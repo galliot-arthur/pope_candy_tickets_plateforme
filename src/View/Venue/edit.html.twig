@@ -1,76 +1,102 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Editer {{ venue.title }}{% endblock %}
+
 {% block content %}
     <h1>Editer {{ venue.title }}</h1>
 
-    <form method="post">
-        <input type="hidden" value="{{ venue.id }}" name="id">
-        <label 
-            for="title">
-            Nom</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.title }}" 
-            id="title"
-            name="title">
-        <label 
-            for="town">
-            Ville </label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.town }}" 
-            id="town"
-            name="town">
-        <label 
-            for="disabled_access">
-            Accès Handicapé</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.disabled_access }}" 
-            id="disabled_access"
-            name="disabled_access">
-        <label 
-            for="address">
-            Adresse</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.address }}" 
-            id="address"
-            name="address">
-        <label 
-            for="capacity">
-            Capacité</label>
-        <input 
-            class="form-control mb-3"
-            type="number"
-            value="{{ venue.capacity }}"
-            id="capacity"
-            name="capacity">
-        <label 
-            for="vip_available">
-            vip_available</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.vip_available }}" 
-            id="vip_available"
-            name="vip_available">
-        <label 
-            for="prices">
-            Prix En tableaux</label>
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ venue.prices }}" 
-            id="prices"
-            name="prices">
-        <input 
-            class="btn btn-success"
-            type="submit" 
-            value="Editer">
-    </form>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" value="{{ venue.id }}" name="id">
+
+                <div class="input-group mb-3">
+                    <label
+                        for="title" 
+                        class="input-group-text">
+                        Nom
+                    </label>
+                    <input 
+                        type="text"
+                        class="form-control"
+                        value="{{ venue.title }}" 
+                        name="title"
+                        id="title">
+                </div>
+
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text" 
+                        for="town">
+                        Ville
+                    </label>
+                    <input 
+                        type="text"
+                        class="form-control"
+                        value="{{ venue.town }}" 
+                        name="town"
+                        id="town">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input 
+                            class="form-check-input mt-0"
+                            type="checkbox" 
+                            value="{{ venue.disabled_acces }}"
+                            name="disabled_acces"
+                            id="disabled_acces">
+                    </div>
+                    <label 
+                        for="disabled_acces"
+                        class="input-group-text">
+                        <i class="fa fa-wheelchair-alt" aria-hidden="true"></i>
+                        <span class="ms-2">
+                            Accès Mobilité
+                        </span>
+                    </label>
+                </div>
+
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text" 
+                        for="address">
+                        Adresse
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        value="{{ venue.adress }}" 
+                        id="address" 
+                        name="address">
+                </div>
+
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text" 
+                        for="capacity">
+                        Capacité
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        value="{{ venue.capacity }}" 
+                        id="capacity" 
+                        name="capacity">
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="col-5">
+                        <input 
+                            class="btn btn-dark" 
+                            type="submit" 
+                            value="Ajouter">
+                    </div>
+                    <div class="col-7 text-muted">
+                        Modifier la photo d'illustration depuis l'index des salles de concerts.
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}

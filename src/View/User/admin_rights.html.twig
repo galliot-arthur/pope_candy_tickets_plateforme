@@ -1,7 +1,9 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Modifier les droits d'administration{% endblock %}
+
 {% block content %}
-    <h1>Donner les droits d'administration pour {{ user.name }}</h1>
+    <h1>Modifier les droits d'administration pour {{ user.firstname }} {{ user.name }}</h1>
     <form method="post">
 
         <input 
@@ -9,26 +11,25 @@
             hidden 
             value="{{ user.id }}" 
             name="id">
-
         <div class="input-group mb-3">
             <div class="input-group-text">
                 <label
-                    class="input-group-text"
                     for="admin">
-                    Donner les droits d'administration à cet utilisateur : {{ user.firstname }} {{ user.name }}
+                    {{ user.firstname }} {{ user.name }} Droits d'administration : 
                     </label>
                 <input 
-                    class="form-check-input mt-0" 
+                    class="form-check-input mt-0 ms-2" 
                     type="checkbox"
                     name="admin"
                     id="admin"
                     {{ user.admin ? "checked" : "" }}
                     aria-label="Donner les droits d'administration pour {{ user.name }}">
             </div>
-            <input 
-                class="btn btn-dark" 
-                type="submit" 
-                value="Valider">
         </div>
+        <input 
+            class="btn btn-dark" 
+            type="submit" 
+            value="Valider">
+
     </form>
 {% endblock %}

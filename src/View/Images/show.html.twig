@@ -1,14 +1,40 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}{{ images.context }}{% endblock %}
+
 {% block content %}
     <h1>{{ images.context }}</h1>
-
     <div class="card">
-        <img src="/assets/images/photos/{{ images.id }}.jpg" 
-            class="card-img-top" 
+        <img 
+            src="/assets/images/photos/{{ images.id }}.jpg" 
             alt="{{ images.alt }}">
         <div class="card-body">
-            Mots Clés : {{ images.alt }}
+            <span class="text-muted">
+                Contexte : 
+            </span>
+            {{ images.context }}
+            <br>
+            <span class="text-muted">
+                Mots Clés / Réferencement Google : 
+            </span>
+            {{ images.alt }}
+            <div class="position-absolute top-50 start-100 translate-middle">
+                <a 
+                    class="badge rounded-pill bg-dark"
+                    href="/images/show/{{ images.id }}">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                </a>
+                <a 
+                    class="badge rounded-pill bg-dark"
+                    href="/images/edit/{{ images.id }}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+                <a 
+                    class="badge rounded-pill bg-dark"
+                    href="/images/delete/{{ images.id }}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

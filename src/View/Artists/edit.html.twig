@@ -1,39 +1,62 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Editer {{ artists.name }}{% endblock %}
+
 {% block content %}
 
     <h1>Editer {{ artists.name }}</h1>
 
-    <form method="post" class="form-group">
-        <input 
-            type="hidden" 
-            value="{{ artists.id }}" 
-            name="id">
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ artists.name }}" 
-            name="name"
-            required
-            placeholder="Nom de l'artiste ou du groupe">
-        <textarea
-            class="form-control mb-3"
-            type="text" 
-            name="biography"
-            required
-            placeholder="Courte Biographie">
-            {{ artists.biography }}
-            </textarea>
-        <input 
-            class="form-control mb-3"
-            type="url" 
-            value="{{ artists.website }}" 
-            name="website"
-            required
-            placeholder="Site internet">
-        <input 
-            class="btn btn-dark"
-            type="submit" 
-            value="Editer">
+    <form 
+        class="card"
+        method="post">
+        <div class="card-body">
+            <input 
+                type="hidden" 
+                value="{{ artists.id }}" 
+                name="id">
+            <div class="input-group mb-3">
+                <label for="name" class="input-group-text">
+                    Mc Solaar
+                    </label>
+                <input 
+                    class="form-control"
+                    type="text" 
+                    value="{{ artists.name }}" 
+                    name="name"
+                    id="name"
+                    required
+                    placeholder="Nom de l'artiste ou du groupe">
+            </div>
+            <div class="input-group mb-3">
+                <label for="biography" class="input-group-text">
+                    Biographie
+                    </label>
+                <textarea 
+                    class="form-control"
+                    name="biography" 
+                    id="biography" 
+                    cols="30" rows="5"
+                    required>
+                    {{ artists.biography }}
+                </textarea>
+            </div>
+            <div class="input-group mb-3">
+                <label for="website" class="input-group-text">
+                    Site internet
+                    </label>
+                <input 
+                    class="form-control"
+                    type="url" 
+                    value="{{ artists.website }}" 
+                    name="website"
+                    id="website"
+                    required
+                    placeholder="https://www.monsite.com">
+                </div>
+            <input 
+                class="btn btn-dark"
+                type="submit" 
+                value="Editer">
+        </div>
     </form>
 {% endblock %}

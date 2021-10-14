@@ -8,11 +8,8 @@ class Image extends AbstractController
 
     protected $media = "C:\MAMP\htdocs\MVC\Public\media";
 
-    // $venues = new Image;
-    // $places = $venues->create($id, 'venues');
-
     /**
-     * Undocumented function
+     * Créer une image et la déplacer dans un dossier spécifié.
      *
      * @param integer $id Id you want to record the image as $id.jpg.
      * @param string $folder Folder you want to record the image in.
@@ -24,9 +21,8 @@ class Image extends AbstractController
         if (isset($_FILES['image']) and !empty($_FILES['image']['name'])) { // On vérifie qu'il y a bien un fichier
             $filename = $_FILES['image']['tmp_name']; // On récupère le nom du fichier
             list($originalWidth, $originalHeight, $originalType) = getimagesize($filename); // On récupère la taille de notre fichier (l'image)
-            echo "<pre>";
-            var_dump($_FILES['image']);
-            echo "</pre>";
+
+
             if ($originalWidth >= 100 && $originalHeight >= 100 && $originalWidth <= 140000 && $originalHeight <= 140000) { // On vérifie que la taille de l'image est correcte
 
                 //$ListeExtension = array('jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'png' => 'image/png', 'gif' => 'image/gif');
@@ -40,14 +36,12 @@ class Image extends AbstractController
                 if ($_FILES['image']['size'] <= $tailleMax) { // Si le fichier et bien de taille inférieur ou égal à 5 Mo
 
                     $extensionUpload = strtolower(substr(strrchr($_FILES['image']['name'], '.'), 1)); // Prend l'extension après le point, soit "jpg, jpeg ou png"
-                    echo "taille<br>";
 
                     if (in_array($extensionUpload, $acceptedExtensions)) { // Vérifie que l'extension est correct
                         // 
                         $dossier = __DIR__ . "/../../public/assets/images/$folder";
-                        //$dossier = "\assets\images\\$folder";
                         $recordedFile = "/$id.jpg";
-/*                         echo "extension<br>";
+/*                      
                         if (!is_dir($dossier)) { // Si le nom de dossier n'existe pas alors on le crée
                             mkdir($dossier);
                             echo "mkdir<br>";
@@ -88,6 +82,7 @@ class Image extends AbstractController
 
     public function delete(int $id, string $folder)
     {
-        unlink("C:\laragon\www\pope_candy_tickets_plateforme\public\assets\images\\$folder\\$id.jpg");
+        $dossier = __DIR__ . "/../../public/assets/images/$folder";
+        unlink(__DIR__ . "/../../public/assets/images/$folder/$id.jpg");
     }
 }

@@ -1,20 +1,49 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Afficher les photos du carousel{% endblock %}
+
 {% block content %}
-    <h1>Afficher la liste des images</h1>
+    <h1>Afficher les photos du carousel</h1>
 
-    <ul class="list-group">
+    <div class="row">
+
         {% for image in images %}
-            <li class="list-group-item d-flex justify-content-between">
-                <a href="/images/show/{{ image.id }}">
-                    {{ image.alt }}
-                </a>
-                <a href="{{ image.context }}">context</a>
-            </li>
-
+            <div class="col-sm-4 col-6 mb-4">
+                <div class="card">
+                    <img 
+                        src="/assets/images/photos/{{ image.id }}.jpg" 
+                        alt="{{ image.alt }}">
+                    <div class="card-body">
+                        <a 
+                            class="link-dark"
+                            href="/images/show/{{ image.id }}">
+                            {{ image.context }}
+                        </a>
+                        <div class="position-absolute top-50 start-100 translate-middle">
+                            <a 
+                                class="badge rounded-pill bg-dark"
+                                href="/images/show/{{ image.id }}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                            <a 
+                                class="badge rounded-pill bg-dark"
+                                href="/images/edit/{{ image.id }}">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                            <a 
+                                class="badge rounded-pill bg-dark"
+                                href="/images/delete/{{ image.id }}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <li class="list-group-item">Nothing to display</li>
+
+            <li class="list-group-item">Vous n'avez ajouté aucune photos.</li>
         {% endfor %}
-    </ul>
+
+    </div>
     
 {% endblock %}

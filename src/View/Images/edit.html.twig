@@ -1,32 +1,71 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Editer une image{% endblock %}
+
 {% block content %}
 
     <h1>Editer une image</h1>
 
-    <form method="post" class="form-group">
-        <input 
-            type="hidden" 
-            value="{{ images.id }}" 
-            name="id">
-        <input 
-            class="form-control mb-3"
-            type="text" 
-            value="{{ images.alt }}" 
-            name="alt"
-            required
-            placeholder="titre de l'image">
-        <textarea
-            class="form-control mb-3"
-            type="text" 
-            name="context"
-            required
-            placeholder="description de l'image">
-            {{ images.context }}
-            </textarea>
-        <input 
-            class="btn btn-dark"
-            type="submit" 
-            value="Editer">
-    </form>
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <input 
+                    type="hidden" 
+                    value="{{ images.id }}" 
+                    name="id">
+
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text"
+                        for="alt">
+                        Mots Clés
+                    </label>
+                    <input 
+                        class="form-control"
+                        type="text" 
+                        value="{{ images.alt}}" 
+                        name="alt"
+                        id="alt"
+                        required
+                        placeholder="mots clés">
+                </div>
+
+                <div class="input-group mb-3">
+                    <label 
+                        class="input-group-text"
+                        for="context">
+                        Context
+                    </label>
+                    <input
+                        class="form-control"
+                        type="text" 
+                        value="{{ images.context}}" 
+                        name="context"
+                        id="context"
+                        required
+                        placeholder="Contexte de l'image">
+                </div>
+
+                <label 
+                    for="image">
+                    Remplacer le fichier image
+                </label>
+                <input
+                    class=" form-control mb-3"
+                    type="file" 
+                    value="{{ images.image}}" 
+                    name="image"
+                    id="image"
+                    required
+                    placeholder="image"
+                    accept="image/jpg">
+            
+                <input 
+                    class="btn btn-success"
+                    type="submit" 
+                    value="Editer">
+            </form>
+        </div>
+    </div
+
 {% endblock %}

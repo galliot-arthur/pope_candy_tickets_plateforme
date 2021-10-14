@@ -1,19 +1,36 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Afficher la liste des Artistes{% endblock %}
+
 {% block content %}
     <h1>Afficher la liste des Artistes</h1>
 
     <ul class="list-group">
         {% for artist in artists %}
-            <li class="list-group-item d-flex justify-content-between">
-                <a href="/artists/show/{{ artist.id }}">
-                    {{ artist.name }}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a 
+                    class="noUnderline"
+                    href="/artists/show/{{ artist.id }}">
+                    <b>{{ artist.name }}</b>
                 </a>
-                <a href="{{ artist.website }}">Site internet</a>
+                <a 
+                    class="btn"
+                    href="/artists/edit/{{ artist.id }}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Editer
+                </a>
+                <div>
+                    <a 
+                        class="btn"
+                        href="{{ artist.website }}">
+                        <i class="fa fa-globe" aria-hidden="true"></i>
+                        Site internet
+                        </a>
+                </div>
             </li>
 
         {% else %}
-            <li>Nothing to display</li>
+            <li>Aucuns Artistes à afficher</li>
         {% endfor %}
     </ul>
     

@@ -1,17 +1,33 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}{{ venue.title }}{% endblock %}
+
 {% block content %}
 
-    <h1>{{ venue.title }}</h1>
+    <h1>On vient y jouer</h1>
 
     <div class="card">
         <div class="card-body">
-            <div>Adresse : <b>{{ venue.address }}</b></div>
-            <div>Capacité : {{ venue.capacity }}</a></div>
-            <div>Accès Mobilité réduite : <b>{{ venue.disabled_access }}</b></div>
-            <div>Accès VIP : <b>{{ venue.vip_available }}</b></div>
+            <h2>{{ venue.title }}</h2>
+            <div>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{ venue.address }}
+            </div>
+            <div>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Capacité : {{ venue.capacity }}
+            </div>
+            {% if venue.disabled_access %}
+                <div>
+                    <i class="fa fa-wheelchair-alt" aria-hidden="true"></i>
+                    Accès Mobilité réduite
+                </div>
+            {% endif %}
+            
         </div>
-        <img src="/assets/images/venues/{{venue.id}}.jpg" alt="illustration de {{venue.title}}">
+        <img 
+            src="/assets/images/venues/{{venue.id}}.jpg" 
+            alt="illustration de {{venue.title}}">
     </div>
 
 

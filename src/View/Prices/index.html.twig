@@ -1,16 +1,45 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Afficher les différents prix{% endblock %}
+
 {% block content %}
     <h1>Afficher les différents prix</h1>
 
     <ul class="list-group">
         {% for price in prices %}
             <li class="list-group-item" >
-                <div>Salle ou Festival : {{ price.venueTitle }} </div>
-                <div>Ville : {{ price.town }}</div>
-                <div>Prix de la réduction : minus<b> {{ price.price }}€ HT</b></div>
-                <div>Type de réduction : <b>{{ price.ticket_name }}</b></div>
-                <a href="/prices/edit/{{ price.id }}">Editer</a>
+                <div class="row">
+                    <div class="col-9">
+                        <div>
+                            <span class="text-muted">Salle ou Festival : </span>
+                            <b>{{ price.venueTitle }}</b> 
+                        </div>
+                        <div>
+                            <span class="text-muted">Ville : </span>
+                            <b>{{ price.town }}</b>
+                        </div>
+                        <div>
+                            <span class="text-muted">Prix de la réduction : </span>
+                            <b>- {{ price.price }}€ HT</b>
+                        </div>
+                        <div>
+                            <span class="text-muted">Type de réduction : </span>
+                            <b>{{ price.ticket_name }}</b>
+                        </div>
+                    </div>
+                    <div class="col-3 d-flex flex-column justify-content-center align-items-end">
+                        <a 
+                            class="me-2 noUnderline link-dark"
+                            href="/prices/edit/{{ price.id }}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        <a 
+                            class="me-2 noUnderline link-dark"
+                            href="/prices/delete/{{ price.id }}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
             </li>
         {% else %}
             <li>Nothing to display</li>
